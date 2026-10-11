@@ -285,9 +285,10 @@ with tab_lythuyet:
         st.warning(f"Chưa tìm thấy file '{file_anh}' trên hệ thống. Hãy kiểm tra lại tên file trên GitHub.")
 # ================= TAB 3: LUYỆN TẬP THÍCH ỨNG & GIA SƯ AI TRỰC TIẾP =================
 with tab_luyentap:
+    with tab_luyentap:
     st.subheader("Luyện tập thông minh & Gia sư AI đồng hành")
     st.write("Em hãy luyện tập các dạng bài trọng tâm. Sau khi nộp bài, em có thể đặt câu hỏi trực tiếp cho Gia sư AI về câu hỏi vừa làm:")
-        c1, c2 = st.columns(2)
+    c1, c2 = st.columns(2)
     with c1:
         topic = st.selectbox(
             "Chọn chủ đề kiến thức:",
@@ -298,6 +299,8 @@ with tab_luyentap:
                 "4. Ứng dụng thực tế của hàm số và phương trình lượng giác"
             ]
         )
+    with c2:
+        level = st.selectbox("Mức độ tư duy:", ["Nhận biết", "Thông hiểu", "Vận dụng", "Vận dụng cao"])
     with c2:
         level = st.selectbox("Mức độ tư duy:", ["Nhận biết", "Thông hiểu", "Vận dụng"])
 
