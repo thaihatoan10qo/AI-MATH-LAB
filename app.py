@@ -5,7 +5,8 @@ import streamlit.components.v1 as components
 import requests
 
 # Dán đường link URL bạn vừa sao chép vào giữa 2 dấu ngoặc kép dưới đây:
-GOOGLE_SHEET_WEBAPP_URL = "DÁN_LINK_URL_EXEC_CỦA_BẠN_VÀO_ĐÂY"
+GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzhoxFdi6idF6RZOM65xUqd8hBhDxRRO1Hd_58ZlGocPY_s1Zb7wg1q_da_ARoNJGxgPw/exec
+"
 
 def send_data_to_gsheet(action_type, student_name, student_class, score=None, correct_ratio="", note=""):
     """Gửi dữ liệu ngầm lên Google Sheet, không làm treo ứng dụng nếu mạng chậm"""
