@@ -8,9 +8,10 @@ import requests
 GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzhoxFdi6idF6RZOM65xUqd8hBhDxRRO1Hd_58ZlGocPY_s1Zb7wg1q_da_ARoNJGxgPw/exec"
 
 def send_data_to_gsheet(action_type, student_name, student_class, score=None, correct_ratio="", note=""):
-    """Gửi dữ liệu ngầm lên Google Sheet, không làm treo ứng dụng nếu mạng chậm"""
+    """Gửi dữ liệu lên Google Sheet và theo dõi chuyển hướng HTTP 302"""
     try:
         payload = {
+            "action_type": student_name if action_type is None else action_type,
             "action_type": action_type,
             "student_name": student_name,
             "student_class": student_class,
@@ -18,8 +19,17 @@ def send_data_to_gsheet(action_type, student_name, student_class, score=None, co
             "correct_ratio": correct_ratio,
             "note": note
         }
-        requests.post(GOOGLE_SHEET_WEBAPP_URL, json=payload, timeout=5)
-    except Exception:
+        res = requests.post(
+            GOOGLE_SHEET_WEBAPP_URL, 
+            data=json.dumps(payload),
+            headers={"Content-Type": "application/json"},
+            timeout=10,
+            allow_redirects=True
+        )
+        return res.status_code in [200, 302]
+    except Exception as e:
+        print(f"Lỗi gửi dữ liệu Google Sheet: {e}")
+        return False
         pass
 def format_latex(text):
     if not text:
