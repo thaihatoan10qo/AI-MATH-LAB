@@ -80,26 +80,65 @@ st.markdown("""
     }
 
     /* 4. Thanh Tabs nổi bật */
+    /* ================= THANH TABS NỔI KHỐI RÕ NÉT ================= */
+    /* 1. Khung bọc bên ngoài toàn bộ thanh Tabs */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-        background-color: #E2E8F0;
-        padding: 6px;
-        border-radius: 12px;
-    }
-    .stTabs [data-baseweb="tab"] {
-        border-radius: 8px;
-        padding: 9px 18px;
-        font-weight: 700 !important;
-        color: #334155 !important;
-        border: none;
-        transition: all 0.2s ease;
-    }
-    .stTabs [aria-selected="true"] {
-        background-color: #1E3C72 !important;
-        color: #FFFFFF !important;
-        box-shadow: 0 4px 8px rgba(30, 60, 114, 0.25);
+        gap: 10px !important;
+        background: #EDF2F7 !important; /* Nền xám xanh làm nổi các nút tab */
+        padding: 8px !important;
+        border-radius: 14px !important;
+        border: 2px solid #CBD5E1 !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
     }
 
+    /* 2. Các Tab bình thường (chưa chọn): Thẻ trắng nổi, viền đậm, chữ đen rõ */
+    .stTabs [data-baseweb="tab"] {
+        background-color: #FFFFFF !important;
+        border: 1.5px solid #CBD5E1 !important;
+        border-radius: 10px !important;
+        padding: 10px 18px !important;
+        font-weight: 700 !important;
+        font-size: 1rem !important;
+        color: #1E293B !important; /* Chữ xám đen đậm, nhìn rất rõ */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06) !important;
+        transition: all 0.25s ease-in-out !important;
+    }
+
+    /* Đảm bảo chữ bên trong tab không bị mờ */
+    .stTabs [data-baseweb="tab"] p, 
+    .stTabs [data-baseweb="tab"] span {
+        font-weight: 700 !important;
+        color: #1E293B !important;
+    }
+
+    /* 3. Hiệu ứng rê chuột qua tab */
+    .stTabs [data-baseweb="tab"]:hover {
+        background-color: #E0E7FF !important;
+        border-color: #3B82F6 !important;
+        color: #1D4ED8 !important;
+        transform: translateY(-2px) !important;
+    }
+
+    /* 4. TAB ĐANG ĐƯỢC CHỌN: Nổi bật với nền Xanh Coban Gradient, chữ trắng sáng */
+    .stTabs [aria-selected="true"] {
+        background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%) !important;
+        border: 2px solid #1D4ED8 !important;
+        border-radius: 10px !important;
+        box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35) !important;
+        transform: translateY(-2px) !important;
+    }
+
+    /* Ép màu chữ tab đang chọn sang màu trắng tinh */
+    .stTabs [aria-selected="true"] p,
+    .stTabs [aria-selected="true"] span {
+        color: #FFFFFF !important;
+        font-weight: 800 !important;
+    }
+
+    /* 5. Ẩn vạch gạch chân đỏ mặc định của Streamlit */
+    .stTabs [data-baseweb="tab-highlight"] {
+        display: none !important;
+    }
     /* 5. Nút bấm tương tác */
     .stButton > button {
         border-radius: 10px;
