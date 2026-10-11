@@ -179,12 +179,12 @@ st.markdown("""
 </style>
 
 <div class="school-banner">
-    <h1>HỆ THỐNG ÔN TẬP & ĐÁNH GIÁ NĂNG LỰC TOÁN 11</h1>
-    <p>Chương trình GDPT 2018 | Lớp Toán Trực Tuyến - Cá Nhân Hóa Cùng AI</p>
+    <h1>HỆ THỐNG ÔN TẬP & KHẢO THÍ CÁ NHÂN HÓA CÙNG AI</h1>
+    <p>TOÁN 11 | LỚP CÔ HÀ</p>
 </div>
 """, unsafe_allow_html=True)
 
-st.caption("CHƯƠNG 1: HÀM SỐ LƯỢNG GIÁC VÀ PHƯƠNG TRÌNH LƯỢNG GIÁC | Ứng dụng AI Hỗ trợ Giảng dạy & Tự học")
+st.caption("CHƯƠNG 1: HÀM SỐ LƯỢNG GIÁC VÀ PHƯƠNG TRÌNH LƯỢNG GIÁC")
 
 # 2. Quản lý API Key an toàn
 api_key = None
