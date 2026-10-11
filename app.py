@@ -2,6 +2,25 @@ import streamlit as st
 import json
 import os
 import streamlit.components.v1 as components
+import requests
+
+# Dán đường link URL bạn vừa sao chép vào giữa 2 dấu ngoặc kép dưới đây:
+GOOGLE_SHEET_WEBAPP_URL = "DÁN_LINK_URL_EXEC_CỦA_BẠN_VÀO_ĐÂY"
+
+def send_data_to_gsheet(action_type, student_name, student_class, score=None, correct_ratio="", note=""):
+    """Gửi dữ liệu ngầm lên Google Sheet, không làm treo ứng dụng nếu mạng chậm"""
+    try:
+        payload = {
+            "action_type": action_type,
+            "student_name": student_name,
+            "student_class": student_class,
+            "score": score,
+            "correct_ratio": correct_ratio,
+            "note": note
+        }
+        requests.post(GOOGLE_SHEET_WEBAPP_URL, json=payload, timeout=5)
+    except Exception:
+        pass
 def format_latex(text):
     if not text:
         return ""
@@ -258,7 +277,11 @@ with tab_lythuyet:
 with tab_luyentap:
     st.subheader("Luyện tập thông minh & Gia sư AI đồng hành")
     st.write("Em hãy luyện tập các dạng bài trọng tâm. Sau khi nộp bài, em có thể đặt câu hỏi trực tiếp cho Gia sư AI về câu hỏi vừa làm:")
-
+    col_hs1, col_hs2 = st.columns(2)
+    with col_hs1:
+        hs_ten = st.text_input("Họ và tên học sinh:", key="tab3_hs_ten", placeholder="Ví dụ: Nguyễn Văn A")
+    with col_hs2:
+        hs_lop = st.text_input("Lớp:", key="tab3_hs_lop", placeholder="Ví dụ: 11A1")
     c1, c2 = st.columns(2)
     with c1:
         topic = st.selectbox(
@@ -411,7 +434,13 @@ with tab_luyentap:
         if st.button("Nộp bài & Kiểm tra đáp án"):
             st.session_state["submitted"] = True
             st.session_state["user_choice"] = choice
-
+            if hs_ten and hs_lop:
+                send_data_to_gsheet(
+                    action_type="Luyện tập AI (Tab 3)",
+                    student_name=hs_ten,
+                    student_class=hs_lop,
+                    note=f"Chủ đề: {topic} | Mức độ: {level}"
+        )
         # Khi học sinh nộp bài
         if st.session_state.get("submitted", False):
             user_c = st.session_state.get("user_choice", choice)
