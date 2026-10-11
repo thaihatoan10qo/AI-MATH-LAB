@@ -455,14 +455,18 @@ with tab_luyentap:
             format_func=hien_thi_lua_chon
         )
 
-        if st.button("Nộp bài & Kiểm tra đáp án"):
-            st.session_state["submitted"] = True
-            st.session_state["user_choice"] = choice
-               send_data_to_gsheet(
+       if st.button("Nộp bài & Kiểm tra đáp án"):
+        st.session_state["submitted"] = True
+        st.session_state["user_choice"] = choice
+        send_data_to_gsheet(
             action_type="Luyện tập AI (Tab 3)",
             student_name="Học sinh tự do",
             student_class="Tự luyện",
             note=f"Chủ đề: {topic} | Mức độ: {level}"
+        )
+
+    # Khi học sinh nộp bài
+    if st.session_state.get("submitted", False):
         )
         # Khi học sinh nộp bài
         if st.session_state.get("submitted", False):
