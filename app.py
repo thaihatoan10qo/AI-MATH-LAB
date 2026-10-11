@@ -21,81 +21,127 @@ st.set_page_config(
 )
 
 # 2. Giao diện phong cách học đường (chú ý đúng 3 dấu ngoặc kép """ ở đầu và cuối)
+# ================= GIAO DIỆN MỚI: COBALT BLUE HIỆN ĐẠI & ĐỀ MỤC NỔI BẬT =================
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
     
     html, body, [class*="css"] {
         font-family: 'Be Vietnam Pro', sans-serif;
+        color: #0F172A;
     }
 
-    /* Banner trường học */
+    /* 1. Đề mục lớn h1, h2, h3, subheader hiển thị ĐẬM & NỔI */
+    h1, h2, h3, .stSubheader {
+        color: #0B2545 !important;
+        font-weight: 800 !important;
+        letter-spacing: -0.3px;
+    }
+    
+    h2, .stSubheader {
+        border-left: 5px solid #2563EB;
+        padding-left: 12px !important;
+        margin-top: 18px !important;
+        margin-bottom: 14px !important;
+    }
+
+    /* 2. Tiêu đề các ô chọn, câu hỏi, label đậm và nét */
+    label, .stRadio label, .stSelectbox label, .stTextInput label {
+        font-size: 1.02rem !important;
+        font-weight: 700 !important;
+        color: #1E293B !important;
+    }
+
+    /* 3. Banner mở đầu ứng dụng */
     .school-banner {
-        background: linear-gradient(135deg, #0A2540 0%, #174268 100%);
-        border-bottom: 4px solid #D97706;
+        background: linear-gradient(135deg, #134E5E 0%, #1E3C72 100%);
+        border-bottom: 4px solid #00D2FC;
         color: #FFFFFF;
-        padding: 22px 20px;
-        border-radius: 12px;
-        margin-bottom: 22px;
-        box-shadow: 0 4px 15px rgba(10, 37, 64, 0.15);
+        padding: 24px 20px;
+        border-radius: 14px;
+        margin-bottom: 24px;
+        box-shadow: 0 10px 20px rgba(30, 60, 114, 0.15);
         text-align: center;
     }
     .school-banner h1 {
         color: #FFFFFF !important;
-        font-weight: 700;
-        font-size: 1.7rem;
-        margin-bottom: 6px;
+        font-weight: 800;
+        font-size: 1.75rem;
+        margin-bottom: 8px;
+        border-left: none !important;
+        padding-left: 0 !important;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     .school-banner p {
-        color: #FBBF24 !important;
-        font-size: 0.95rem;
-        font-weight: 500;
+        color: #A5F3FC !important;
+        font-size: 1rem;
+        font-weight: 600;
         margin-bottom: 0px;
     }
 
-    /* Thanh Tabs học vụ */
+    /* 4. Thanh Tabs nổi bật */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 6px;
+        gap: 8px;
         background-color: #E2E8F0;
-        padding: 5px;
-        border-radius: 10px;
-        border: 1px solid #CBD5E1;
+        padding: 6px;
+        border-radius: 12px;
     }
     .stTabs [data-baseweb="tab"] {
         border-radius: 8px;
-        padding: 8px 14px;
-        font-weight: 600;
-        color: #334155;
+        padding: 9px 18px;
+        font-weight: 700 !important;
+        color: #334155 !important;
         border: none;
         transition: all 0.2s ease;
     }
     .stTabs [aria-selected="true"] {
-        background-color: #0A2540 !important;
+        background-color: #1E3C72 !important;
         color: #FFFFFF !important;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+        box-shadow: 0 4px 8px rgba(30, 60, 114, 0.25);
     }
 
-    /* Nút bấm */
+    /* 5. Nút bấm tương tác */
     .stButton > button {
-        border-radius: 8px;
-        font-weight: 600;
-        border: 1px solid #B45309;
-        background: linear-gradient(180deg, #1E3A5F 0%, #0F2744 100%);
-        color: #FFFFFF;
-        padding: 8px 18px;
-        box-shadow: 0 2px 6px rgba(15, 39, 68, 0.2);
-        transition: all 0.2s ease;
+        border-radius: 10px;
+        font-weight: 700 !important;
+        border: none;
+        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+        color: #FFFFFF !important;
+        padding: 10px 22px;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+        transition: all 0.25s ease;
     }
     .stButton > button:hover {
-        background: linear-gradient(180deg, #254774 0%, #153459 100%);
-        border-color: #F59E0B;
-        color: #FFFFFF;
+        background: linear-gradient(135deg, #1D4ED8 0%, #172554 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.38);
+    }
+
+    /* 6. Thẻ câu hỏi và nội dung */
+    .exam-card, .quiz-card {
+        background-color: #F8FAFC;
+        border: 1px solid #CBD5E1;
+        border-left: 6px solid #2563EB;
+        border-radius: 10px;
+        padding: 18px 20px;
+        margin: 16px 0;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    /* 7. Hộp thông báo và chỉ số kết quả */
+    div[data-testid="stMetric"] {
+        background: #FFFFFF;
+        border: 2px solid #E2E8F0;
+        border-top: 4px solid #2563EB;
+        border-radius: 10px;
+        padding: 12px 18px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
     }
 </style>
 
 <div class="school-banner">
-    <h1>HỆ THỐNG ÔN TẬP & KHẢO THÍ CÁ NHÂN HÓA</h1>
-    <p>LỚP TOÁN CÔ HÀ</p>
+    <h1>HỆ THỐNG ÔN TẬP & ĐÁNH GIÁ NĂNG LỰC TOÁN 11</h1>
+    <p>Chương trình GDPT 2018 | Lớp Toán Trực Tuyến - Cá Nhân Hóa Cùng AI</p>
 </div>
 """, unsafe_allow_html=True)
 
