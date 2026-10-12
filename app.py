@@ -440,7 +440,7 @@ with tab_luyentap:
             options=["A", "B", "C", "D"],
             format_func=hien_thi_lua_chon
         )
-       if st.button("Nộp bài & Kiểm tra đáp án"):
+        if st.button("Nộp bài & Kiểm tra đáp án"):
             st.session_state["submitted"] = True
             st.session_state["user_choice"] = choice
             send_data_to_gsheet(
