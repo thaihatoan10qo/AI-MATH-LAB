@@ -540,6 +540,14 @@ with tab_kiemtra:
     st.subheader("Kiểm tra đánh giá năng lực theo cấu trúc đề thi mới (GDPT 2018)")
     st.write("Đề thi kết hợp **Trắc nghiệm nhiều lựa chọn** và **Câu hỏi trả lời ngắn**")
 
+    # 1. KHUNG KHAI BÁO THÔNG TIN HỌC SINH BẮT BUỘC
+    st.markdown("#### 👤 Thông tin thí sinh")
+    c_info1, c_info2 = st.columns(2)
+    with c_info1:
+        exam_student_name = st.text_input("Họ và tên học sinh (*):", placeholder="Ví dụ: Nguyễn Văn An", key="exam_name_input")
+    with c_info2:
+        exam_student_class = st.text_input("Lớp (*):", placeholder="Ví dụ: 11A1", key="exam_class_input")
+
     col_m1, col_m2 = st.columns(2)
     with col_m1:
         loai_de = st.selectbox(
@@ -553,10 +561,10 @@ with tab_kiemtra:
         st.info("""
         📋 **Cấu trúc phân bổ:**
         - **80% Trắc nghiệm 4 lựa chọn (A-B-C-D):** Đo lường kiến thức Nhận biết & Thông hiểu.
-        - **20% Câu hỏi trả lời ngắn (Điền số):** Đo lường năng lực Vận dụng & Vận dụng cao (bài toán thực tế, tìm số nghiệm, GTLN/GTNN).
+        - **20% Câu hỏi trả lời ngắn (Điền số):** Đo lường năng lực Vận dụng & Vận dụng cao.
         """)
 
-    # Đọc dữ liệu kho 82 câu an toàn
+    # Đọc dữ liệu kho câu hỏi
     danh_sach_tat_ca_cau = []
     ten_file_de = None
     for fname in ["kho_de.txt", "kho_de.txt.txt", "Kho_de.txt"]:
@@ -576,12 +584,18 @@ with tab_kiemtra:
         except Exception:
             pass
 
-    # Nút bấm tạo đề kiểm tra
-    if st.button("🚀 Khởi tạo đề kiểm tra mới (Có câu hỏi trả lời ngắn)"):
-        if not client:
+    # 2. NÚT KHỞI TẠO ĐỀ (BẮT BUỘC PHẢI ĐIỀN TÊN VÀ LỚP)
+    if st.button("🚀 Bắt đầu làm bài kiểm tra"):
+        if not exam_student_name.strip() or not exam_student_class.strip():
+            st.error("⚠️ Em vui lòng nhập đầy đủ **Họ và tên** và **Lớp** ở trên trước khi bắt đầu làm đề!")
+        elif not client:
             st.error("Chưa cấu hình API Key trong mục Secrets.")
         else:
-            # Thiết lập tỉ lệ đúng theo yêu cầu:
+            # Lưu thông tin học sinh vào session state
+            st.session_state["cur_exam_student"] = exam_student_name.strip()
+            st.session_state["cur_exam_class"] = exam_student_class.strip()
+            st.session_state["exam_has_sent"] = False  # Đánh dấu chưa gửi kết quả
+
             if "10 câu" in loai_de:
                 tong_cau = 10
                 so_mcq = 8
@@ -591,17 +605,16 @@ with tab_kiemtra:
                 so_mcq = 16
                 so_sa = 4
 
-            # Bốc ngẫu nhiên câu mẫu từ kho để định hướng AI
             mau_context = ""
             if danh_sach_tat_ca_cau:
                 import random
                 cac_cau_chon = random.sample(danh_sach_tat_ca_cau, min(3, len(danh_sach_tat_ca_cau)))
                 mau_context = "\n---\n".join(cac_cau_chon)
 
-            with st.spinner(f"⚡ Đang khởi tạo đề kiểm tra {tong_cau} câu ({so_mcq} trắc nghiệm + {so_sa} trả lời ngắn)..."):
+            with st.spinner(f"⚡ Đang khởi tạo đề kiểm tra {tong_cau} câu cho thí sinh {exam_student_name.strip()}..."):
                 prompt_matrix = f"""
                 Bạn là Trưởng ban Khảo thí môn Toán THPT Việt Nam (Chương trình GDPT 2018).
-                Dưới đây là một số câu mẫu từ ngân hàng đề kiểm tra thực tế:
+                Dưới đây là một số câu mẫu từ ngân hàng đề kiểm tra:
                 ---
                 {mau_context}
                 ---
@@ -609,7 +622,7 @@ with tab_kiemtra:
                 Nhiệm vụ:
                 Hãy tạo 1 đề kiểm tra Chương 1 Toán 11 gồm ĐÚNG {tong_cau} CÂU:
                 - {so_mcq} câu đầu tiên: dạng TRẮC NGHIỆM 4 LỰA CHỌN (type: "mcq"), mức độ Nhận biết, Thông hiểu.
-                - {so_sa} câu tiếp theo: dạng TRẢ LỜI NGẮN (type: "short_answer"), mức độ Vận dụng, Vận dụng cao (bài toán ứng dụng thực tế hoặc tìm số nghiệm, giá trị lớn nhất/nhỏ nhất). Đáp án đúng bắt buộc là MỘT CON SỐ CỤ THỂ (ví dụ: "28.3", "4", "-1", "12").
+                - {so_sa} câu tiếp theo: dạng TRẢ LỜI NGẮN (type: "short_answer"), mức độ Vận dụng, Vận dụng cao. Đáp án đúng bắt buộc là MỘT CON SỐ CỤ THỂ (ví dụ: "28.3", "4", "-1", "12").
                 - Công thức toán viết bằng LaTeX trong $...$.
                 - Lời giải (explanation) ngắn gọn, rõ ràng.
 
@@ -656,9 +669,9 @@ with tab_kiemtra:
                     except Exception:
                         continue
 
-                # Dự phòng nếu máy chủ mạng bận đột xuất
+                # Dự phòng nếu mạng bận
                 if not exam_success:
-                    st.info("💡 Đường truyền đang bận, hệ thống kích hoạt bộ đề chuẩn 10 câu (8 trắc nghiệm + 2 trả lời ngắn) có sẵn:")
+                    st.info("💡 Đường truyền đang bận, hệ thống kích hoạt bộ đề chuẩn 10 câu có sẵn:")
                     st.session_state["exam_data"] = [
                         {"id": 1, "type": "mcq", "level": "Nhận biết", "question": "Cho $0 < \\alpha < \\frac{\\pi}{2}$. Khẳng định nào sau đây đúng?", "options": {"A": "$\\sin \\alpha > 0$", "B": "$\\cos \\alpha < 0$", "C": "$\\tan \\alpha < 0$", "D": "$\\cot \\alpha < 0$"}, "correct_answer": "A", "explanation": "Góc phần tư thứ I thì sin, cos, tan, cot đều dương."},
                         {"id": 2, "type": "mcq", "level": "Nhận biết", "question": "Tập xác định của hàm số $y = \\tan x$ là:", "options": {"A": "$D = \\mathbb{R} \\setminus \\left\\{\\frac{\\pi}{2} + k\\pi, k \\in \\mathbb{Z}\\right\\}$", "B": "$D = \\mathbb{R} \\setminus \\{k\\pi, k \\in \\mathbb{Z}\\}$", "C": "$D = \\mathbb{R} \\setminus \\left\\{\\frac{\\pi}{4} + k\\pi, k \\in \\mathbb{Z}\\right\\}$", "D": "$D = \\mathbb{R}$"}, "correct_answer": "A", "explanation": "$\\cos x \\neq 0 \\Leftrightarrow x \\neq \\frac{\\pi}{2} + k\\pi$."},
@@ -674,11 +687,14 @@ with tab_kiemtra:
                     st.session_state["exam_submitted"] = False
                     st.session_state["student_answers"] = {}
 
-    # ================= GIAO DIỆN LÀM BÀI =================
+    # 3. GIAO DIỆN LÀM BÀI VÀ NỘP BÀI
     if "exam_data" in st.session_state and st.session_state["exam_data"]:
         exam_list = st.session_state["exam_data"]
+        ten_thi_sinh = st.session_state.get("cur_exam_student", "Thí sinh")
+        lop_thi_sinh = st.session_state.get("cur_exam_class", "")
+        
         st.markdown("---")
-        st.markdown(f"### 📋 BÀI KIỂM TRA ĐÁNH GIÁ NĂNG LỰC ({len(exam_list)} CÂU)")
+        st.markdown(f"### 📋 BÀI KIỂM TRA ĐÁNH GIÁ NĂNG LỰC: **{ten_thi_sinh} - Lớp {lop_thi_sinh}** ({len(exam_list)} câu)")
 
         with st.form("hybrid_exam_form"):
             user_exam_answers = {}
@@ -710,7 +726,7 @@ with tab_kiemtra:
                 st.session_state["exam_submitted"] = True
                 st.session_state["student_answers"] = user_exam_answers
 
-        # ================= CHẤM ĐIỂM & BÁO CÁO PHÂN TÍCH =================
+        # 4. CHẤM ĐIỂM VÀ TỰ ĐỘNG GỬI KẾT QUẢ VỀ GOOGLE SHEET
         if st.session_state.get("exam_submitted", False):
             ans = st.session_state.get("student_answers", {})
             dung = 0
@@ -737,6 +753,21 @@ with tab_kiemtra:
                         dung += 1
 
             diem = round((dung / tong_so) * 10, 2)
+
+            # Gửi kết quả sang Google Sheet (chỉ gửi 1 lần khi bấm nộp)
+            if not st.session_state.get("exam_has_sent", False):
+                da_gui = send_data_to_gsheet(
+                    action_type="Kiểm tra (Tab 4)",
+                    student_name=ten_thi_sinh,
+                    student_class=lop_thi_sinh,
+                    score=f"{diem} điểm",
+                    correct_ratio=f"{dung}/{tong_so}",
+                    note=f"Quy mô: {loai_de}"
+                )
+                if da_gui:
+                    st.toast("🎉 Đã lưu bài kiểm tra và điểm số của em vào hệ thống!", icon="✅")
+                st.session_state["exam_has_sent"] = True
+
             st.markdown("---")
             st.markdown("## 🎯 BÁO CÁO KẾT QUẢ ĐÁNH GIÁ NĂNG LỰC")
 
@@ -750,11 +781,11 @@ with tab_kiemtra:
                 st.metric("Tỉ lệ hoàn thành", f"{ti_le}%")
 
             if diem >= 8.0:
-                st.success("🌟 **Xuất sắc!** Em làm chủ rất tốt cả phần trắc nghiệm phương án lẫn giải toán trả lời ngắn.")
+                st.success(f"🌟 **Xuất sắc!** Chúc mừng em **{ten_thi_sinh}** ({lop_thi_sinh}) đã hoàn thành xuất sắc bài kiểm tra!")
             elif diem >= 6.5:
-                st.info("👍 **Khá tốt!** Hãy rèn thêm các bài toán ứng dụng thực tế và tính toán cẩn thận hơn.")
+                st.info(f"👍 **Khá tốt!** Em **{ten_thi_sinh}** hãy rèn thêm các bài toán vận dụng thực tế nhé.")
             else:
-                st.warning("⚠️ **Cần củng cố:** Em nên mở lại **Tab 1 & Tab 2** để xem lại lý thuyết và làm lại bài nhé!")
+                st.warning(f"⚠️ **Cần cố gắng:** Em **{ten_thi_sinh}** nên ôn lại lý thuyết ở Tab 1 & Tab 2 rồi làm lại nhé!")
 
             with st.expander("📖 Xem bảng đối chiếu đáp án & Lời giải chi tiết", expanded=True):
                 for idx, item in enumerate(exam_list):
