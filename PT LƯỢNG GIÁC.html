@@ -313,6 +313,54 @@
 
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+    /* ================= TỐI ƯU GIAO DIỆN CHO ĐIỆN THOẠI ================= */
+    @media (max-width: 768px) {
+      html, body {
+        height: auto !important;
+        overflow-y: auto !important;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px 10px;
+      }
+
+      .func-tabs {
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .tab-btn {
+        flex: 1;
+        white-space: nowrap;
+        padding: 6px 10px;
+      }
+
+      /* Chuyển bố cục sang xếp dọc: đồ thị bên trên, bảng điều khiển bên dưới */
+      main {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 8px;
+        gap: 10px;
+      }
+
+      .canvas-container {
+        height: 380px !important;
+        min-height: 380px !important;
+      }
+
+      .sidebar {
+        overflow-y: visible !important;
+        height: auto !important;
+      }
+
+      .action-row {
+        margin-top: 6px;
+      }
+    }
   </style>
 </head>
 <body>
