@@ -319,6 +319,49 @@
 
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+    /* ================= TỐI ƯU GIAO DIỆN CHO ĐIỆN THOẠI ================= */
+    @media (max-width: 768px) {
+      html, body {
+        height: auto !important;
+        max-height: none !important;
+        overflow-y: auto !important;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 10px 12px;
+      }
+
+      /* Tự động xếp chồng dọc trên màn hình hẹp */
+      main {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 8px;
+        gap: 12px;
+      }
+
+      .sim-container {
+        height: 420px !important;
+        min-height: 420px !important;
+      }
+
+      .sidebar {
+        overflow-y: visible !important;
+        height: auto !important;
+      }
+
+      .slider-row label {
+        min-width: 85px;
+        font-size: 0.8rem;
+      }
+
+      .btn-row {
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
