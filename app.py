@@ -440,7 +440,7 @@ with tab_luyentap:
             options=["A", "B", "C", "D"],
             format_func=hien_thi_lua_chon
         )
-        if st.button("Nộp bài & Kiểm tra đáp án"):
+       if st.button("Nộp bài & Kiểm tra đáp án"):
             st.session_state["submitted"] = True
             st.session_state["user_choice"] = choice
             send_data_to_gsheet(
@@ -450,8 +450,8 @@ with tab_luyentap:
                 note=f"Chủ đề: {topic} | Mức độ: {level}"
             )
 
-          # Khi học sinh nộp bài
-          if st.session_state.get("submitted", False):
+        # Khi học sinh nộp bài
+        if st.session_state.get("submitted", False):
             user_c = st.session_state.get("user_choice", choice)
             if user_c == q["correct_answer"]:
                 st.success("🎉 Chính xác! Em đã làm chủ phương pháp giải bài toán này.")
