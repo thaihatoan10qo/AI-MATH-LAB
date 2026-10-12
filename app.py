@@ -464,10 +464,7 @@ with tab_luyentap:
             note=f"Chủ đề: {topic} | Mức độ: {level}"
         )
 
-    # Khi học sinh nộp bài
-    if st.session_state.get("submitted", False):
-        )
-        # Khi học sinh nộp bài
+          # Khi học sinh nộp bài
         if st.session_state.get("submitted", False):
             user_c = st.session_state.get("user_choice", choice)
             if user_c == q["correct_answer"]:
