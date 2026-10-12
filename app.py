@@ -314,9 +314,14 @@ with tab_luyentap:
                 "3. Phương trình lượng giác cơ bản & Điều kiện nghiệm",
                 "4. Ứng dụng thực tế của hàm số và phương trình lượng giác"
             ]
+            key="tab3_topic_select"
         )
     with c2:
-        level = st.selectbox("Mức độ tư duy:", ["Nhận biết", "Thông hiểu", "Vận dụng", "Vận dụng cao"])
+        level = st.selectbox(
+            "Mức độ tư duy:", 
+            ["Nhận biết", "Thông hiểu", "Vận dụng", "Vận dụng cao"],
+            key="tab3_topic_select"
+        )
     with c2:
         level = st.selectbox("Mức độ tư duy:", ["Nhận biết", "Thông hiểu", "Vận dụng"])
 
