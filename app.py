@@ -5,17 +5,16 @@ import streamlit.components.v1 as components
 import requests
 
 # Dán đường link URL bạn vừa sao chép vào giữa 2 dấu ngoặc kép dưới đây:
-GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzhoxFdi6idF6RZOM65xUqd8hBhDxRRO1Hd_58ZlGocPY_s1Zb7wg1q_da_ARoNJGxgPw/exec"
+GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwdEHCrjYoQfFeKPXXf8rp-Xvcgj3_q7hey4QZC5_W8LDi7b__MmzWSL0zC_-0892DdyQ/exec"
 
 def send_data_to_gsheet(action_type, student_name, student_class, score=None, correct_ratio="", note=""):
-    """Gửi dữ liệu lên Google Sheet và theo dõi chuyển hướng HTTP 302"""
+    """Gửi dữ liệu lên Google Sheet qua Apps Script Web App"""
     try:
         payload = {
-            "action_type": student_name if action_type is None else action_type,
             "action_type": action_type,
             "student_name": student_name,
             "student_class": student_class,
-            "score": score,
+            "score": str(score) if score is not None else "",
             "correct_ratio": correct_ratio,
             "note": note
         }
@@ -30,7 +29,6 @@ def send_data_to_gsheet(action_type, student_name, student_class, score=None, co
     except Exception as e:
         print(f"Lỗi gửi dữ liệu Google Sheet: {e}")
         return False
-        pass
 def format_latex(text):
     if not text:
         return ""
@@ -443,13 +441,21 @@ with tab_luyentap:
         if st.button("Nộp bài & Kiểm tra đáp án"):
             st.session_state["submitted"] = True
             st.session_state["user_choice"] = choice
-            send_data_to_gsheet(
-                action_type="Luyện tập AI (Tab 3)",
-                student_name="Học sinh tự do",
-                student_class="Tự luyện",
+
+            # Ghi nhận kết quả làm bài sang Google Sheet
+            is_correct = (choice == q["correct_answer"])
+            ket_qua = "Đúng" if is_correct else "Chưa đúng"
+
+            da_gui = send_data_to_gsheet(
+                action_type="Luyện tập tự do (Tab 3)",
+                student_name="-",
+                student_class="-",
+                score=ket_qua,
                 note=f"Chủ đề: {topic} | Mức độ: {level}"
             )
-
+            if da_gui:
+                st.toast("✅ Đã ghi nhận lượt luyện tập vào Google Sheet!", icon="📊")
+       
         # Khi học sinh nộp bài
         if st.session_state.get("submitted", False):
             user_c = st.session_state.get("user_choice", choice)
