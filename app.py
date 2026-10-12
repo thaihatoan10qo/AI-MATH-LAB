@@ -537,7 +537,7 @@ def format_latex(text):
     return text_str
 # ================= TAB 4: KIỂM TRA ĐÁNH GIÁ (TRẮC NGHIỆM + TRẢ LỜI NGẮN) =================
 with tab_kiemtra:
-    st.subheader("Kiểm tra đánh giá năng lực theo cấu trúc đề thi mới (GDPT 2018)")
+    st.subheader("KIỂM TRA ĐÁNH GIÁ NĂNG LỰC)")
     st.write("Đề thi kết hợp **Trắc nghiệm nhiều lựa chọn** và **Câu hỏi trả lời ngắn**")
 
     # 1. KHUNG KHAI BÁO THÔNG TIN HỌC SINH BẮT BUỘC
