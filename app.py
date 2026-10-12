@@ -537,7 +537,7 @@ def format_latex(text):
     return text_str
 # ================= TAB 4: KIỂM TRA ĐÁNH GIÁ (TRẮC NGHIỆM + TRẢ LỜI NGẮN) =================
 with tab_kiemtra:
-    st.subheader("KIỂM TRA ĐÁNH GIÁ NĂNG LỰC)")
+    st.subheader("KIỂM TRA ĐÁNH GIÁ NĂNG LỰC")
     st.write("Đề thi kết hợp **Trắc nghiệm nhiều lựa chọn** và **Câu hỏi trả lời ngắn**")
 
     # 1. KHUNG KHAI BÁO THÔNG TIN HỌC SINH BẮT BUỘC
