@@ -305,9 +305,7 @@ with tab_luyentap:
             ["Nhận biết", "Thông hiểu", "Vận dụng", "Vận dụng cao"],
             key="tab3_level_select"
         )
-    
-   
-      
+ 
     col_btn1, col_btn2 = st.columns(2)
     with col_btn1:
         btn_gen = st.button("🎲 AI tạo câu hỏi từ ngân hàng đề")
@@ -442,18 +440,18 @@ with tab_luyentap:
             options=["A", "B", "C", "D"],
             format_func=hien_thi_lua_chon
         )
-    if st.button("Nộp bài & Kiểm tra đáp án"):
-        st.session_state["submitted"] = True
-        st.session_state["user_choice"] = choice
-        send_data_to_gsheet(
-            action_type="Luyện tập AI (Tab 3)",
-            student_name="Học sinh tự do",
-            student_class="Tự luyện",
-            note=f"Chủ đề: {topic} | Mức độ: {level}"
-        )
+        if st.button("Nộp bài & Kiểm tra đáp án"):
+            st.session_state["submitted"] = True
+            st.session_state["user_choice"] = choice
+            send_data_to_gsheet(
+                action_type="Luyện tập AI (Tab 3)",
+                student_name="Học sinh tự do",
+                student_class="Tự luyện",
+                note=f"Chủ đề: {topic} | Mức độ: {level}"
+            )
 
           # Khi học sinh nộp bài
-        if st.session_state.get("submitted", False):
+          if st.session_state.get("submitted", False):
             user_c = st.session_state.get("user_choice", choice)
             if user_c == q["correct_answer"]:
                 st.success("🎉 Chính xác! Em đã làm chủ phương pháp giải bài toán này.")
