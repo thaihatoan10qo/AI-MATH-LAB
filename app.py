@@ -303,7 +303,7 @@ with tab_luyentap:
 with tab_luyentap:
     
     st.subheader("Luyện tập thông minh & Gia sư AI đồng hành")
-    st.write("Em hãy luyện tập các dạng bài trọng tâm. Sau khi nộp bài, em có thể đặt câu hỏi trực tiếp cho Gia sư AI về câu hỏi vừa làm:")
+    st.write("Em hãy luyện tập các dạng bài trọng tâm. Sau khi nộp bài, em có thể đặt câu hỏi trực tiếp cho Gia sư AI của cô Hà về câu hỏi vừa làm:")
     c1, c2 = st.columns(2)
     with c1:
         topic = st.selectbox(
@@ -454,8 +454,7 @@ with tab_luyentap:
             options=["A", "B", "C", "D"],
             format_func=hien_thi_lua_chon
         )
-
-       if st.button("Nộp bài & Kiểm tra đáp án"):
+    if st.button("Nộp bài & Kiểm tra đáp án"):
         st.session_state["submitted"] = True
         st.session_state["user_choice"] = choice
         send_data_to_gsheet(
