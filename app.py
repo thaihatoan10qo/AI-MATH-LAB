@@ -749,7 +749,7 @@ with tab_kiemtra:
         lop_thi_sinh = st.session_state.get("cur_exam_class", "")
         
         st.markdown("---")
-        st.markdown(f"### 📋 BÀI KIỂM TRA ĐÁNH GIÁ NĂNG LỰC: **{student_name} - Lớp {student_class}** ({len(exam_list)} câu)")
+        st.markdown(f"### 📋 BÀI KIỂM TRA ĐÁNH GIÁ NĂNG LỰC: **{st.session_state.get('student_name', '')} - Lớp {st.session_state.get('student_class', '')}** ({len(exam_list)} câu)")
 
         with st.form("hybrid_exam_form"):
             user_exam_answers = {}
