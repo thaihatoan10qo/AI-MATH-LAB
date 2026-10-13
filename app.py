@@ -495,22 +495,35 @@ with tab_luyentap:
             format_func=hien_thi_lua_chon
         )
         if st.button("Nộp bài & Kiểm tra đáp án"):
-            st.session_state["submitted"] = True
-            st.session_state["user_choice"] = choice
+            if not st.session_state.get("submitted", False):
+                st.session_state["submitted"] = True
+                st.session_state["user_choice"] = choice
 
-            # Ghi nhận kết quả làm bài sang Google Sheet
-            is_correct = (choice == q["correct_answer"])
-            ket_qua = "Đúng" if is_correct else "Chưa đúng"
+                # 1. Tăng số câu đã làm
+                st.session_state["practice_total"] = st.session_state.get("practice_total", 0) + 1
+                tong_da_luyen = st.session_state["practice_total"]
 
-            da_gui = send_data_to_gsheet(
-                action_type="Luyện tập tự do (Tab 3)",
-                student_name="-",
-                student_class="-",
-                score=ket_qua,
-                note=f"Chủ đề: {topic} | Mức độ: {level}"
-            )
-            if da_gui:
-                st.toast("✅ Đã ghi nhận lượt luyện tập vào Google Sheet!", icon="📊")
+                # 2. Đánh giá đúng / sai
+                is_correct = (choice == q["correct_answer"])
+                if is_correct:
+                    st.session_state["practice_correct"] = st.session_state.get("practice_correct", 0) + 1
+                else:
+                    st.session_state["practice_wrong"] = st.session_state.get("practice_wrong", 0) + 1
+
+                so_dung = st.session_state["practice_correct"]
+                so_sai = st.session_state["practice_wrong"]
+                chu_de = st.session_state.get("cur_question_topic", topic)
+
+                # 3. Gửi sang Google Sheet
+                da_gui = send_data_to_gsheet(
+                    action_type=f"Luyện tập ({tong_da_luyen} câu)",
+                    student_name=st.session_state.get("student_name", "-"),
+                    student_class=st.session_state.get("student_class", "-"),
+                    score=f"Đúng: {so_dung} câu | Sai: {so_sai} câu",
+                    note=f"Câu {tong_da_luyen}: {'Đúng' if is_correct else 'Sai'} (Chủ đề: {chu_de})"
+                )
+                if da_gui:
+                    st.toast(f"✅ Đã lưu kết quả câu thứ {tong_da_luyen} vào Google Sheet!", icon="📊")
        
         # Khi học sinh nộp bài
         if st.session_state.get("submitted", False):
