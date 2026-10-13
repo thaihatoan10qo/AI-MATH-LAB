@@ -49,6 +49,60 @@ st.set_page_config(
 
 # 2. Giao diện phong cách học đường (chú ý đúng 3 dấu ngoặc kép """ ở đầu và cuối)
 # ================= GIAO DIỆN MỚI: COBALT BLUE HIỆN ĐẠI & ĐỀ MỤC NỔI BẬT =================
+# ================= KHAI BÁO THÔNG TIN HỌC SINH (CỔNG ĐĂNG NHẬP) =================
+if "logged_in" not in st.session_state:
+    st.session_state["logged_in"] = False
+if "student_name" not in st.session_state:
+    st.session_state["student_name"] = ""
+if "student_class" not in st.session_state:
+    st.session_state["student_class"] = ""
+
+# Biến đếm câu luyện tập ở Tab 3
+if "practice_total" not in st.session_state:
+    st.session_state["practice_total"] = 0
+if "practice_correct" not in st.session_state:
+    st.session_state["practice_correct"] = 0
+if "practice_wrong" not in st.session_state:
+    st.session_state["practice_wrong"] = 0
+
+# Nếu chưa nhập thông tin: Chặn màn hình lại
+if not st.session_state["logged_in"]:
+    st.title("📚 HỆ THỐNG ÔN TẬP & ĐÁNH GIÁ TOÁN 11")
+    st.markdown("---")
+    
+    col_c1, col_c2, col_c3 = st.columns([1, 2, 1])
+    with col_c2:
+        st.subheader("👋 Chào mừng em đến với hệ thống!")
+        st.write("Vui lòng nhập thông tin trước khi bắt đầu:")
+        
+        with st.form("login_form"):
+            in_name = st.text_input("Họ và tên học sinh (*):", placeholder="Ví dụ: Nguyễn Văn An")
+            in_class = st.text_input("Lớp (*):", placeholder="Ví dụ: 11A1")
+            btn_login = st.form_submit_button("🚀 Bắt đầu học tập", use_container_width=True)
+            
+            if btn_login:
+                if not in_name.strip() or not in_class.strip():
+                    st.error("⚠️ Em vui lòng điền đầy đủ cả Họ tên và Lớp nhé!")
+                else:
+                    st.session_state["student_name"] = in_name.strip()
+                    st.session_state["student_class"] = in_class.strip()
+                    st.session_state["logged_in"] = True
+                    st.rerun()
+    st.stop()  # Dừng tại đây, không cho chạy tới dòng tạo tabs bên dưới
+
+# KHI ĐÃ ĐĂNG NHẬP: HIỂN THỊ THANH THÔNG TIN VÀ NÚT ĐỔI TÊN
+col_usr1, col_usr2 = st.columns([4, 1])
+with col_usr1:
+    st.success(f"👤 Học sinh: **{st.session_state['student_name']}** | Lớp: **{st.session_state['student_class']}**")
+with col_usr2:
+    if st.button("🚪 Đổi thông tin"):
+        st.session_state["logged_in"] = False
+        st.session_state["student_name"] = ""
+        st.session_state["student_class"] = ""
+        st.session_state["practice_total"] = 0
+        st.session_state["practice_correct"] = 0
+        st.session_state["practice_wrong"] = 0
+        st.rerun()
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
@@ -222,48 +276,7 @@ else:
 
 client = genai.Client(api_key=api_key) if api_key else None
 
-# ================= KHAI BÁO THÔNG TIN HỌC SINH (CỔNG ĐĂNG NHẬP) =================
-if "logged_in" not in st.session_state:
-    st.session_state["logged_in"] = False
-if "student_name" not in st.session_state:
-    st.session_state["student_name"] = ""
-if "student_class" not in st.session_state:
-    st.session_state["student_class"] = ""
 
-# Biến đếm câu luyện tập ở Tab 3
-if "practice_total" not in st.session_state:
-    st.session_state["practice_total"] = 0
-if "practice_correct" not in st.session_state:
-    st.session_state["practice_correct"] = 0
-if "practice_wrong" not in st.session_state:
-    st.session_state["practice_wrong"] = 0
-
-# Nếu chưa nhập thông tin: Chặn màn hình lại
-if not st.session_state["logged_in"]:
-    st.title("📚 HỆ THỐNG HỌC TẬP & ĐÁNH GIÁ TOÁN 11")
-    st.markdown("---")
-    
-    col_c1, col_c2, col_c3 = st.columns([1, 2, 1])
-    with col_c2:
-        st.subheader("👋 Chào mừng em đến với hệ thống!")
-        st.write("Vui lòng nhập thông tin trước khi bắt đầu:")
-        
-        with st.form("login_form"):
-            in_name = st.text_input("Họ và tên học sinh (*):", placeholder="Ví dụ: Nguyễn Văn An")
-            in_class = st.text_input("Lớp (*):", placeholder="Ví dụ: 11A1")
-            btn_login = st.form_submit_button("🚀 Bắt đầu học tập", use_container_width=True)
-            
-            if btn_login:
-                if not in_name.strip() or not in_class.strip():
-                    st.error("⚠️ Em vui lòng điền đầy đủ cả Họ tên và Lớp nhé!")
-                else:
-                    st.session_state["student_name"] = in_name.strip()
-                    st.session_state["student_class"] = in_class.strip()
-                    st.session_state["logged_in"] = True
-                    st.rerun()
-    st.stop()  # Dừng tại đây, không cho chạy tới dòng tạo tabs bên dưới
-
-# KHI ĐÃ ĐĂNG NHẬP: HIỂN THỊ THANH THÔNG TIN VÀ NÚT ĐỔI TÊN
 col_usr1, col_usr2 = st.columns([4, 1])
 with col_usr1:
     st.success(f"👤 Học sinh: **{st.session_state['student_name']}** | Lớp: **{st.session_state['student_class']}**")
