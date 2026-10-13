@@ -666,7 +666,7 @@ with tab_kiemtra:
                 cac_cau_chon = random.sample(danh_sach_tat_ca_cau, min(3, len(danh_sach_tat_ca_cau)))
                 mau_context = "\n---\n".join(cac_cau_chon)
 
-            with st.spinner(f"⚡ Đang khởi tạo đề kiểm tra {tong_cau} câu cho thí sinh {exam_student_name.strip()}..."):
+            with st.spinner(f"⚡ Đang khởi tạo đề kiểm tra {tong_cau} câu "):
                 prompt_matrix = f"""
                 Bạn là Trưởng ban Khảo thí môn Toán THPT Việt Nam (Chương trình GDPT 2018).
                 Dưới đây là một số câu mẫu từ ngân hàng đề kiểm tra:
