@@ -749,7 +749,7 @@ with tab_kiemtra:
         lop_thi_sinh = st.session_state.get("cur_exam_class", "")
         
         st.markdown("---")
-        st.markdown(f"### 📋 BÀI KIỂM TRA ĐÁNH GIÁ NĂNG LỰC: **{ten_thi_sinh} - Lớp {lop_thi_sinh}** ({len(exam_list)} câu)")
+        st.markdown(f"### 📋 BÀI KIỂM TRA ĐÁNH GIÁ NĂNG LỰC: **{student_name} - Lớp {student_class}** ({len(exam_list)} câu)")
 
         with st.form("hybrid_exam_form"):
             user_exam_answers = {}
@@ -810,19 +810,17 @@ with tab_kiemtra:
             diem = round((dung / tong_so) * 10, 2)
 
             # Gửi kết quả sang Google Sheet (chỉ gửi 1 lần khi bấm nộp)
-            if not st.session_state.get("exam_has_sent", False):
-                da_gui = send_data_to_gsheet(
-                    action_type="Kiểm tra (Tab 4)",
-                    student_name=ten_thi_sinh,
-                    student_class=lop_thi_sinh,
-                    score=f"{diem} điểm",
-                    correct_ratio=f"{dung}/{tong_so}",
-                    note=f"Quy mô: {loai_de}"
-                )
-                if da_gui:
-                    st.toast("🎉 Đã lưu bài kiểm tra và điểm số của em vào hệ thống!", icon="✅")
-                st.session_state["exam_has_sent"] = True
-
+            # Gửi dữ liệu sang Google Sheet
+            da_gui = send_data_to_gsheet(
+                action_type="Kiểm tra (Tab 4)",
+                student_name=st.session_state.get("student_name", "Ẩn danh"),
+                student_class=st.session_state.get("student_class", "-"),
+                score=f"{diem} điểm",
+                note=f"Quy mô: {loai_de} (Đúng {dung}/{tong_so} câu)"
+            )
+            if da_gui:
+                st.toast("🎉 Đã gửi kết quả bài thi về hệ thống!", icon="✅")
+          
             st.markdown("---")
             st.markdown("## 🎯 BÁO CÁO KẾT QUẢ ĐÁNH GIÁ NĂNG LỰC")
 
