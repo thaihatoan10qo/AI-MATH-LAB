@@ -516,7 +516,7 @@ with tab_luyentap:
 
                 # 3. Gửi sang Google Sheet
                 da_gui = send_data_to_gsheet(
-                    action_type=f"Luyện tập ({tong_da_luyen} câu)",
+                    action_type=f"Luyện tập ( câu {tong_da_luyen} )",
                     student_name=st.session_state.get("student_name", "-"),
                     student_class=st.session_state.get("student_class", "-"),
                     score=f"Đúng: {so_dung} câu | Sai: {so_sai} câu",
