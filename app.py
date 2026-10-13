@@ -277,18 +277,7 @@ else:
 client = genai.Client(api_key=api_key) if api_key else None
 
 
-col_usr1, col_usr2 = st.columns([4, 1])
-with col_usr1:
-    st.success(f"👤 Học sinh: **{st.session_state['student_name']}** | Lớp: **{st.session_state['student_class']}**")
-with col_usr2:
-    if st.button("🚪 Đổi thông tin"):
-        st.session_state["logged_in"] = False
-        st.session_state["student_name"] = ""
-        st.session_state["student_class"] = ""
-        st.session_state["practice_total"] = 0
-        st.session_state["practice_correct"] = 0
-        st.session_state["practice_wrong"] = 0
-        st.rerun()
+
 # 3. Tạo các phân hệ chức năng
 tab_mophong, tab_lythuyet, tab_luyentap, tab_kiemtra = st.tabs([
     "🌀 1. MÔ PHỎNG TRỰC QUAN",
