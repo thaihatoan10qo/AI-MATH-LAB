@@ -609,13 +609,8 @@ with tab_kiemtra:
     st.subheader("KIỂM TRA ĐÁNH GIÁ NĂNG LỰC")
     st.write("Đề thi kết hợp **Trắc nghiệm nhiều lựa chọn** và **Câu hỏi trả lời ngắn**")
 
-    # 1. KHUNG KHAI BÁO THÔNG TIN HỌC SINH BẮT BUỘC
-    st.markdown("#### 👤 Thông tin thí sinh")
-    c_info1, c_info2 = st.columns(2)
-    with c_info1:
-        exam_student_name = st.text_input("Họ và tên học sinh (*):", placeholder="Ví dụ: Nguyễn Văn An", key="exam_name_input")
-    with c_info2:
-        exam_student_class = st.text_input("Lớp (*):", placeholder="Ví dụ: 11A1", key="exam_class_input")
+   # 1. THÔNG TIN THÍ SINH (Tự động lấy từ màn hình đăng nhập)
+    st.info(f"📝 Thí sinh: **{st.session_state.get('student_name', '')}** | Lớp: **{st.session_state.get('student_class', '')}**")
 
     col_m1, col_m2 = st.columns(2)
     with col_m1:
@@ -655,16 +650,7 @@ with tab_kiemtra:
 
     # 2. NÚT KHỞI TẠO ĐỀ (BẮT BUỘC PHẢI ĐIỀN TÊN VÀ LỚP)
     if st.button("🚀 Bắt đầu làm bài kiểm tra"):
-        if not exam_student_name.strip() or not exam_student_class.strip():
-            st.error("⚠️ Em vui lòng nhập đầy đủ **Họ và tên** và **Lớp** ở trên trước khi bắt đầu làm đề!")
-        elif not client:
-            st.error("Chưa cấu hình API Key trong mục Secrets.")
-        else:
-            # Lưu thông tin học sinh vào session state
-            st.session_state["cur_exam_student"] = exam_student_name.strip()
-            st.session_state["cur_exam_class"] = exam_student_class.strip()
-            st.session_state["exam_has_sent"] = False  # Đánh dấu chưa gửi kết quả
-
+       
             if "10 câu" in loai_de:
                 tong_cau = 10
                 so_mcq = 8
