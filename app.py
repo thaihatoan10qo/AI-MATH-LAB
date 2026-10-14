@@ -201,7 +201,7 @@ if not st.session_state.get("logged_in", False):
                 """
                 <div style="font-size: 12px; color: #0369a1; background: #e0f2fe; padding: 10px 12px; border-radius: 8px; margin: 12px 0; border: 1px solid #bae6fd;">
                    
-                </div>
+               
                 """, 
                 unsafe_allow_html=True
             )
