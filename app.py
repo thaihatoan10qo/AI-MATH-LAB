@@ -772,7 +772,7 @@ with tab_kiemtra:
         except Exception:
             pass
 
-    # 2. NÚT KHỞI TẠO ĐỀ (BẮT BUỘC PHẢI ĐIỀN TÊN VÀ LỚP)
+    # 2. NÚT KHỞI TẠO ĐỀ 
     if st.button("🚀 Bắt đầu làm bài kiểm tra"):
        
             if "10 câu" in loai_de:
@@ -957,6 +957,8 @@ with tab_kiemtra:
                 ti_le = round((dung / tong_so) * 100, 1)
                 st.metric("Tỉ lệ hoàn thành", f"{ti_le}%")
 
+            ten_thi_sinh = st.session_state.get("student_name", "Học sinh")
+            lop_thi_sinh = st.session_state.get("student_class", "11")
             if diem >= 8.0:
                 st.success(f"🌟 **Xuất sắc!** Chúc mừng em **{ten_thi_sinh}** ({lop_thi_sinh}) đã hoàn thành xuất sắc bài kiểm tra!")
             elif diem >= 6.5:
