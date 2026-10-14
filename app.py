@@ -200,7 +200,7 @@ if not st.session_state.get("logged_in", False):
             st.markdown(
                 """
                 <div style="font-size: 12px; color: #0369a1; background: #e0f2fe; padding: 10px 12px; border-radius: 8px; margin: 12px 0; border: 1px solid #bae6fd;">
-                    🔒 Điểm số và quá trình luyện tập sẽ được tự động đồng bộ về sổ theo dõi của giáo viên bộ môn.
+                   
                 </div>
                 """, 
                 unsafe_allow_html=True
