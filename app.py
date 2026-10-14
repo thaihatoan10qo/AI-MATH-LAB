@@ -197,15 +197,7 @@ if not st.session_state.get("logged_in", False):
             in_name = st.text_input("Họ và tên học sinh (*):", placeholder="Ví dụ: Nguyễn Văn An")
             in_class = st.text_input("Lớp học (*):", placeholder="Ví dụ: 11A1")
             
-            st.markdown(
-                """
-                <div style="font-size: 12px; color: #0369a1; background: #e0f2fe; padding: 10px 12px; border-radius: 8px; margin: 12px 0; border: 1px solid #bae6fd;">
-                   
-               
-                """, 
-                unsafe_allow_html=True
-            )
-            
+                      
             btn_login = st.form_submit_button("🚀 Bắt đầu học tập ngay", use_container_width=True, type="primary")
 
             if btn_login:
