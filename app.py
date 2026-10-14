@@ -49,75 +49,125 @@ st.set_page_config(
 
 # 2. Giao diện phong cách học đường (chú ý đúng 3 dấu ngoặc kép """ ở đầu và cuối)
 # ================= KHAI BÁO THÔNG TIN HỌC SINH (CỔNG ĐĂNG NHẬP) =================
-if "logged_in" not in st.session_state:
-    st.session_state["logged_in"] = False
-if "student_name" not in st.session_state:
-    st.session_state["student_name"] = ""
-if "student_class" not in st.session_state:
-    st.session_state["student_class"] = ""
-
-# Biến đếm câu luyện tập ở Tab 3
-if "practice_total" not in st.session_state:
-    st.session_state["practice_total"] = 0
-if "practice_correct" not in st.session_state:
-    st.session_state["practice_correct"] = 0
-if "practice_wrong" not in st.session_state:
-    st.session_state["practice_wrong"] = 0
-
-# Nếu chưa nhập thông tin: Chặn màn hình lại
 # ================= CỔNG ĐỊNH DANH & GIỚI THIỆU SẢN PHẨM =================
 if not st.session_state["logged_in"]:
-    # 1. BANNER TIÊU ĐỀ ĐẦU TRANG (100% TIẾNG VIỆT)
+    import base64
+    import os
+
+    # 1. Hàm đọc file ảnh nền cục bộ sang base64
+    def get_base64_bg(image_file):
+        if os.path.exists(image_file):
+            with open(image_file, "rb") as f:
+                return base64.b64encode(f.read()).decode()
+        return None
+
+    # Tên file ảnh nền bạn đã tải lên GitHub (ví dụ: background.png)
+    bg_base64 = get_base64_bg("background.png")
+
+    if bg_base64:
+        bg_style = f"""
+            background: linear-gradient(rgba(240, 249, 255, 0.45), rgba(224, 242, 254, 0.55)), 
+                        url("data:image/png;base64,{bg_base64}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        """
+    else:
+        bg_style = "background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);"
+
+    # 2. Tinh chỉnh CSS kính mờ & độ tương phản cho văn bản
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            {bg_style}
+        }}
+        /* Tùy chỉnh khối kính mờ */
+        .glass-card {{
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12);
+        }}
+        /* Làm nổi bật nhãn và ô nhập liệu */
+        .stTextInput label {{
+            font-weight: 700 !important;
+            color: #0f172a !important;
+            font-size: 14px !important;
+        }}
+        .stTextInput input {{
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            border: 1.5px solid #cbd5e1 !important;
+            border-radius: 8px !important;
+            font-weight: 500 !important;
+        }}
+        .stTextInput input:focus {{
+            border-color: #0284c7 !important;
+            box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2) !important;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # 3. BANNER TIÊU ĐỀ CHÍNH
     st.markdown(
         """
-        <div style="
-            background: linear-gradient(135deg, #0d3b66 0%, #001e3d 100%);
-            padding: 24px 20px;
-            border-radius: 16px;
-            text-align: center;
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(0, 30, 61, 0.2);
-            margin-bottom: 25px;
-        ">
-            <div style="display: inline-block; background: rgba(56, 189, 248, 0.2); color: #38bdf8; font-size: 13px; font-weight: 600; padding: 4px 14px; border-radius: 20px; margin-bottom: 10px; border: 1px solid rgba(56, 189, 248, 0.4);">
-                ✨ HỌC TOÁN CÙNG CÔ HÀ
+        <div class="glass-card" style="padding: 24px 20px; text-align: center; margin-bottom: 24px; border-top: 4px solid #0284c7;">
+            <div style="display: inline-block; background: #e0f2fe; color: #0369a1; font-size: 13px; font-weight: 700; padding: 4px 16px; border-radius: 20px; margin-bottom: 10px; border: 1px solid #bae6fd;">
+                ✨ HỌC TOÁN CÙNG CÔ HÀ • CHƯƠNG TRÌNH GDPT 2018
             </div>
-            <h1 style="margin: 0 0 8px 0; font-size: 26px; font-weight: 800; color: #ffffff;">
+            <h1 style="margin: 0 0 8px 0; font-size: 26px; font-weight: 800; color: #0f2b48; line-height: 1.3;">
                 📐 HỆ THỐNG HỌC TẬP TƯƠNG TÁC & KHẢO THÍ TÍCH HỢP TRÍ TUỆ NHÂN TẠO
             </h1>
-            <p style="margin: 0; font-size: 15px; color: #94a3b8; font-weight: 500;">
-                TOÁN 11-Chương 1: Hàm số lượng giác và Phương trình lượng giác
+            <p style="margin: 0; font-size: 15px; color: #334155; font-weight: 600;">
+                TOÁN 11 - Chương 1: Hàm số lượng giác và Phương trình lượng giác
             </p>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    # 2. BỐ CỤC 2 CỘT: GIỚI THIỆU TÍNH NĂNG & KHUNG ĐĂNG NHẬP
-    col_intro, col_login = st.columns([1.3, 1], gap="large")
+    # 4. BỐ CỤC 2 CỘT: TÍNH NĂNG & ĐĂNG NHẬP
+    col_intro, col_login = st.columns([1.35, 1], gap="large")
 
     with col_intro:
-        st.markdown("### 🌟 Tính năng nổi bật của ứng dụng")
-        st.caption("Nền tảng tích hợp công nghệ hỗ trợ học sinh hiểu rõ bản chất kiến thức toán học và cá nhân hóa lộ trình học tập:")
-
         st.markdown(
             """
-            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
-                <div style="background: #f8fafc; padding: 12px 14px; border-radius: 12px; border-left: 4px solid #38bdf8; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                    <div style="font-weight: 700; color: #0f172a; font-size: 14px;">🌀 MÔ PHỎNG TRỰC QUAN </div>
-                    <div style="font-size: 13px; color: #475569; margin-top: 2px;">Trực quan hóa khái niệm giá trị lượng giác, đồ thị hàm số lượng giác, nghiệm của phương trình lượng giác cơ bản.</div>
-                </div>
-                <div style="background: #f8fafc; padding: 12px 14px; border-radius: 12px; border-left: 4px solid #10b981; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                    <div style="font-weight: 700; color: #0f172a; font-size: 14px;">📚 SƠ ĐỒ HÓA LÝ THUYẾT</div>
-                    <div style="font-size: 13px; color: #475569; margin-top: 2px;">Hệ thống đầy đủ lý thuyết theo từng bài học.</div>
-                </div>
-                <div style="background: #f8fafc; padding: 12px 14px; border-radius: 12px; border-left: 4px solid #f59e0b; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                    <div style="font-weight: 700; color: #0f172a; font-size: 14px;">🤖 GIA SƯ TRÍ TUỆ NHÂN TẠO (AI) </div>
-                    <div style="font-size: 13px; color: #475569; margin-top: 2px;">Tự động sinh câu hỏi theo 4 mức độ năng lực, đối thoại giải thích bẫy sai lầm và luyện ngay câu hỏi dạng tương tự .</div>
-                </div>
-                <div style="background: #f8fafc; padding: 12px 14px; border-radius: 12px; border-left: 4px solid #6366f1; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-                    <div style="font-weight: 700; color: #0f172a; font-size: 14px;">📊 KHẢO THÍ TỰ ĐỘNG & GỬI KẾT QUẢ ĐẾN GIÁO VIÊN </div>
-                    <div style="font-size: 13px; color: #475569; margin-top: 2px;">Tạo đề kiểm tra ma trận chuẩn, tự động chấm điểm và đồng bộ tức thì tiến trình học tập về bảng quản lý của giáo viên.</div>
+            <div class="glass-card" style="padding: 20px 22px;">
+                <h3 style="margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 800;">🌟 Tính năng nổi bật của ứng dụng</h3>
+                <p style="font-size: 13px; color: #475569; margin-bottom: 16px;">
+                    Nền tảng tích hợp công nghệ hỗ trợ học sinh hiểu rõ bản chất kiến thức toán học và cá nhân hóa lộ trình học tập:
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="background: rgba(255, 255, 255, 0.95); padding: 12px 14px; border-radius: 10px; border-left: 4px solid #0284c7; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+                        <div style="font-weight: 700; color: #0284c7; font-size: 14px;">🌀 MÔ PHỎNG TRỰC QUAN</div>
+                        <div style="font-size: 13px; color: #334155; margin-top: 3px; line-height: 1.4;">
+                            Trực quan hóa khái niệm giá trị lượng giác, đồ thị hàm số lượng giác, nghiệm của phương trình lượng giác cơ bản.
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.95); padding: 12px 14px; border-radius: 10px; border-left: 4px solid #10b981; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+                        <div style="font-weight: 700; color: #059669; font-size: 14px;">📚 SƠ ĐỒ HÓA LÝ THUYẾT</div>
+                        <div style="font-size: 13px; color: #334155; margin-top: 3px; line-height: 1.4;">
+                            Hệ thống đầy đủ lý thuyết, công thức cốt lõi theo từng bài học chuẩn GDPT 2018.
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.95); padding: 12px 14px; border-radius: 10px; border-left: 4px solid #f59e0b; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+                        <div style="font-weight: 700; color: #d97706; font-size: 14px;">🤖 GIA SƯ TRÍ TUỆ NHÂN TẠO (AI)</div>
+                        <div style="font-size: 13px; color: #334155; margin-top: 3px; line-height: 1.4;">
+                            Tự động sinh câu hỏi theo 4 mức độ năng lực, đối thoại giải thích bẫy sai lầm và luyện ngay câu hỏi dạng tương tự.
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.95); padding: 12px 14px; border-radius: 10px; border-left: 4px solid #6366f1; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+                        <div style="font-weight: 700; color: #4f46e5; font-size: 14px;">📊 KHẢO THÍ TỰ ĐỘNG & GỬI KẾT QUẢ ĐẾN GIÁO VIÊN</div>
+                        <div style="font-size: 13px; color: #334155; margin-top: 3px; line-height: 1.4;">
+                            Tạo đề kiểm tra ma trận chuẩn, tự động chấm điểm và đồng bộ tức thì tiến trình học tập về bảng quản lý của giáo viên.
+                        </div>
+                    </div>
                 </div>
             </div>
             """,
@@ -125,8 +175,17 @@ if not st.session_state["logged_in"]:
         )
 
     with col_login:
-        st.markdown("### 📝 Khai báo học sinh")
-        st.caption("Nhập thông tin để bắt đầu học tập:")
+        st.markdown(
+            """
+            <div class="glass-card" style="padding: 20px 22px; margin-bottom: 12px;">
+                <h3 style="margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 800;">📝 Khai báo học sinh</h3>
+                <p style="font-size: 13px; color: #475569; margin-bottom: 0;">
+                    Em vui lòng nhập thông tin trước khi bắt đầu bài học:
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
         with st.form("login_form", clear_on_submit=False):
             in_name = st.text_input("Họ và tên học sinh (*):", placeholder="Ví dụ: Nguyễn Văn An")
@@ -134,8 +193,8 @@ if not st.session_state["logged_in"]:
             
             st.markdown(
                 """
-                <div style="font-size: 12px; color: #64748b; background: #f1f5f9; padding: 8px 10px; border-radius: 8px; margin: 10px 0;">
-                    🔒 Kết quả luyện tập và điểm kiểm tra sẽ được tự động lưu vào sổ điểm điện tử của lớp.
+                <div style="font-size: 12px; color: #0369a1; background: #e0f2fe; padding: 10px 12px; border-radius: 8px; margin: 12px 0; border: 1px solid #bae6fd;">
+                    🔒 Điểm số và quá trình luyện tập sẽ được tự động đồng bộ về sổ theo dõi của giáo viên bộ môn.
                 </div>
                 """, 
                 unsafe_allow_html=True
@@ -145,7 +204,7 @@ if not st.session_state["logged_in"]:
 
             if btn_login:
                 if not in_name.strip() or not in_class.strip():
-                    st.error("⚠️ Em vui lòng điền đầy đủ cả Họ tên và Lớp để tiếp tục nhé!")
+                    st.error("⚠️ Em vui lòng nhập đầy đủ cả Họ tên và Lớp nhé!")
                 else:
                     st.session_state["student_name"] = in_name.strip()
                     st.session_state["student_class"] = in_class.strip()
@@ -153,6 +212,7 @@ if not st.session_state["logged_in"]:
                     st.rerun()
 
     st.stop()
+# ================= HẾT KHỐI ĐĂNG NHẬP =================
 # ================= HẾT KHỐI ĐĂNG NHẬP =================
  # Dừng tại đây, không cho chạy tới dòng tạo tabs bên dưới
 
