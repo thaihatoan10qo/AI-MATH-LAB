@@ -46,11 +46,17 @@ st.set_page_config(
     page_icon="📐",
     layout="wide"
 )
+if "logged_in" not in st.session_state:
+    st.session_state["logged_in"] = False
+if "student_name" not in st.session_state:
+    st.session_state["student_name"] = ""
+if "student_class" not in st.session_state:
+    st.session_state["student_class"] = ""
 
 # 2. Giao diện phong cách học đường (chú ý đúng 3 dấu ngoặc kép """ ở đầu và cuối)
 # ================= KHAI BÁO THÔNG TIN HỌC SINH (CỔNG ĐĂNG NHẬP) =================
 # ================= CỔNG ĐỊNH DANH & GIỚI THIỆU SẢN PHẨM =================
-if not st.session_state["logged_in"]:
+if not st.session_state.get("logged_in", False):
     import base64
     import os
 
