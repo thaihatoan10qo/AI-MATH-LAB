@@ -48,7 +48,6 @@ st.set_page_config(
 )
 
 # 2. Giao diện phong cách học đường (chú ý đúng 3 dấu ngoặc kép """ ở đầu và cuối)
-# ================= GIAO DIỆN MỚI: COBALT BLUE HIỆN ĐẠI & ĐỀ MỤC NỔI BẬT =================
 # ================= KHAI BÁO THÔNG TIN HỌC SINH (CỔNG ĐĂNG NHẬP) =================
 if "logged_in" not in st.session_state:
     st.session_state["logged_in"] = False
@@ -66,29 +65,96 @@ if "practice_wrong" not in st.session_state:
     st.session_state["practice_wrong"] = 0
 
 # Nếu chưa nhập thông tin: Chặn màn hình lại
+# ================= CỔNG ĐỊNH DANH & GIỚI THIỆU SẢN PHẨM =================
 if not st.session_state["logged_in"]:
-    st.title("📚 HỆ THỐNG ÔN TẬP & ĐÁNH GIÁ TOÁN 11")
-    st.markdown("---")
-    
-    col_c1, col_c2, col_c3 = st.columns([1, 2, 1])
-    with col_c2:
-        st.subheader("👋 Chào mừng em đến với hệ thống!")
-        st.write("Vui lòng nhập thông tin trước khi bắt đầu:")
-        
-        with st.form("login_form"):
+    # 1. BANNER TIÊU ĐỀ ĐẦU TRANG (100% TIẾNG VIỆT)
+    st.markdown(
+        """
+        <div style="
+            background: linear-gradient(135deg, #0d3b66 0%, #001e3d 100%);
+            padding: 24px 20px;
+            border-radius: 16px;
+            text-align: center;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 30, 61, 0.2);
+            margin-bottom: 25px;
+        ">
+            <div style="display: inline-block; background: rgba(56, 189, 248, 0.2); color: #38bdf8; font-size: 13px; font-weight: 600; padding: 4px 14px; border-radius: 20px; margin-bottom: 10px; border: 1px solid rgba(56, 189, 248, 0.4);">
+                ✨ CHƯƠNG TRÌNH GDPT 2018 • TOÁN HỌC 11
+            </div>
+            <h1 style="margin: 0 0 8px 0; font-size: 26px; font-weight: 800; color: #ffffff;">
+                📐 HỆ THỐNG HỌC TẬP TƯƠNG TÁC & KHẢO THÍ TÍCH HỢP TRÍ TUỆ NHÂN TẠO
+            </h1>
+            <p style="margin: 0; font-size: 15px; color: #94a3b8; font-weight: 500;">
+                Chương 1: Hàm số lượng giác và Phương trình lượng giác
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # 2. BỐ CỤC 2 CỘT: GIỚI THIỆU TÍNH NĂNG & KHUNG ĐĂNG NHẬP
+    col_intro, col_login = st.columns([1.3, 1], gap="large")
+
+    with col_intro:
+        st.markdown("### 🌟 Tính năng nổi bật của ứng dụng")
+        st.caption("Nền tảng tích hợp công nghệ hỗ trợ học sinh thấu hiểu bản chất toán học và cá nhân hóa lộ trình:")
+
+        st.markdown(
+            """
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
+                <div style="background: #f8fafc; padding: 12px 14px; border-radius: 12px; border-left: 4px solid #38bdf8; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 700; color: #0f172a; font-size: 14px;">🌀 Mô phỏng đồ thị động trực quan</div>
+                    <div style="font-size: 13px; color: #475569; margin-top: 2px;">Trực quan hóa đường tròn lượng giác, sự biến thiên và các tham số đồ thị y = A·sin(Bx+C)+D theo thời gian thực.</div>
+                </div>
+                <div style="background: #f8fafc; padding: 12px 14px; border-radius: 12px; border-left: 4px solid #10b981; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 700; color: #0f172a; font-size: 14px;">📚 Sơ đồ hóa kiến thức trọng tâm</div>
+                    <div style="font-size: 13px; color: #475569; margin-top: 2px;">Hệ thống đầy đủ công thức biến đổi, bảng giá trị và phương pháp giải phương trình chuẩn chương trình mới.</div>
+                </div>
+                <div style="background: #f8fafc; padding: 12px 14px; border-radius: 12px; border-left: 4px solid #f59e0b; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 700; color: #0f172a; font-size: 14px;">🤖 Gia sư Trí tuệ nhân tạo (AI) đồng hành</div>
+                    <div style="font-size: 13px; color: #475569; margin-top: 2px;">Tự động sinh câu hỏi theo 4 mức độ năng lực, đối thoại giải thích bẫy sai lầm và luyện ngay câu hỏi tương tự dạng.</div>
+                </div>
+                <div style="background: #f8fafc; padding: 12px 14px; border-radius: 12px; border-left: 4px solid #6366f1; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 700; color: #0f172a; font-size: 14px;">📊 Khảo thí tự động & Phân tích kết quả</div>
+                    <div style="font-size: 13px; color: #475569; margin-top: 2px;">Tạo đề kiểm tra ma trận chuẩn, tự động chấm điểm và đồng bộ tức thì tiến trình học tập về bảng quản lý của giáo viên.</div>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    with col_login:
+        st.markdown("### 📝 Khai báo học sinh")
+        st.caption("Nhập thông tin để bắt đầu học tập và lưu nhận xét:")
+
+        with st.form("login_form", clear_on_submit=False):
             in_name = st.text_input("Họ và tên học sinh (*):", placeholder="Ví dụ: Nguyễn Văn An")
-            in_class = st.text_input("Lớp (*):", placeholder="Ví dụ: 11A1")
-            btn_login = st.form_submit_button("🚀 Bắt đầu học tập", use_container_width=True)
+            in_class = st.text_input("Lớp học (*):", placeholder="Ví dụ: 11A1")
             
+            st.markdown(
+                """
+                <div style="font-size: 12px; color: #64748b; background: #f1f5f9; padding: 8px 10px; border-radius: 8px; margin: 10px 0;">
+                    🔒 Kết quả luyện tập và điểm kiểm tra sẽ được tự động lưu vào sổ điểm điện tử của lớp.
+                </div>
+                """, 
+                unsafe_allow_html=True
+            )
+            
+            btn_login = st.form_submit_button("🚀 Bắt đầu học tập ngay", use_container_width=True, type="primary")
+
             if btn_login:
                 if not in_name.strip() or not in_class.strip():
-                    st.error("⚠️ Em vui lòng điền đầy đủ cả Họ tên và Lớp nhé!")
+                    st.error("⚠️ Em vui lòng điền đầy đủ cả Họ tên và Lớp để tiếp tục nhé!")
                 else:
                     st.session_state["student_name"] = in_name.strip()
                     st.session_state["student_class"] = in_class.strip()
                     st.session_state["logged_in"] = True
                     st.rerun()
-    st.stop()  # Dừng tại đây, không cho chạy tới dòng tạo tabs bên dưới
+
+    st.stop()
+# ================= HẾT KHỐI ĐĂNG NHẬP =================
+ # Dừng tại đây, không cho chạy tới dòng tạo tabs bên dưới
 
 # KHI ĐÃ ĐĂNG NHẬP: HIỂN THỊ THANH THÔNG TIN VÀ NÚT ĐỔI TÊN
 col_usr1, col_usr2 = st.columns([4, 1])
