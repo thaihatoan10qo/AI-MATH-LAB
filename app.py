@@ -1181,12 +1181,11 @@ with tab_kiemtra:
                     
                     def dinh_dang_dap_an_tab4(x, opt_dict=opts):
                         val = str(opt_dict.get(x, "")).strip()
-                        # Bỏ cặp dấu $ nếu đã có sẵn ở 2 đầu để xử lý thống nhất
-                        if val.startswith("$") and val.endswith("$") and len(val) >= 2:
-                            val = val[1:-1].strip()
+                        # Xóa sạch toàn bộ dấu $ thừa ở 2 đầu (kể cả $ hay $$)
+                        val = val.strip("$").strip()
                         # Khử dấu gạch chéo ngược escape thừa (\\\\ thành \\)
                         val = val.replace("\\\\", "\\")
-                        # Bọc trong $...$ để Streamlit render chuẩn công thức LaTeX
+                        # Bọc đúng duy nhất một cặp $ để Streamlit render chuẩn LaTeX
                         return f"**{x}.** ${val}$"
 
                     user_exam_answers[idx] = st.radio(
