@@ -1150,7 +1150,7 @@ with tab_kiemtra:
                 student_name=st.session_state.get("student_name", "Ẩn danh"),
                 student_class=st.session_state.get("student_class", "-"),
                 score=f"{diem} điểm",
-                note=f"Đề chuẩn 20 câu GDPT 2018 (Đúng {dung}/{tong_so} câu)""
+                note=f"Đề chuẩn 20 câu GDPT 2018 (Đúng {dung}/{tong_so} câu)"
             )
             if da_gui:
                 st.toast("🎉 Đã gửi kết quả bài thi về hệ thống!", icon="✅")
