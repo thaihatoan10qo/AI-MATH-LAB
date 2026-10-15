@@ -1094,12 +1094,24 @@ with tab_kiemtra:
                 if q_type == "mcq":
                     st.markdown(f"**Câu {idx + 1}** `[Trắc nghiệm - {level_tag}]`: {item['question']}")
                     opts = item["options"]
+                    
+                    def dinh_dang_dap_an_tab4(x, opt_dict=opts):
+                        val = str(opt_dict.get(x, "")).strip()
+                        # Bỏ cặp dấu $ nếu đã có sẵn ở 2 đầu để xử lý thống nhất
+                        if val.startswith("$") and val.endswith("$") and len(val) >= 2:
+                            val = val[1:-1].strip()
+                        # Khử dấu gạch chéo ngược escape thừa (\\\\ thành \\)
+                        val = val.replace("\\\\", "\\")
+                        # Bọc trong $...$ để Streamlit render chuẩn công thức LaTeX
+                        return f"**{x}.** ${val}$"
+
                     user_exam_answers[idx] = st.radio(
                         f"Chọn đáp án câu {idx + 1}:",
                         options=["A", "B", "C", "D"],
-                        format_func=lambda x, opt_dict=opts: f"{x}. {opt_dict[x]}",
+                        format_func=dinh_dang_dap_an_tab4,
                         key=f"hybrid_mcq_{idx}",
                         index=None
+                    )
                     )
                 else:
                     st.markdown(f"**Câu {idx + 1}** `[Trả lời ngắn - {level_tag}]`: {item['question']}")
