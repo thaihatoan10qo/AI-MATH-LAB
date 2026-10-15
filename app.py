@@ -972,7 +972,7 @@ with tab_kiemtra:
         """
         <div style="background: #f8fafc; padding: 18px 20px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
             <div style="font-weight: 700; color: #0f172a; font-size: 15px; margin-bottom: 8px;">
-                📑 Cấu trúc ma trận bài kiểm tra định kỳ (20 câu - 45 phút):
+                📑 BÀI KIỂM TRA ĐÁNH GIÁ NĂNG LỰC (20 câu - 30 phút):
             </div>
             <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #334155; line-height: 1.8;">
                 <li><b>Phần 1 (16 câu - 8,0 điểm):</b> Trắc nghiệm 4 lựa chọn (A-B-C-D) — Đo lường năng lực <b>Nhận biết (8 câu)</b> và <b>Thông hiểu (8 câu)</b>.</li>
@@ -1085,13 +1085,23 @@ with tab_kiemtra:
                 st.session_state["exam_start_time"] = time.time()
     # 3. GIAO DIỆN LÀM BÀI VÀ NỘP BÀI
     if "exam_data" in st.session_state and st.session_state["exam_data"]:
-        # --- ĐỒNG HỒ ĐẾM NGƯỢC 30 PHÚT ---
+    # --- ĐỒNG HỒ THỜI GIAN LÀM BÀI 30 PHÚT ---
         if "exam_start_time" not in st.session_state:
             st.session_state["exam_start_time"] = time.time()
 
+        da_nop_bai = st.session_state.get("exam_submitted", False)
         thoi_gian_thi_giay = 30 * 60  # 30 phút = 1800 giây
-        da_troi_qua = int(time.time() - st.session_state["exam_start_time"])
+
+        if da_nop_bai:
+            # Nếu đã nộp bài: lấy thời điểm lúc bấm nộp bài để cố định đồng hồ
+            end_time = st.session_state.get("exam_end_time", time.time())
+            da_troi_qua = int(end_time - st.session_state["exam_start_time"])
+        else:
+            # Đang làm bài: tính theo thời gian thực hiện tại
+            da_troi_qua = int(time.time() - st.session_state["exam_start_time"])
+
         thoi_gian_con_lai = max(0, thoi_gian_thi_giay - da_troi_qua)
+        is_submitted_js = "true" if da_nop_bai else "false"
 
         components.html(
             f"""
@@ -1112,34 +1122,43 @@ with tab_kiemtra:
 
             <script>
                 var timeLeft = {thoi_gian_con_lai};
+                var isSubmitted = {is_submitted_js};
                 var timerDisplay = document.getElementById("timer");
 
-                function updateTimer() {{
-                    var minutes = Math.floor(timeLeft / 60);
-                    var seconds = timeLeft % 60;
-                    
+                function formatTime(secs) {{
+                    var minutes = Math.floor(secs / 60);
+                    var seconds = secs % 60;
                     minutes = minutes < 10 ? "0" + minutes : minutes;
                     seconds = seconds < 10 ? "0" + seconds : seconds;
-                    
-                    timerDisplay.innerText = minutes + ":" + seconds;
-                    
-                    if (timeLeft <= 300) {{
-                        timerDisplay.style.color = "#f87171";
-                    }}
-                    
-                    if (timeLeft > 0) {{
-                        timeLeft--;
-                    }} else {{
-                        timerDisplay.innerText = "HẾT GIỜ!";
-                        timerDisplay.style.color = "#ef4444";
-                    }}
+                    return minutes + ":" + seconds;
                 }}
-                updateTimer();
-                setInterval(updateTimer, 1000);
+
+                if (isSubmitted) {{
+                    // Đã nộp bài: Hiển thị mốc thời gian lúc nộp và đổi sang màu xanh lá (hoàn thành)
+                    timerDisplay.innerText = formatTime(timeLeft) + " (Đã hoàn thành)";
+                    timerDisplay.style.color = "#4ade80";
+                }} else {{
+                    // Đang làm bài: Đếm ngược mỗi giây
+                    function updateTimer() {{
+                        timerDisplay.innerText = formatTime(timeLeft);
+                        if (timeLeft <= 300) {{
+                            timerDisplay.style.color = "#f87171"; // Dưới 5 phút báo đỏ
+                        }}
+                        if (timeLeft > 0) {{
+                            timeLeft--;
+                        }} else {{
+                            timerDisplay.innerText = "HẾT GIỜ!";
+                            timerDisplay.style.color = "#ef4444";
+                        }}
+                    }}
+                    updateTimer();
+                    setInterval(updateTimer, 1000);
+                }}
             </script>
             """,
             height=70
-        )
+        )      
+    
         exam_list = st.session_state["exam_data"]
         ten_thi_sinh = st.session_state.get("cur_exam_student", "Thí sinh")
         lop_thi_sinh = st.session_state.get("cur_exam_class", "")
@@ -1188,6 +1207,7 @@ with tab_kiemtra:
             if btn_submit_exam:
                 st.session_state["exam_submitted"] = True
                 st.session_state["student_answers"] = user_exam_answers
+                st.session_state["exam_end_time"] = time.time()
 
         # 4. CHẤM ĐIỂM VÀ TỰ ĐỘNG GỬI KẾT QUẢ VỀ GOOGLE SHEET
         if st.session_state.get("exam_submitted", False):
