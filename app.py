@@ -615,9 +615,13 @@ with tab_luyentap:
 # Hàm hiển thị phương án trắc nghiệm chuẩn LaTeX không bị lỗi dấu gạch chéo
         def hien_thi_lua_chon(k):
             val = str(q['options'][k]).strip()
-            if not val.startswith('$'):
-                val = f"${val}$"
-            return f"**{k}.** {val}"
+            # Bỏ dấu $ nếu chuỗi đã có sẵn ở 2 đầu
+            if val.startswith("$") and val.endswith("$") and len(val) >= 2:
+                val = val[1:-1].strip()
+            # Khử ký tự escape gạch chéo ngược thừa
+            val = val.replace("\\\\", "\\")
+            # Bọc kín trong cặp dấu $ để Streamlit hiển thị công thức toán LaTeX đẹp mắt
+            return f"**{k}.** ${val}$"
 
         choice = st.radio(
             "Chọn đáp án đúng:",
