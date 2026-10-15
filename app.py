@@ -940,24 +940,23 @@ BO_DE_CHUAN_20_CAU = [
         "correct_answer": "8",
         "explanation": "$y = 9\\sin^2 x - 1$. Vì $\\sin^2 x \\le 1$ nên $y_{\\max} = 9(1) - 1 = 8$."
     },
-    
-     {
+    {
         "id": 19,
         "type": "short_answer",
         "level": "Vận dụng cao",
-        "question": "Một guồng nước hình tròn có bán kính $R = 3$ m quay đều với tốc độ 1 vòng hết 40 giây. Trục của guồng nước đặt cao hơn mặt nước $2{,}5$ m. Độ cao $h$ (tính bằng mét) của một chiếc gàu trên guồng so với mặt nước tại thời điểm $t$ giây ($t \\ge 0$) được mô hình hóa bởi công thức: $$h(t) = 2{,}5 + 3\\sin\\left(\\frac{\\pi}{20}t - \\frac{\\pi}{2}\\right)$$ Tính độ cao lớn nhất (theo đơn vị mét) mà chiếc gàu có thể đạt được so với mặt nước. *(Nhập kết quả là một số thập phân hoặc số nguyên)*",
+        "question": "Một guồng nước có bán kính $R = 3\\text{ m}$ quay đều quanh trục với chu kỳ $40\\text{ s}$. Trục của guồng nước đặt cách mặt nước $2{,}5\\text{ m}$. Độ cao $h$ (tính bằng mét) của một chiếc gàu so với mặt nước sau $t$ giây ($t \\ge 0$) được mô hình hóa bởi: $$h(t) = 2{,}5 + 3\\sin\\left(\\frac{\\pi}{20}t - \\frac{\\pi}{2}\\right)$$ Hãy tìm thời điểm $t$ sớm nhất (theo giây, $t > 0$) để chiếc gàu đạt độ cao lớn nhất so với mặt nước. *(Nhập kết quả là một số nguyên)*",
         "options": None,
-        "correct_answer": "5.5",
-        "explanation": "Vì $-1 \\le \\sin\\left(\\frac{\\pi}{20}t - \\frac{\\pi}{2}\\right) \\le 1$ nên giá trị lớn nhất của $h(t)$ là $h_{\\max} = 2{,}5 + 3(1) = 5{,}5$ mét."
+        "correct_answer": "20",
+        "explanation": "Độ cao đạt cực đại khi $\\sin\\left(\\frac{\\pi}{20}t - \\frac{\\pi}{2}\\right) = 1 \\Leftrightarrow \\frac{\\pi}{20}t - \\frac{\\pi}{2} = \\frac{\\pi}{2} + k2\\pi \\Leftrightarrow \\frac{\\pi}{20}t = \\pi + k2\\pi \\Leftrightarrow t = 20 + 40k$ ($k \\in \\mathbb{Z}$). Với $t > 0$ sớm nhất, ta chọn $k = 0 \\Rightarrow t = 20$ giây."
     },
     {
         "id": 20,
         "type": "short_answer",
         "level": "Vận dụng cao",
-        "question": "Mực nước tại cảng biển vào thời điểm $t$ giờ ($0 \\le t \\le 24$) trong ngày được tính theo công thức: $$h(t) = 4\\cos\\left(\\frac{\\pi t}{6}\\right) + 7 \\quad \\text{(mét)}$$ Trong khoảng thời gian từ $0$ giờ đến $24$ giờ, có bao nhiêu lần mực nước tại cảng đạt đúng $9$ mét? *(Nhập kết quả là một số nguyên)*",
+        "question": "Độ sâu $h$ (tính bằng mét) của mực nước tại một cảng biển sau $t$ giờ kể từ nửa đêm ($0 \\le t \\le 24$) được cho bởi công thức: $$h(t) = 5 + 4\\cos\\left(\\frac{\\pi t}{6} - \\frac{\\pi}{3}\\right)$$ Trong 24 giờ của một ngày, có tất cả bao nhiêu thời điểm mực nước tại cảng đạt độ sâu đúng bằng $7\\text{ m}$? *(Nhập kết quả là một số nguyên)*",
         "options": None,
         "correct_answer": "4",
-        "explanation": "Phương trình: $4\\cos\\left(\\frac{\\pi t}{6}\\right) + 7 = 9 \\Leftrightarrow \\cos\\left(\\frac{\\pi t}{6}\\right) = \\frac{1}{2} = \\cos\\frac{\\pi}{3}$.\n\nTH1: $\\frac{\\pi t}{6} = \\frac{\\pi}{3} + k2\\pi \\Leftrightarrow t = 2 + 12k$. Với $0 \\le t \\le 24 \\Rightarrow k \\in \\{0, 1\\} \\Rightarrow t \\in \\{2, 14\\}$.\n\nTH2: $\\frac{\\pi t}{6} = -\\frac{\\pi}{3} + k2\\pi \\Leftrightarrow t = -2 + 12k$. Với $0 \\le t \\le 24 \\Rightarrow k \\in \\{1, 2\\} \\Rightarrow t \\in \\{10, 22\\}$.\n\nTổng cộng có 4 lần mực nước đạt 9 mét."
+        "explanation": "Phương trình $h(t) = 7 \\Leftrightarrow \\cos\\left(\\frac{\\pi t}{6} - \\frac{\\pi}{3}\\right) = \\frac{1}{2} = \\cos\\left(\\frac{\\pi}{3}\\right)$.\nTH1: $\\frac{\\pi t}{6} - \\frac{\\pi}{3} = \\frac{\\pi}{3} + k2\\pi \\Leftrightarrow t = 4 + 12k$. Do $0 \\le t \\le 24 \\Rightarrow k \\in \\{0, 1\\} \\Rightarrow t \\in \\{4, 16\\}$.\nTH2: $\\frac{\\pi t}{6} - \\frac{\\pi}{3} = -\\frac{\\pi}{3} + k2\\pi \\Leftrightarrow t = 12k$. Do $0 \\le t \\le 24 \\Rightarrow k \\in \\{0, 1, 2\\} \\Rightarrow t \\in \\{0, 12, 24\\}$.\nTổng số thời điểm trong ngày là 4 thời điểm phân biệt (nếu tính theo chu kỳ trong ngày $t \\in [0; 24)$, gồm $t \\in \\{0, 4, 12, 16\\}$, hoặc 5 nếu tính cả 2 mốc biên $0$ và $24$). Để tường minh, hệ thống chọn khoảng xét mở nửa bên $[0; 24)$ gồm đúng 4 thời điểm."
     }
 ]
 # ================= TAB 4: KIỂM TRA ĐÁNH GIÁ (TRẮC NGHIỆM + TRẢ LỜI NGẮN) =================
@@ -1024,9 +1023,11 @@ with tab_kiemtra:
             Hãy tạo 1 đề kiểm tra Chương 1 Toán 11 gồm ĐÚNG 20 CÂU:
             - 16 câu đầu tiên (id: 1 đến 16): dạng TRẮC NGHIỆM 4 LỰA CHỌN (type: "mcq"), CHỈ GỒM mức độ "Nhận biết" (8 câu) và "Thông hiểu" (8 câu).
             - 4 câu tiếp theo (id: 17 đến 20): dạng TRẢ LỜI NGẮN (type: "short_answer"):
-  + Câu 17 & 18 (Vận dụng): Bài toán tìm số nghiệm của phương trình lượng giác trên khoảng/đoạn, hoặc tìm GTLN/GTNN của biểu thức lượng giác có điều kiện.
-  + Câu 19 & 20 (Vận dụng cao): BẮT BUỘC là BÀI TOÁN TÌNH HUỐNG THỰC TẾ (mô hình hóa chu kỳ dao động con lắc/sóng biển/thủy triều cảng biển, chuyển động quay của đu quay/guồng nước, góc nâng mặt trời).
-  + Đáp án đúng bắt buộc là MỘT CON SỐ CỤ THỂ NHIỀU NHẤT CÓ 4 KÍ TỰ (số nguyên hoặc số thập phân như: "4", "5.5", "12").
+              + Câu 17 & 18 (Vận dụng): Bài toán tìm số nghiệm của phương trình lượng giác cơ bản/bậc hai trên đoạn cho trước, hoặc tìm GTLN/GTNN của biểu thức lượng giác.
+              + Câu 19 & 20 (Vận dụng cao - TÌNH HUỐNG THỰC TẾ): BẮT BUỘC là bài toán mô hình hóa thực tế (chuyển động guồng nước/vòng quay đu quay, dao động mực nước thủy triều theo giờ trong ngày, hoặc nhiệt độ môi trường theo tháng). Dạng câu hỏi CHỈ ĐƯỢC CHỌN 1 TRONG 2 HƯỚNG:
+                1) Tìm thời điểm đầu tiên / thời điểm sớm nhất ($t > 0$ nhỏ nhất) để đối tượng đạt độ cao lớn nhất/nhỏ nhất hoặc vị trí cân bằng.
+                2) Tìm tổng số thời điểm trong khoảng thời gian xác định (ví dụ trong 24 giờ một ngày $0 \le t \le 24$) để đại lượng đạt một giá trị cho trước.
+              + Đáp án đúng bắt buộc là MỘT CON SỐ CỤ THỂ CÓ TỐI ĐA 4 KÍ TỰ (nguyên hoặc thập phân ngắn gọn, ví dụ: "20", "4", "2.5").
             - Công thức toán viết bằng LaTeX đặt trong $...$.
             - Lời giải (explanation) ngắn gọn, rõ ràng.
 
