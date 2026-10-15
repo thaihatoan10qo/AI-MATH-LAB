@@ -1112,7 +1112,7 @@ with tab_kiemtra:
                         key=f"hybrid_mcq_{idx}",
                         index=None
                     )
-                    )
+                
                 else:
                     st.markdown(f"**Câu {idx + 1}** `[Trả lời ngắn - {level_tag}]`: {item['question']}")
                     user_exam_answers[idx] = st.text_input(
