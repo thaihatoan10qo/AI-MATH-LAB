@@ -52,6 +52,12 @@ if "student_name" not in st.session_state:
     st.session_state["student_name"] = ""
 if "student_class" not in st.session_state:
     st.session_state["student_class"] = ""
+    if "practice_total" not in st.session_state:
+    st.session_state["practice_total"] = 0
+if "practice_correct" not in st.session_state:
+    st.session_state["practice_correct"] = 0
+if "practice_wrong" not in st.session_state:
+    st.session_state["practice_wrong"] = 0
 
 # 2. Giao diện phong cách học đường (chú ý đúng 3 dấu ngoặc kép """ ở đầu và cuối)
 # ================= KHAI BÁO THÔNG TIN HỌC SINH (CỔNG ĐĂNG NHẬP) =================
