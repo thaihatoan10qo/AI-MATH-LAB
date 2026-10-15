@@ -52,7 +52,7 @@ if "student_name" not in st.session_state:
     st.session_state["student_name"] = ""
 if "student_class" not in st.session_state:
     st.session_state["student_class"] = ""
-    if "practice_total" not in st.session_state:
+if "practice_total" not in st.session_state:
     st.session_state["practice_total"] = 0
 if "practice_correct" not in st.session_state:
     st.session_state["practice_correct"] = 0
