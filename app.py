@@ -738,6 +738,227 @@ def format_latex(text):
     if "\\" in text_str and not text_str.startswith("$") and not text_str.endswith("$"):
         return f"${text_str}$"
     return text_str
+# ================= NGÂN HÀNG ĐỀ DỰ PHÒNG 20 CÂU CHUẨN MA TRẬN =================
+BO_DE_CHUAN_20_CAU = [
+    # --- PHẦN 1: 16 CÂU TRẮC NGHIỆM (CHỈ GỒM NHẬN BIẾT & THÔNG HIỂU) ---
+    {
+        "id": 1,
+        "type": "mcq",
+        "level": "Nhận biết",
+        "question": "Cho góc lượng giác có số đo $\\alpha = \\frac{\\pi}{3}$. Khẳng định nào sau đây là đúng?",
+        "options": {"A": "$\\sin \\alpha = \\frac{\\sqrt{3}}{2}$", "B": "$\\cos \\alpha = \\frac{\\sqrt{3}}{2}$", "C": "$\\tan \\alpha = \\frac{\\sqrt{3}}{3}$", "D": "$\\cot \\alpha = \\sqrt{3}$"},
+        "correct_answer": "A",
+        "explanation": "Ta có $\\sin(\\frac{\\pi}{3}) = \\frac{\\sqrt{3}}{2}$."
+    },
+    {
+        "id": 2,
+        "type": "mcq",
+        "level": "Nhận biết",
+        "question": "Tập xác định của hàm số $y = \\tan x$ là:",
+        "options": {
+            "A": "$D = \\mathbb{R} \\setminus \\left\\{\\frac{\\pi}{2} + k\\pi, k \\in \\mathbb{Z}\\right\\}$",
+            "B": "$D = \\mathbb{R} \\setminus \\{k\\pi, k \\in \\mathbb{Z}\\}$",
+            "C": "$D = \\mathbb{R} \\setminus \\left\\{\\frac{\\pi}{4} + k\\pi, k \\in \\mathbb{Z}\\right\\}$",
+            "D": "$D = \\mathbb{R}$"
+        },
+        "correct_answer": "A",
+        "explanation": "Hàm số xác định khi $\\cos x \\neq 0 \\Leftrightarrow x \\neq \\frac{\\pi}{2} + k\\pi$."
+    },
+    {
+        "id": 3,
+        "type": "mcq",
+        "level": "Nhận biết",
+        "question": "Hàm số nào dưới đây là hàm số chẵn trên tập xác định của nó?",
+        "options": {"A": "$y = \\cos x$", "B": "$y = \\sin x$", "C": "$y = \\tan x$", "D": "$y = \\cot x$"},
+        "correct_answer": "A",
+        "explanation": "Vì $\\cos(-x) = \\cos x$ nên $y = \\cos x$ là hàm số chẵn."
+    },
+    {
+        "id": 4,
+        "type": "mcq",
+        "level": "Nhận biết",
+        "question": "Chu kỳ tuần hoàn của hàm số $y = \\sin(2x)$ là:",
+        "options": {"A": "$T = \\pi$", "B": "$T = 2\\pi$", "C": "$T = \\frac{\\pi}{2}$", "D": "$T = 4\\pi$"},
+        "correct_answer": "A",
+        "explanation": "Chu kỳ $T = \\frac{2\\pi}{|2|} = \\pi$."
+    },
+    {
+        "id": 5,
+        "type": "mcq",
+        "level": "Nhận biết",
+        "question": "Công thức nghiệm của phương trình $\\cos x = \\cos \\alpha$ là:",
+        "options": {
+            "A": "$x = \\pm \\alpha + k2\\pi \\; (k \\in \\mathbb{Z})$",
+            "B": "$x = \\alpha + k\\pi \\; (k \\in \\mathbb{Z})$",
+            "C": "$\\left[\\begin{array}{l} x = \\alpha + k2\\pi \\\\ x = \\pi - \\alpha + k2\\pi \\end{array}\\right. (k \\in \\mathbb{Z})$",
+            "D": "$x = \\pm \\alpha + k\\pi \\; (k \\in \\mathbb{Z})$"
+        },
+        "correct_answer": "A",
+        "explanation": "$\\cos x = \\cos \\alpha \\Leftrightarrow x = \\pm \\alpha + k2\\pi$ ($k \\in \\mathbb{Z}$)."
+    },
+    {
+        "id": 6,
+        "type": "mcq",
+        "level": "Nhận biết",
+        "question": "Tất cả các nghiệm của phương trình $\\tan x = 1$ là:",
+        "options": {
+            "A": "$x = \\frac{\\pi}{4} + k\\pi \\; (k \\in \\mathbb{Z})$",
+            "B": "$x = \\frac{\\pi}{4} + k2\\pi \\; (k \\in \\mathbb{Z})$",
+            "C": "$x = \\pm \\frac{\\pi}{4} + k\\pi \\; (k \\in \\mathbb{Z})$",
+            "D": "$x = -\\frac{\\pi}{4} + k\\pi \\; (k \\in \\mathbb{Z})$"
+        },
+        "correct_answer": "A",
+        "explanation": "Phương trình có nghiệm $x = \\frac{\\pi}{4} + k\\pi$ ($k \\in \\mathbb{Z}$)."
+    },
+    {
+        "id": 7,
+        "type": "mcq",
+        "level": "Nhận biết",
+        "question": "Tập giá trị của hàm số $y = \\cos x$ trên $\\mathbb{R}$ là:",
+        "options": {"A": "$[-1; 1]$", "B": "$(-\\infty; +\\infty)$", "C": "$[0; 1]$", "D": "$[-1; 0]$"},
+        "correct_answer": "A",
+        "explanation": "Với mọi $x \\in \\mathbb{R}$, ta luôn có $-1 \\le \\cos x \\le 1$."
+    },
+    {
+        "id": 8,
+        "type": "mcq",
+        "level": "Nhận biết",
+        "question": "Đổi số đo góc $\\alpha = 150^\\circ$ sang đơn vị radian ta được:",
+        "options": {"A": "$\\frac{5\\pi}{6}$", "B": "$\\frac{2\\pi}{3}$", "C": "$\\frac{3\\pi}{4}$", "D": "$\\frac{7\\pi}{6}$"},
+        "correct_answer": "A",
+        "explanation": "$\\alpha = 150 \\times \\frac{\\pi}{180} = \\frac{5\\pi}{6}$."
+    },
+    {
+        "id": 9,
+        "type": "mcq",
+        "level": "Thông hiểu",
+        "question": "Cho $\\sin a = \\frac{3}{5}$ với $\\frac{\\pi}{2} < a < \\pi$. Giá trị của $\\cos a$ bằng:",
+        "options": {"A": "$-\\frac{4}{5}$", "B": "$\\frac{4}{5}$", "C": "$-\\frac{16}{25}$", "D": "$\\frac{2}{5}$"},
+        "correct_answer": "A",
+        "explanation": "Vì $\\frac{\\pi}{2} < a < \\pi$ nên $\\cos a < 0$. Do đó $\\cos a = -\\sqrt{1 - \\sin^2 a} = -\\frac{4}{5}$."
+    },
+    {
+        "id": 10,
+        "type": "mcq",
+        "level": "Thông hiểu",
+        "question": "Công thức nào sau đây là **sai**?",
+        "options": {
+            "A": "$\\cos 2a = \\cos^2 a + \\sin^2 a$",
+            "B": "$\\cos 2a = \\cos^2 a - \\sin^2 a$",
+            "C": "$\\cos 2a = 2\\cos^2 a - 1$",
+            "D": "$\\cos 2a = 1 - 2\\sin^2 a$"
+        },
+        "correct_answer": "A",
+        "explanation": "Công thức đúng là $\\cos^2 a + \\sin^2 a = 1$, còn $\\cos 2a = \\cos^2 a - \\sin^2 a$."
+    },
+    {
+        "id": 11,
+        "type": "mcq",
+        "level": "Thông hiểu",
+        "question": "Giá trị lớn nhất và giá trị nhỏ nhất của hàm số $y = 3\\sin(2x - \\frac{\\pi}{4}) + 2$ lần lượt là:",
+        "options": {"A": "$M = 5, m = -1$", "B": "$M = 3, m = -3$", "C": "$M = 5, m = 1$", "D": "$M = 1, m = -5$"},
+        "correct_answer": "A",
+        "explanation": "$-1 \\le \\sin(\\dots) \\le 1 \\Rightarrow 3(-1)+2 \\le y \\le 3(1)+2 \\Rightarrow -1 \\le y \\le 5$."
+    },
+    {
+        "id": 12,
+        "type": "mcq",
+        "level": "Thông hiểu",
+        "question": "Nghiệm của phương trình $\\sin(x - \\frac{\\pi}{6}) = \\frac{1}{2}$ là:",
+        "options": {
+            "A": "$\\left[\\begin{array}{l} x = \\frac{\\pi}{3} + k2\\pi \\\\ x = \\pi + k2\\pi \\end{array}\\right. (k \\in \\mathbb{Z})$",
+            "B": "$\\left[\\begin{array}{l} x = k2\\pi \\\\ x = \\frac{2\\pi}{3} + k2\\pi \\end{array}\\right. (k \\in \\mathbb{Z})$",
+            "C": "$\\left[\\begin{array}{l} x = \\frac{\\pi}{6} + k2\\pi \\\\ x = \\frac{5\\pi}{6} + k2\\pi \\end{array}\\right. (k \\in \\mathbb{Z})$",
+            "D": "$x = \\frac{\\pi}{3} + k2\\pi \\; (k \\in \\mathbb{Z})$"
+        },
+        "correct_answer": "A",
+        "explanation": "$x - \\frac{\\pi}{6} = \\frac{\\pi}{6} + k2\\pi$ hoặc $x - \\frac{\\pi}{6} = \\frac{5\\pi}{6} + k2\\pi \\Leftrightarrow x = \\frac{\\pi}{3} + k2\\pi$ hoặc $x = \\pi + k2\\pi$."
+    },
+    {
+        "id": 13,
+        "type": "mcq",
+        "level": "Thông hiểu",
+        "question": "Phương trình $2\\cos^2 x - 3\\cos x + 1 = 0$ có các họ nghiệm là:",
+        "options": {
+            "A": "$x = k2\\pi; x = \\pm \\frac{\\pi}{3} + k2\\pi \\; (k \\in \\mathbb{Z})$",
+            "B": "$x = k\\pi; x = \\pm \\frac{\\pi}{6} + k2\\pi \\; (k \\in \\mathbb{Z})$",
+            "C": "$x = \\frac{\\pi}{2} + k2\\pi; x = \\pm \\frac{\\pi}{3} + k2\\pi \\; (k \\in \\mathbb{Z})$",
+            "D": "$x = \\pm \\frac{\\pi}{3} + k2\\pi \\; (k \\in \\mathbb{Z})$"
+        },
+        "correct_answer": "A",
+        "explanation": "Phương trình bậc hai theo $\\cos x$ có nghiệm $\\cos x = 1$ hoặc $\\cos x = \\frac{1}{2}$."
+    },
+    {
+        "id": 14,
+        "type": "mcq",
+        "level": "Thông hiểu",
+        "question": "Số nghiệm của phương trình $\\sin 2x = -\\frac{\\sqrt{2}}{2}$ trên khoảng $(0; \\pi)$ là:",
+        "options": {"A": "2", "B": "1", "C": "3", "D": "4"},
+        "correct_answer": "A",
+        "explanation": "Khi $x \\in (0; \\pi) \\Rightarrow 2x \\in (0; 2\\pi)$. Có đúng 2 điểm trên đường tròn lượng giác thỏa mãn."
+    },
+    {
+        "id": 15,
+        "type": "mcq",
+        "level": "Thông hiểu",
+        "question": "Rút gọn biểu thức $P = \\sin(x + \\frac{\\pi}{4}) - \\sin(x - \\frac{\\pi}{4})$ ta được:",
+        "options": {"A": "$\\sqrt{2}\\cos x$", "B": "$\\sqrt{2}\\sin x$", "C": "$2\\cos x$", "D": "$2\\sin x$"},
+        "correct_answer": "A",
+        "explanation": "Áp dụng công thức biến đổi hiệu thành tích: $P = 2\\cos x \\sin\\frac{\\pi}{4} = \\sqrt{2}\\cos x$."
+    },
+    {
+        "id": 16,
+        "type": "mcq",
+        "level": "Thông hiểu",
+        "question": "Cho tam giác $ABC$. Đẳng thức nào sau đây luôn đúng?",
+        "options": {
+            "A": "$\\sin(A + B) = \\sin C$",
+            "B": "$\\cos(A + B) = \\cos C$",
+            "C": "$\\tan(A + B) = \\tan C$",
+            "D": "$\\sin\\left(\\frac{A + B}{2}\\right) = \\sin\\left(\\frac{C}{2}\\right)$"
+        },
+        "correct_answer": "A",
+        "explanation": "Vì $A + B = \\pi - C$ nên $\\sin(A + B) = \\sin(\\pi - C) = \\sin C$."
+    },
+
+    # --- PHẦN 2: 4 CÂU TRẢ LỜI NGẮN (VẬN DỤNG & VẬN DỤNG CAO) ---
+    {
+        "id": 17,
+        "type": "short_answer",
+        "level": "Vận dụng",
+        "question": "Tính số nghiệm của phương trình $\\cos x = 0$ trên đoạn $[0; 4\\pi]$. *(Nhập kết quả là một số nguyên)*",
+        "options": None,
+        "correct_answer": "4",
+        "explanation": "Nghiệm $x = \\frac{\\pi}{2} + k\\pi$. Xét $0 \\le \\frac{\\pi}{2} + k\\pi \\le 4\\pi \\Rightarrow k \\in \\{0, 1, 2, 3\\}$. Có 4 nghiệm."
+    },
+    {
+        "id": 18,
+        "type": "short_answer",
+        "level": "Vận dụng",
+        "question": "Tìm giá trị lớn nhất của hàm số $y = 5\\sin^2 x - 4\\cos^2 x + 3$. *(Nhập kết quả là một số nguyên)*",
+        "options": None,
+        "correct_answer": "8",
+        "explanation": "$y = 9\\sin^2 x - 1$. Vì $\\sin^2 x \\le 1$ nên $y_{\\max} = 9(1) - 1 = 8$."
+    },
+    {
+        "id": 19,
+        "type": "short_answer",
+        "level": "Vận dụng cao",
+        "question": "Một chất điểm dao động điều hòa theo phương trình $x = 6\\cos(2\\pi t - \\frac{\\pi}{3})$ (cm). Trong khoảng thời gian 3 giây đầu tiên ($0 < t < 3$), chất điểm đi qua vị trí cân bằng ($x = 0$) bao nhiêu lần? *(Nhập kết quả là một số nguyên)*",
+        "options": None,
+        "correct_answer": "6",
+        "explanation": "Chu kỳ $T = 1$ s. Trong 1 chu kỳ chất điểm qua VTCB 2 lần. Sau 3 giây (3 chu kỳ), qua $3 \\times 2 = 6$ lần."
+    },
+    {
+        "id": 20,
+        "type": "short_answer",
+        "level": "Vận dụng cao",
+        "question": "Có bao nhiêu giá trị nguyên của tham số $m$ để phương trình $\\cos(2x) - m = 0$ có nghiệm thuộc khoảng $(-\\frac{\\pi}{4}; \\frac{\\pi}{4})$? *(Nhập kết quả là một số nguyên)*",
+        "options": None,
+        "correct_answer": "1",
+        "explanation": "Với $x \\in (-\\frac{\\pi}{4}; \\frac{\\pi}{4}) \\Rightarrow 2x \\in (-\\frac{\\pi}{2}; \\frac{\\pi}{2}) \\Rightarrow \\cos(2x) \\in (0; 1]$. Giá trị nguyên duy nhất của $m$ là 1."
+    }
+]
 # ================= TAB 4: KIỂM TRA ĐÁNH GIÁ (TRẮC NGHIỆM + TRẢ LỜI NGẮN) =================
 with tab_kiemtra:
     st.subheader("KIỂM TRA ĐÁNH GIÁ NĂNG LỰC")
@@ -746,23 +967,23 @@ with tab_kiemtra:
    # 1. THÔNG TIN THÍ SINH (Tự động lấy từ màn hình đăng nhập)
     st.info(f"📝 Thí sinh: **{st.session_state.get('student_name', '')}** | Lớp: **{st.session_state.get('student_class', '')}**")
 
-    col_m1, col_m2 = st.columns(2)
-    with col_m1:
-        loai_de = st.selectbox(
-            "Chọn quy mô đề kiểm tra:",
-            [
-                "Đề tiêu chuẩn 10 câu (8 Trắc nghiệm A-B-C-D + 2 Trả lời ngắn)",
-                "Đề tổng hợp 20 câu (16 Trắc nghiệm A-B-C-D + 4 Trả lời ngắn)"
-            ]
-        )
-    with col_m2:
-        st.info("""
-        📋 **Cấu trúc phân bổ:**
-        - **80% Trắc nghiệm 4 lựa chọn (A-B-C-D):** Đo lường kiến thức Nhận biết & Thông hiểu.
-        - **20% Câu hỏi trả lời ngắn (Điền số):** Đo lường năng lực Vận dụng & Vận dụng cao.
-        """)
+    # Bảng tóm tắt cấu trúc ma trận chuẩn hóa 20 câu
+    st.markdown(
+        """
+        <div style="background: #f8fafc; padding: 18px 20px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
+            <div style="font-weight: 700; color: #0f172a; font-size: 15px; margin-bottom: 8px;">
+                📑 Cấu trúc ma trận bài kiểm tra định kỳ (20 câu - 45 phút):
+            </div>
+            <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #334155; line-height: 1.8;">
+                <li><b>Phần 1 (16 câu - 8,0 điểm):</b> Trắc nghiệm 4 lựa chọn (A-B-C-D) — Đo lường năng lực <b>Nhận biết (8 câu)</b> và <b>Thông hiểu (8 câu)</b>.</li>
+                <li><b>Phần 2 (4 câu - 2,0 điểm):</b> Câu hỏi trắc nghiệm dạng Trả lời ngắn (Điền số) — Đo lường năng lực <b>Vận dụng (2 câu)</b> và <b>Vận dụng cao (2 câu)</b>.</li>
+            </ul>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-    # Đọc dữ liệu kho câu hỏi
+    # Đọc dữ liệu kho câu hỏi mẫu (nếu có file kho_de.txt)
     danh_sach_tat_ca_cau = []
     ten_file_de = None
     for fname in ["kho_de.txt", "kho_de.txt.txt", "Kho_de.txt"]:
@@ -782,100 +1003,79 @@ with tab_kiemtra:
         except Exception:
             pass
 
-    # 2. NÚT KHỞI TẠO ĐỀ 
-    if st.button("🚀 Bắt đầu làm bài kiểm tra"):
-       
-            if "10 câu" in loai_de:
-                tong_cau = 10
-                so_mcq = 8
-                so_sa = 2
-            else:
-                tong_cau = 20
-                so_mcq = 16
-                so_sa = 4
+    # Nút bấm khởi tạo duy nhất 1 bài kiểm tra 20 câu
+    if st.button("🚀 Bắt đầu làm bài kiểm tra (20 câu)", use_container_width=True, type="primary"):
+        mau_context = ""
+        if danh_sach_tat_ca_cau:
+            import random
+            cac_cau_chon = random.sample(danh_sach_tat_ca_cau, min(3, len(danh_sach_tat_ca_cau)))
+            mau_context = "\n---\n".join(cac_cau_chon)
 
-            mau_context = ""
-            if danh_sach_tat_ca_cau:
-                import random
-                cac_cau_chon = random.sample(danh_sach_tat_ca_cau, min(3, len(danh_sach_tat_ca_cau)))
-                mau_context = "\n---\n".join(cac_cau_chon)
+        with st.spinner("⚡ Đang khởi tạo đề kiểm tra 20 câu chuẩn ma trận GDPT 2018..."):
+            prompt_matrix = f"""
+            Bạn là Trưởng ban Khảo thí môn Toán THPT (Chương trình GDPT 2018).
+            Dưới đây là một số câu mẫu từ ngân hàng đề:
+            ---
+            {mau_context}
+            ---
 
-            with st.spinner(f"⚡ Đang khởi tạo đề kiểm tra {tong_cau} câu "):
-                prompt_matrix = f"""
-                Bạn là Trưởng ban Khảo thí môn Toán THPT Việt Nam (Chương trình GDPT 2018).
-                Dưới đây là một số câu mẫu từ ngân hàng đề kiểm tra:
-                ---
-                {mau_context}
-                ---
+            Nhiệm vụ:
+            Hãy tạo 1 đề kiểm tra Chương 1 Toán 11 gồm ĐÚNG 20 CÂU:
+            - 16 câu đầu tiên (id: 1 đến 16): dạng TRẮC NGHIỆM 4 LỰA CHỌN (type: "mcq"), CHỈ GỒM mức độ "Nhận biết" (8 câu) và "Thông hiểu" (8 câu).
+            - 4 câu tiếp theo (id: 17 đến 20): dạng TRẢ LỜI NGẮN (type: "short_answer"), CHỈ GỒM mức độ "Vận dụng" (2 câu) và "Vận dụng cao" (2 câu). Đáp án đúng bắt buộc là MỘT CON SỐ CỤ THỂ (ví dụ: "4", "-1", "2.5", "8").
+            - Công thức toán viết bằng LaTeX đặt trong $...$.
+            - Lời giải (explanation) ngắn gọn, rõ ràng.
 
-                Nhiệm vụ:
-                Hãy tạo 1 đề kiểm tra Chương 1 Toán 11 gồm ĐÚNG {tong_cau} CÂU:
-                - {so_mcq} câu đầu tiên: dạng TRẮC NGHIỆM 4 LỰA CHỌN (type: "mcq"), mức độ Nhận biết, Thông hiểu.
-                - {so_sa} câu tiếp theo: dạng TRẢ LỜI NGẮN (type: "short_answer"), mức độ Vận dụng, Vận dụng cao. Đáp án đúng bắt buộc là MỘT CON SỐ CỤ THỂ (ví dụ: "28.3", "4", "-1", "12").
-                - Công thức toán viết bằng LaTeX trong $...$.
-                - Lời giải (explanation) ngắn gọn, rõ ràng.
+            Trả về đúng định dạng JSON thuần là danh sách gồm đúng 20 đối tượng:
+            [
+              {{
+                "id": 1,
+                "type": "mcq",
+                "level": "Nhận biết",
+                "question": "Nội dung câu trắc nghiệm...",
+                "options": {{"A": "...", "B": "...", "C": "...", "D": "..."}},
+                "correct_answer": "A",
+                "explanation": "Giải thích ngắn gọn..."
+              }},
+              {{
+                "id": 17,
+                "type": "short_answer",
+                "level": "Vận dụng",
+                "question": "Nội dung câu hỏi trả lời ngắn...",
+                "options": null,
+                "correct_answer": "4",
+                "explanation": "Giải thích ngắn gọn..."
+              }}
+            ]
+            """
 
-                Trả về đúng định dạng JSON thuần là danh sách gồm {tong_cau} đối tượng:
-                [
-                  {{
-                    "id": 1,
-                    "type": "mcq",
-                    "level": "Nhận biết",
-                    "question": "Nội dung câu trắc nghiệm...",
-                    "options": {{"A": "...", "B": "...", "C": "...", "D": "..."}},
-                    "correct_answer": "A",
-                    "explanation": "Giải thích ngắn gọn..."
-                  }},
-                  {{
-                    "id": {so_mcq + 1},
-                    "type": "short_answer",
-                    "level": "Vận dụng",
-                    "question": "Nội dung câu hỏi trả lời ngắn...",
-                    "options": null,
-                    "correct_answer": "28.3",
-                    "explanation": "Giải thích ngắn gọn các bước tính ra đáp số..."
-                  }}
-                ]
-                """
-
-                exam_success = False
-                cac_model = ['gemini-3.1-flash-lite', 'gemini-3.8-flash']
-                for ten_model in cac_model:
-                    try:
-                        resp = client.models.generate_content(
-                            model=ten_model,
-                            contents=prompt_matrix,
-                            config=types.GenerateContentConfig(
-                                response_mime_type="application/json",
-                                temperature=0.7
-                            )
+            exam_success = False
+            cac_model = ['gemini-3.1-flash-lite', 'gemini-3.8-flash']
+            for ten_model in cac_model:
+                try:
+                    resp = client.models.generate_content(
+                        model=ten_model,
+                        contents=prompt_matrix,
+                        config=types.GenerateContentConfig(
+                            response_mime_type="application/json",
+                            temperature=0.3
                         )
-                        st.session_state["exam_data"] = json.loads(resp.text)
+                    )
+                    de_data = json.loads(resp.text)
+                    if isinstance(de_data, list) and len(de_data) == 20:
+                        st.session_state["exam_data"] = de_data
                         st.session_state["exam_submitted"] = False
                         st.session_state["student_answers"] = {}
                         exam_success = True
                         break
-                    except Exception:
-                        continue
+                except Exception:
+                    continue
 
-                # Dự phòng nếu mạng bận
-                if not exam_success:
-                    st.info("💡 Đường truyền đang bận, hệ thống kích hoạt bộ đề chuẩn 10 câu có sẵn:")
-                    st.session_state["exam_data"] = [
-                        {"id": 1, "type": "mcq", "level": "Nhận biết", "question": "Cho $0 < \\alpha < \\frac{\\pi}{2}$. Khẳng định nào sau đây đúng?", "options": {"A": "$\\sin \\alpha > 0$", "B": "$\\cos \\alpha < 0$", "C": "$\\tan \\alpha < 0$", "D": "$\\cot \\alpha < 0$"}, "correct_answer": "A", "explanation": "Góc phần tư thứ I thì sin, cos, tan, cot đều dương."},
-                        {"id": 2, "type": "mcq", "level": "Nhận biết", "question": "Tập xác định của hàm số $y = \\tan x$ là:", "options": {"A": "$D = \\mathbb{R} \\setminus \\left\\{\\frac{\\pi}{2} + k\\pi, k \\in \\mathbb{Z}\\right\\}$", "B": "$D = \\mathbb{R} \\setminus \\{k\\pi, k \\in \\mathbb{Z}\\}$", "C": "$D = \\mathbb{R} \\setminus \\left\\{\\frac{\\pi}{4} + k\\pi, k \\in \\mathbb{Z}\\right\\}$", "D": "$D = \\mathbb{R}$"}, "correct_answer": "A", "explanation": "$\\cos x \\neq 0 \\Leftrightarrow x \\neq \\frac{\\pi}{2} + k\\pi$."},
-                        {"id": 3, "type": "mcq", "level": "Nhận biết", "question": "Hàm số nào sau đây là hàm số chẵn?", "options": {"A": "$y = \\cos x$", "B": "$y = \\sin x$", "C": "$y = \\tan x$", "D": "$y = \\cot x$"}, "correct_answer": "A", "explanation": "Chỉ có $\\cos(-x) = \\cos x$ là hàm chẵn."},
-                        {"id": 4, "type": "mcq", "level": "Thông hiểu", "question": "Nghiệm của phương trình $\\cos x = 1$ là:", "options": {"A": "$x = k2\\pi$ ($k \\in \\mathbb{Z}$)", "B": "$x = k\\pi$ ($k \\in \\mathbb{Z}$)", "C": "$x = \\frac{\\pi}{2} + k2\\pi$ ($k \\in \\mathbb{Z}$)", "D": "$x = \\pi + k2\\pi$ ($k \\in \\mathbb{Z}$)"}, "correct_answer": "A", "explanation": "$\\cos x = 1 \\Leftrightarrow x = k2\\pi$."},
-                        {"id": 5, "type": "mcq", "level": "Thông hiểu", "question": "Tập giá trị của hàm số $y = 3\\sin 2x - 1$ là:", "options": {"A": "$[-4; 2]$", "B": "$[-3; 3]$", "C": "$[-2; 4]$", "D": "$[-1; 5]$"}, "correct_answer": "A", "explanation": "Vì $-1 \\le \\sin 2x \\le 1$ nên $-4 \\le 3\\sin 2x - 1 \\le 2$."},
-                        {"id": 6, "type": "mcq", "level": "Thông hiểu", "question": "Chu kỳ tuần hoàn của hàm số $y = \\sin 2x$ là:", "options": {"A": "$\\pi$", "B": "$2\\pi$", "C": "$\\frac{\\pi}{2}$", "D": "$4\\pi$"}, "correct_answer": "A", "explanation": "$T = \\frac{2\\pi}{\vert{}a\vert{}} = \\frac{2\\pi}{2} = \\pi$."},
-                        {"id": 7, "type": "mcq", "level": "Thông hiểu", "question": "Phương trình $\\tan x = \\sqrt{3}$ có họ nghiệm là:", "options": {"A": "$x = \\frac{\\pi}{3} + k\\pi$ ($k \\in \\mathbb{Z}$)", "B": "$x = \\frac{\\pi}{6} + k\\pi$ ($k \\in \\mathbb{Z}$)", "C": "$x = \\frac{\\pi}{3} + k2\\pi$ ($k \\in \\mathbb{Z}$)", "D": "$x = -\\frac{\\pi}{3} + k\\pi$ ($k \\in \\mathbb{Z}$)"}, "correct_answer": "A", "explanation": "$\\tan x = \\tan \\frac{\\pi}{3} \\Leftrightarrow x = \\frac{\\pi}{3} + k\\pi$."},
-                        {"id": 8, "type": "mcq", "level": "Thông hiểu", "question": "Giá trị của $\\cos 75^\\circ$ là:", "options": {"A": "$\\frac{\\sqrt{6}-\\sqrt{2}}{4}$", "B": "$\\frac{\\sqrt{6}+\\sqrt{2}}{4}$", "C": "$\\frac{\\sqrt{2}-\\sqrt{6}}{4}$", "D": "$\\frac{1}{2}$"}, "correct_answer": "A", "explanation": "$\\cos(45^\\circ + 30^\\circ) = \\cos 45^\\circ\\cos 30^\\circ - \\sin 45^\\circ\\sin 30^\\circ = \\frac{\\sqrt{6}-\\sqrt{2}}{4}$."},
-                        {"id": 9, "type": "short_answer", "level": "Vận dụng", "question": "Tìm số nghiệm của phương trình $\\sin x = 0$ trên đoạn $[0; 3\\pi]$.", "options": None, "correct_answer": "4", "explanation": "$\\sin x = 0 \\Leftrightarrow x = k\\pi$. Trên $[0; 3\\pi]$ có các nghiệm: $0, \\pi, 2\\pi, 3\\pi$ (tổng cộng 4 nghiệm)."},
-                        {"id": 10, "type": "short_answer", "level": "Vận dụng cao", "question": "Mặt cắt một con kênh có dạng cung đồ thị $y = 4{,}8\\sin\\left(\\frac{x}{9}\\right)$ (với $x$ tính bằng mét). Tính bề rộng mặt kênh giữa hai bờ kề nhau khi mực nước ở mức $y = 0$ (làm tròn kết quả đến hàng phần mười).", "options": None, "correct_answer": "28.3", "explanation": "Khoảng cách giữa hai điểm kề nhau bằng nửa chu kỳ: $9\\pi \\approx 28{,}27 \\approx 28{,}3$ mét."}
-                    ]
-                    st.session_state["exam_submitted"] = False
-                    st.session_state["student_answers"] = {}
-
+            # Dự phòng nếu mạng bận hoặc AI trả về thiếu câu: nạp ngay bộ 20 câu chuẩn
+            if not exam_success:
+                st.session_state["exam_data"] = BO_DE_CHUAN_20_CAU
+                st.session_state["exam_submitted"] = False
+                st.session_state["student_answers"] = {}
     # 3. GIAO DIỆN LÀM BÀI VÀ NỘP BÀI
     if "exam_data" in st.session_state and st.session_state["exam_data"]:
         exam_list = st.session_state["exam_data"]
@@ -950,7 +1150,7 @@ with tab_kiemtra:
                 student_name=st.session_state.get("student_name", "Ẩn danh"),
                 student_class=st.session_state.get("student_class", "-"),
                 score=f"{diem} điểm",
-                note=f"Quy mô: {loai_de} (Đúng {dung}/{tong_so} câu)"
+                note=f"Đề chuẩn 20 câu GDPT 2018 (Đúng {dung}/{tong_so} câu)""
             )
             if da_gui:
                 st.toast("🎉 Đã gửi kết quả bài thi về hệ thống!", icon="✅")
