@@ -3,7 +3,7 @@ import json
 import os
 import streamlit.components.v1 as components
 import requests
-
+import time
 # Dán đường link URL bạn vừa sao chép vào giữa 2 dấu ngoặc kép dưới đây:
 GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwdEHCrjYoQfFeKPXXf8rp-Xvcgj3_q7hey4QZC5_W8LDi7b__MmzWSL0zC_-0892DdyQ/exec"
 
@@ -1071,6 +1071,7 @@ with tab_kiemtra:
                         st.session_state["exam_data"] = de_data
                         st.session_state["exam_submitted"] = False
                         st.session_state["student_answers"] = {}
+                        st.session_state["exam_start_time"] = time.time()
                         exam_success = True
                         break
                 except Exception:
@@ -1081,8 +1082,64 @@ with tab_kiemtra:
                 st.session_state["exam_data"] = BO_DE_CHUAN_20_CAU
                 st.session_state["exam_submitted"] = False
                 st.session_state["student_answers"] = {}
+                st.session_state["exam_start_time"] = time.time()
     # 3. GIAO DIỆN LÀM BÀI VÀ NỘP BÀI
     if "exam_data" in st.session_state and st.session_state["exam_data"]:
+        # --- ĐỒNG HỒ ĐẾM NGƯỢC 30 PHÚT ---
+        if "exam_start_time" not in st.session_state:
+            st.session_state["exam_start_time"] = time.time()
+
+        thoi_gian_thi_giay = 30 * 60  # 30 phút = 1800 giây
+        da_troi_qua = int(time.time() - st.session_state["exam_start_time"])
+        thoi_gian_con_lai = max(0, thoi_gian_thi_giay - da_troi_qua)
+
+        components.html(
+            f"""
+            <div id="countdown-box" style="
+                background: linear-gradient(135deg, #1e293b, #0f172a);
+                color: #ffffff;
+                padding: 12px 20px;
+                border-radius: 10px;
+                text-align: center;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+                margin-bottom: 12px;
+                border: 1px solid #334155;
+            ">
+                <span style="font-size: 15px; color: #94a3b8; font-weight: 500;">⏳ Thời gian làm bài còn lại: </span>
+                <span id="timer" style="font-size: 24px; font-weight: 800; color: #38bdf8; margin-left: 8px; letter-spacing: 1px;">--:--</span>
+            </div>
+
+            <script>
+                var timeLeft = {thoi_gian_con_lai};
+                var timerDisplay = document.getElementById("timer");
+
+                function updateTimer() {{
+                    var minutes = Math.floor(timeLeft / 60);
+                    var seconds = timeLeft % 60;
+                    
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+                    
+                    timerDisplay.innerText = minutes + ":" + seconds;
+                    
+                    if (timeLeft <= 300) {{
+                        timerDisplay.style.color = "#f87171";
+                    }}
+                    
+                    if (timeLeft > 0) {{
+                        timeLeft--;
+                    }} else {{
+                        timerDisplay.innerText = "HẾT GIỜ!";
+                        timerDisplay.style.color = "#ef4444";
+                    }}
+                }}
+                updateTimer();
+                setInterval(updateTimer, 1000);
+            </script>
+            """,
+            height=70
+        )
         exam_list = st.session_state["exam_data"]
         ten_thi_sinh = st.session_state.get("cur_exam_student", "Thí sinh")
         lop_thi_sinh = st.session_state.get("cur_exam_class", "")
