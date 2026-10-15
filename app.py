@@ -874,19 +874,20 @@ BO_DE_CHUAN_20_CAU = [
         "correct_answer": "A",
         "explanation": "$x - \\frac{\\pi}{6} = \\frac{\\pi}{6} + k2\\pi$ hoặc $x - \\frac{\\pi}{6} = \\frac{5\\pi}{6} + k2\\pi \\Leftrightarrow x = \\frac{\\pi}{3} + k2\\pi$ hoặc $x = \\pi + k2\\pi$."
     },
+   
     {
         "id": 13,
         "type": "mcq",
         "level": "Thông hiểu",
-        "question": "Phương trình $2\\cos^2 x - 3\\cos x + 1 = 0$ có các họ nghiệm là:",
+        "question": "Tất cả các nghiệm của phương trình $2\\sin x - 1 = 0$ là:",
         "options": {
-            "A": "$x = k2\\pi; x = \\pm \\frac{\\pi}{3} + k2\\pi \\; (k \\in \\mathbb{Z})$",
-            "B": "$x = k\\pi; x = \\pm \\frac{\\pi}{6} + k2\\pi \\; (k \\in \\mathbb{Z})$",
-            "C": "$x = \\frac{\\pi}{2} + k2\\pi; x = \\pm \\frac{\\pi}{3} + k2\\pi \\; (k \\in \\mathbb{Z})$",
-            "D": "$x = \\pm \\frac{\\pi}{3} + k2\\pi \\; (k \\in \\mathbb{Z})$"
+            "A": "x = \\frac{\\pi}{6} + k2\\pi; x = \\frac{5\\pi}{6} + k2\\pi \\quad (k \\in \\mathbb{Z})",
+            "B": "x = \\pm \\frac{\\pi}{6} + k2\\pi \\quad (k \\in \\mathbb{Z})",
+            "C": "x = \\frac{\\pi}{3} + k2\\pi; x = \\frac{2\\pi}{3} + k2\\pi \\quad (k \\in \\mathbb{Z})",
+            "D": "x = \\pm \\frac{\\pi}{3} + k2\\pi \\quad (k \\in \\mathbb{Z})"
         },
         "correct_answer": "A",
-        "explanation": "Phương trình bậc hai theo $\\cos x$ có nghiệm $\\cos x = 1$ hoặc $\\cos x = \\frac{1}{2}$."
+        "explanation": "Ta có: $2\\sin x - 1 = 0 \\Leftrightarrow \\sin x = \\frac{1}{2} = \\sin\\left(\\frac{\\pi}{6}\\right)$. Do đó phương trình có hai họ nghiệm là: $x = \\frac{\\pi}{6} + k2\\pi$ và $x = \\pi - \\frac{\\pi}{6} + k2\\pi = \\frac{5\\pi}{6} + k2\\pi$ ($k \\in \\mathbb{Z}$)."
     },
     {
         "id": 14,
@@ -1021,7 +1022,9 @@ with tab_kiemtra:
 
             Nhiệm vụ:
             Hãy tạo 1 đề kiểm tra Chương 1 Toán 11 gồm ĐÚNG 20 CÂU:
-            - 16 câu đầu tiên (id: 1 đến 16): dạng TRẮC NGHIỆM 4 LỰA CHỌN (type: "mcq"), CHỈ GỒM mức độ "Nhận biết" (8 câu) và "Thông hiểu" (8 câu).
+            - 16 câu đầu tiên (id: 1 đến 16): dạng TRẮC NGHIỆM 4 LỰA CHỌN (type: "mcq"):
+              + 8 câu Nhận biết: tập xác định, tính chẵn/lẻ, chu kỳ, giá trị lượng giác của góc đặc biệt, công thức lượng giác cơ bản.
+              + 8 câu Thông hiểu: tìm tập giá trị đơn giản, tìm họ nghiệm tổng quát của phương trình lượng giác cơ bản (dạng sin x = m, cos(ax+b) = m, tan x = m). KHÔNG yêu cầu đếm số nghiệm trên khoảng/đoạn ở phần này.
             - 4 câu tiếp theo (id: 17 đến 20): dạng TRẢ LỜI NGẮN (type: "short_answer"):
               + Câu 17 & 18 (Vận dụng): Bài toán tìm số nghiệm của phương trình lượng giác cơ bản/bậc hai trên đoạn cho trước, hoặc tìm GTLN/GTNN của biểu thức lượng giác.
               + Câu 19 & 20 (Vận dụng cao - TÌNH HUỐNG THỰC TẾ): BẮT BUỘC là bài toán mô hình hóa thực tế (chuyển động guồng nước/vòng quay đu quay, dao động mực nước thủy triều theo giờ trong ngày, hoặc nhiệt độ môi trường theo tháng). Dạng câu hỏi CHỈ ĐƯỢC CHỌN 1 TRONG 2 HƯỚNG:
@@ -1208,6 +1211,7 @@ with tab_kiemtra:
                 st.session_state["exam_submitted"] = True
                 st.session_state["student_answers"] = user_exam_answers
                 st.session_state["exam_end_time"] = time.time()
+                st.rerun()  # <-- Thêm dòng này để trang làm mới ngay lập tức
 
         # 4. CHẤM ĐIỂM VÀ TỰ ĐỘNG GỬI KẾT QUẢ VỀ GOOGLE SHEET
         if st.session_state.get("exam_submitted", False):
