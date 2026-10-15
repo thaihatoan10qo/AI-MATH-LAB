@@ -131,9 +131,9 @@ if not st.session_state.get("logged_in", False):
         """
         <div class="glass-card" style="padding: 24px 20px; text-align: center; margin-bottom: 24px; border-top: 4px solid #0284c7;">
             <div style="display: inline-block; background: #e0f2fe; color: #0369a1; font-size: 13px; font-weight: 700; padding: 4px 16px; border-radius: 20px; margin-bottom: 10px; border: 1px solid #bae6fd;">
-                ✨ HỌC TOÁN CÙNG CÔ HÀ • CHƯƠNG TRÌNH GDPT 2018
+                ✨ HỌC TOÁN CÙNG CÔ HÀ
             </div>
-            <h1 style="margin: 0 0 8px 0; font-size: 26px; font-weight: 800; color: #0f2b48; line-height: 1.3;">
+            <h1 style="margin: 0 0 8px 0; font-size: 25px; font-weight: 800; color: #0f2b48; line-height: 1.3;">
                 📐 HỆ THỐNG HỌC TẬP TƯƠNG TÁC & KHẢO THÍ TÍCH HỢP TRÍ TUỆ NHÂN TẠO
             </h1>
             <p style="margin: 0; font-size: 15px; color: #334155; font-weight: 600;">
@@ -940,23 +940,24 @@ BO_DE_CHUAN_20_CAU = [
         "correct_answer": "8",
         "explanation": "$y = 9\\sin^2 x - 1$. Vì $\\sin^2 x \\le 1$ nên $y_{\\max} = 9(1) - 1 = 8$."
     },
-    {
+    
+     {
         "id": 19,
         "type": "short_answer",
         "level": "Vận dụng cao",
-        "question": "Một chất điểm dao động điều hòa theo phương trình $x = 6\\cos(2\\pi t - \\frac{\\pi}{3})$ (cm). Trong khoảng thời gian 3 giây đầu tiên ($0 < t < 3$), chất điểm đi qua vị trí cân bằng ($x = 0$) bao nhiêu lần? *(Nhập kết quả là một số nguyên)*",
+        "question": "Một guồng nước hình tròn có bán kính $R = 3$ m quay đều với tốc độ 1 vòng hết 40 giây. Trục của guồng nước đặt cao hơn mặt nước $2{,}5$ m. Độ cao $h$ (tính bằng mét) của một chiếc gàu trên guồng so với mặt nước tại thời điểm $t$ giây ($t \\ge 0$) được mô hình hóa bởi công thức: $$h(t) = 2{,}5 + 3\\sin\\left(\\frac{\\pi}{20}t - \\frac{\\pi}{2}\\right)$$ Tính độ cao lớn nhất (theo đơn vị mét) mà chiếc gàu có thể đạt được so với mặt nước. *(Nhập kết quả là một số thập phân hoặc số nguyên)*",
         "options": None,
-        "correct_answer": "6",
-        "explanation": "Chu kỳ $T = 1$ s. Trong 1 chu kỳ chất điểm qua VTCB 2 lần. Sau 3 giây (3 chu kỳ), qua $3 \\times 2 = 6$ lần."
+        "correct_answer": "5.5",
+        "explanation": "Vì $-1 \\le \\sin\\left(\\frac{\\pi}{20}t - \\frac{\\pi}{2}\\right) \\le 1$ nên giá trị lớn nhất của $h(t)$ là $h_{\\max} = 2{,}5 + 3(1) = 5{,}5$ mét."
     },
     {
         "id": 20,
         "type": "short_answer",
         "level": "Vận dụng cao",
-        "question": "Có bao nhiêu giá trị nguyên của tham số $m$ để phương trình $\\cos(2x) - m = 0$ có nghiệm thuộc khoảng $(-\\frac{\\pi}{4}; \\frac{\\pi}{4})$? *(Nhập kết quả là một số nguyên)*",
+        "question": "Mực nước tại cảng biển vào thời điểm $t$ giờ ($0 \\le t \\le 24$) trong ngày được tính theo công thức: $$h(t) = 4\\cos\\left(\\frac{\\pi t}{6}\\right) + 7 \\quad \\text{(mét)}$$ Trong khoảng thời gian từ $0$ giờ đến $24$ giờ, có bao nhiêu lần mực nước tại cảng đạt đúng $9$ mét? *(Nhập kết quả là một số nguyên)*",
         "options": None,
-        "correct_answer": "1",
-        "explanation": "Với $x \\in (-\\frac{\\pi}{4}; \\frac{\\pi}{4}) \\Rightarrow 2x \\in (-\\frac{\\pi}{2}; \\frac{\\pi}{2}) \\Rightarrow \\cos(2x) \\in (0; 1]$. Giá trị nguyên duy nhất của $m$ là 1."
+        "correct_answer": "4",
+        "explanation": "Phương trình: $4\\cos\\left(\\frac{\\pi t}{6}\\right) + 7 = 9 \\Leftrightarrow \\cos\\left(\\frac{\\pi t}{6}\\right) = \\frac{1}{2} = \\cos\\frac{\\pi}{3}$.\n\nTH1: $\\frac{\\pi t}{6} = \\frac{\\pi}{3} + k2\\pi \\Leftrightarrow t = 2 + 12k$. Với $0 \\le t \\le 24 \\Rightarrow k \\in \\{0, 1\\} \\Rightarrow t \\in \\{2, 14\\}$.\n\nTH2: $\\frac{\\pi t}{6} = -\\frac{\\pi}{3} + k2\\pi \\Leftrightarrow t = -2 + 12k$. Với $0 \\le t \\le 24 \\Rightarrow k \\in \\{1, 2\\} \\Rightarrow t \\in \\{10, 22\\}$.\n\nTổng cộng có 4 lần mực nước đạt 9 mét."
     }
 ]
 # ================= TAB 4: KIỂM TRA ĐÁNH GIÁ (TRẮC NGHIỆM + TRẢ LỜI NGẮN) =================
@@ -1022,7 +1023,10 @@ with tab_kiemtra:
             Nhiệm vụ:
             Hãy tạo 1 đề kiểm tra Chương 1 Toán 11 gồm ĐÚNG 20 CÂU:
             - 16 câu đầu tiên (id: 1 đến 16): dạng TRẮC NGHIỆM 4 LỰA CHỌN (type: "mcq"), CHỈ GỒM mức độ "Nhận biết" (8 câu) và "Thông hiểu" (8 câu).
-            - 4 câu tiếp theo (id: 17 đến 20): dạng TRẢ LỜI NGẮN (type: "short_answer"), CHỈ GỒM mức độ "Vận dụng" (2 câu) và "Vận dụng cao" (2 câu). Đáp án đúng bắt buộc là MỘT CON SỐ CỤ THỂ (ví dụ: "4", "-1", "2.5", "8").
+            - 4 câu tiếp theo (id: 17 đến 20): dạng TRẢ LỜI NGẮN (type: "short_answer"):
+  + Câu 17 & 18 (Vận dụng): Bài toán tìm số nghiệm của phương trình lượng giác trên khoảng/đoạn, hoặc tìm GTLN/GTNN của biểu thức lượng giác có điều kiện.
+  + Câu 19 & 20 (Vận dụng cao): BẮT BUỘC là BÀI TOÁN TÌNH HUỐNG THỰC TẾ (mô hình hóa chu kỳ dao động con lắc/sóng biển/thủy triều cảng biển, chuyển động quay của đu quay/guồng nước, góc nâng mặt trời).
+  + Đáp án đúng bắt buộc là MỘT CON SỐ CỤ THỂ NHIỀU NHẤT CÓ 4 KÍ TỰ (số nguyên hoặc số thập phân như: "4", "5.5", "12").
             - Công thức toán viết bằng LaTeX đặt trong $...$.
             - Lời giải (explanation) ngắn gọn, rõ ràng.
 
