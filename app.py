@@ -633,9 +633,9 @@ with tab_luyentap:
                     st.session_state["practice_correct"] = st.session_state.get("practice_correct", 0) + 1
                 else:
                     st.session_state["practice_wrong"] = st.session_state.get("practice_wrong", 0) + 1
-
-                so_dung = st.session_state["practice_correct"]
-                so_sai = st.session_state["practice_wrong"]
+               
+                so_dung = st.session_state.get("practice_correct", 0)
+                so_sai = st.session_state.get("practice_wrong", 0)
                 chu_de = st.session_state.get("cur_question_topic", topic)
 
                 # 3. Gửi sang Google Sheet
