@@ -5,15 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mô Phỏng Trực Quan - Giá Trị Lượng Giác (Toán 11)</title>
   
-  <!-- MathJax hiển thị công thức toán học chuẩn đẹp -->
-  <script>
-    window.MathJax = {
-      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
-      svg: { fontCache: 'global' }
-    };
-  </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
   <style>
     :root {
       --bg-body: #f8fafc;
@@ -44,6 +35,59 @@
       color: var(--text-main);
       display: flex;
       flex-direction: column;
+    }
+
+    /* CSS TOÁN HỌC BẢNG BÊN PHẢI */
+    .math-expr {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cambria Math', 'Times New Roman', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      vertical-align: middle;
+    }
+    .math-frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      vertical-align: middle;
+      padding: 0 3px;
+      line-height: 1;
+    }
+    .math-num {
+      border-bottom: 1.5px solid currentColor;
+      padding-bottom: 2px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .math-den {
+      padding-top: 2px;
+      width: 100%;
+      text-align: center;
+    }
+    .math-sqrt-wrap {
+      display: inline-flex;
+      align-items: stretch;
+      vertical-align: middle;
+      position: relative;
+    }
+    .math-sqrt-symbol {
+      width: 11px;
+      flex-shrink: 0;
+      display: flex;
+    }
+    .math-sqrt-body {
+      border-top: 1.8px solid currentColor;
+      padding-left: 2px;
+      padding-right: 3px;
+      padding-top: 1px;
+      display: inline-block;
+      line-height: 1;
     }
 
     /* HEADER */
@@ -84,7 +128,7 @@
     main {
       flex: 1;
       display: grid;
-      grid-template-columns: 1fr 380px;
+      grid-template-columns: 1fr 390px;
       gap: 10px;
       padding: 8px 14px;
       min-height: 0;
@@ -194,7 +238,7 @@
       border-color: #0284c7;
     }
 
-    /* CỘT PHẢI: BẢNG GIÁ TRỊ */
+    /* CỘT PHẢI */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -213,7 +257,6 @@
       font-size: 0.82rem;
       font-weight: 800;
       color: #0369a1;
-      text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 6px;
       display: flex;
@@ -229,26 +272,31 @@
       border-radius: 6px;
       padding: 5px 10px;
       text-align: center;
-      font-size: 1.15rem;
-      font-weight: 800;
       color: #15803d;
       margin-bottom: 4px;
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      font-weight: 800;
     }
 
     .val-grid {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 5px;
     }
     .val-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 8px;
+      padding: 5px 8px;
       background: #f8fafc;
       border-radius: 5px;
       border-left: 4px solid var(--border-color);
-      font-size: 0.84rem;
+      font-size: 0.86rem;
+      min-height: 38px;
     }
     .val-item.cos { border-left-color: var(--cos-color); }
     .val-item.sin { border-left-color: var(--sin-color); }
@@ -262,8 +310,9 @@
       gap: 4px;
     }
     .val-item .num {
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
       font-weight: 800;
     }
 
@@ -319,49 +368,6 @@
 
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
-    /* ================= TỐI ƯU GIAO DIỆN CHO ĐIỆN THOẠI ================= */
-    @media (max-width: 768px) {
-      html, body {
-        height: auto !important;
-        max-height: none !important;
-        overflow-y: auto !important;
-      }
-
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-        padding: 10px 12px;
-      }
-
-      /* Tự động xếp chồng dọc trên màn hình hẹp */
-      main {
-        display: flex !important;
-        flex-direction: column !important;
-        height: auto !important;
-        padding: 8px;
-        gap: 12px;
-      }
-
-      .sim-container {
-        height: 420px !important;
-        min-height: 420px !important;
-      }
-
-      .sidebar {
-        overflow-y: visible !important;
-        height: auto !important;
-      }
-
-      .slider-row label {
-        min-width: 85px;
-        font-size: 0.8rem;
-      }
-
-      .btn-row {
-        justify-content: center;
-      }
-    }
   </style>
 </head>
 <body>
@@ -418,37 +424,34 @@
           <span>Tọa độ điểm biểu diễn M(x; y)</span>
           <span style="font-size:0.75rem; color:var(--text-muted);">Bán kính R = 1</span>
         </div>
-        <div class="m-coord-box" id="dispMCoord">M (0.71 ; 0.71)</div>
-        <p style="font-size:0.75rem; color:var(--text-muted); text-align:center;">
-          Hoành độ x trên trục Ox • Tung độ y trên trục Oy
-        </p>
+        <div class="m-coord-box" id="dispMCoord"></div>
       </div>
 
       <div class="panel-card">
         <div class="panel-title">
           <span>Giá trị lượng giác của α</span>
-          <span style="font-size:0.72rem; color:var(--text-muted);" id="dispTurnInfo">0 vòng + 0.25π</span>
+          <span style="font-size:0.72rem; color:var(--text-muted);" id="dispTurnInfo">0 vòng + π/4</span>
         </div>
 
         <div class="val-grid">
           <div class="val-item cos">
             <span class="name" style="color:var(--cos-color);">● cos α = x</span>
-            <span class="num" id="valCos" style="color:var(--cos-color);">+0.7071</span>
+            <div class="num" id="valCos" style="color:var(--cos-color);"></div>
           </div>
 
           <div class="val-item sin">
             <span class="name" style="color:var(--sin-color);">● sin α = y</span>
-            <span class="num" id="valSin" style="color:var(--sin-color);">+0.7071</span>
+            <div class="num" id="valSin" style="color:var(--sin-color);"></div>
           </div>
 
           <div class="val-item tan">
             <span class="name" style="color:var(--tan-color);">● tan α = y / x</span>
-            <span class="num" id="valTan" style="color:var(--tan-color);">+1.0000</span>
+            <div class="num" id="valTan" style="color:var(--tan-color);"></div>
           </div>
 
           <div class="val-item cot">
             <span class="name" style="color:var(--cot-color);">● cot α = x / y</span>
-            <span class="num" id="valCot" style="color:var(--cot-color);">+1.0000</span>
+            <div class="num" id="valCot" style="color:var(--cot-color);"></div>
           </div>
         </div>
       </div>
@@ -482,8 +485,8 @@
       <div class="panel-card">
         <div class="panel-title">Điều kiện xác định</div>
         <div class="pedagogy-tip">
-          • <strong style="color:var(--tan-color);">$\tan\alpha$:</strong> Xác định khi $x \ne 0$ $\left(\alpha \ne \frac{\pi}{2} + k\pi,\; k \in \mathbb{Z}\right)$.<br>
-          • <strong style="color:var(--cot-color);">$\cot\alpha$:</strong> Xác định khi $y \ne 0$ $(\alpha \ne k\pi,\; k \in \mathbb{Z})$.
+          • <strong style="color:var(--tan-color);">tan α:</strong> Xác định khi x ≠ 0 (α ≠ π/2 + kπ, k ∈ ℤ).<br>
+          • <strong style="color:var(--cot-color);">cot α:</strong> Xác định khi y ≠ 0 (α ≠ kπ, k ∈ ℤ).
         </div>
       </div>
     </div>
@@ -519,7 +522,138 @@
     const btnMinusStep = document.getElementById('btnMinusStep');
     const btnPlusStep = document.getElementById('btnPlusStep');
 
-    /* CHUYỂN ĐỔI RADIAN SANG PHÂN SỐ PI CHUẨN ĐẸP */
+    /* BỘ HÀM VẼ CĂN THỨC VECTƠ TRỰC TIẾP TRÊN CANVAS */
+    function measureFormulaText(ctx, str, fontSize = 14) {
+      let totalW = 0;
+      const parts = str.split(/(√\d+)/g);
+      for (let p of parts) {
+        if (!p) continue;
+        if (p.startsWith('√')) {
+          const num = p.slice(1);
+          totalW += 8.5 + ctx.measureText(num).width + 2;
+        } else {
+          totalW += ctx.measureText(p).width;
+        }
+      }
+      return totalW;
+    }
+
+    function renderFormulaText(ctx, str, x, y, fontSize = 14) {
+      const parts = str.split(/(√\d+)/g);
+      let curX = x;
+      ctx.save();
+      const strokeCol = ctx.fillStyle;
+
+      for (let p of parts) {
+        if (!p) continue;
+        if (p.startsWith('√')) {
+          const num = p.slice(1);
+          const numW = ctx.measureText(num).width;
+          const rootH = fontSize * 0.85;
+          const topY = y - rootH;
+
+          ctx.save();
+          ctx.strokeStyle = strokeCol;
+          ctx.lineWidth = 1.6;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'miter';
+          ctx.beginPath();
+          ctx.moveTo(curX, y - rootH * 0.35);
+          ctx.lineTo(curX + 2.2, y - rootH * 0.1);
+          ctx.lineTo(curX + 4.8, y + 1.2);
+          ctx.lineTo(curX + 8.2, topY);
+          ctx.lineTo(curX + 8.2 + numW + 2.2, topY);
+          ctx.stroke();
+          ctx.restore();
+
+          ctx.fillText(num, curX + 9.0, y);
+          curX += 8.2 + numW + 3;
+        } else {
+          ctx.fillText(p, curX, y);
+          curX += ctx.measureText(p).width;
+        }
+      }
+      ctx.restore();
+    }
+
+    /* TẠO DẤU CĂN SVG CHO BẢNG BÊN PHẢI */
+    function makeSqrtHTML(val) {
+      return `
+        <span class="math-sqrt-wrap">
+          <svg class="math-sqrt-symbol" viewBox="0 0 11 20" preserveAspectRatio="none">
+            <path d="M1 12 L3.5 12 L6.5 19 L10.5 1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="math-sqrt-body">${val}</span>
+        </span>
+      `;
+    }
+
+    function makeFracHTML(numHTML, denHTML, sign = "") {
+      return `
+        <span class="math-expr">
+          ${sign ? `<span style="margin-right:2px;">${sign}</span>` : ''}
+          <span class="math-frac">
+            <span class="math-num">${numHTML}</span>
+            <span class="math-den">${denHTML}</span>
+          </span>
+        </span>
+      `;
+    }
+
+    const SQRT2 = makeSqrtHTML(2);
+    const SQRT3 = makeSqrtHTML(3);
+
+    const MATH_VALS = {
+      zero: `<span class="math-expr">0</span>`,
+      one: `<span class="math-expr">1</span>`,
+      neg_one: `<span class="math-expr">−1</span>`,
+      half: makeFracHTML("1", "2"),
+      neg_half: makeFracHTML("1", "2", "−"),
+      sqrt2_2: makeFracHTML(SQRT2, "2"),
+      neg_sqrt2_2: makeFracHTML(SQRT2, "2", "−"),
+      sqrt3_2: makeFracHTML(SQRT3, "2"),
+      neg_sqrt3_2: makeFracHTML(SQRT3, "2", "−"),
+      sqrt3: `<span class="math-expr">${SQRT3}</span>`,
+      neg_sqrt3: `<span class="math-expr">−${SQRT3}</span>`,
+      sqrt3_3: makeFracHTML(SQRT3, "3"),
+      neg_sqrt3_3: makeFracHTML(SQRT3, "3", "−"),
+      undef: `<span style="font-size:0.85rem; font-weight:bold; color:#dc2626;">Không xác định</span>`
+    };
+
+    /* BẢNG 16 GÓC ĐẶC BIỆT */
+    const SPECIAL_TRIG_TABLE = [
+      { k12: 0, radStr: "0", cosH: MATH_VALS.one, sinH: MATH_VALS.zero, tanH: MATH_VALS.zero, cotH: MATH_VALS.undef, cosTxt: "1", sinTxt: "0" },
+      { k12: 2, radStr: "π/6", cosH: MATH_VALS.sqrt3_2, sinH: MATH_VALS.half, tanH: MATH_VALS.sqrt3_3, cotH: MATH_VALS.sqrt3, cosTxt: "√3/2", sinTxt: "1/2" },
+      { k12: 3, radStr: "π/4", cosH: MATH_VALS.sqrt2_2, sinH: MATH_VALS.sqrt2_2, tanH: MATH_VALS.one, cotH: MATH_VALS.one, cosTxt: "√2/2", sinTxt: "√2/2" },
+      { k12: 4, radStr: "π/3", cosH: MATH_VALS.half, sinH: MATH_VALS.sqrt3_2, tanH: MATH_VALS.sqrt3, cotH: MATH_VALS.sqrt3_3, cosTxt: "1/2", sinTxt: "√3/2" },
+      { k12: 6, radStr: "π/2", cosH: MATH_VALS.zero, sinH: MATH_VALS.one, tanH: MATH_VALS.undef, cotH: MATH_VALS.zero, cosTxt: "0", sinTxt: "1" },
+      { k12: 8, radStr: "2π/3", cosH: MATH_VALS.neg_half, sinH: MATH_VALS.sqrt3_2, tanH: MATH_VALS.neg_sqrt3, cotH: MATH_VALS.neg_sqrt3_3, cosTxt: "-1/2", sinTxt: "√3/2" },
+      { k12: 9, radStr: "3π/4", cosH: MATH_VALS.neg_sqrt2_2, sinH: MATH_VALS.sqrt2_2, tanH: MATH_VALS.neg_one, cotH: MATH_VALS.neg_one, cosTxt: "-√2/2", sinTxt: "√2/2" },
+      { k12: 10, radStr: "5π/6", cosH: MATH_VALS.neg_sqrt3_2, sinH: MATH_VALS.half, tanH: MATH_VALS.neg_sqrt3_3, cotH: MATH_VALS.neg_sqrt3, cosTxt: "-√3/2", sinTxt: "1/2" },
+      { k12: 12, radStr: "π", cosH: MATH_VALS.neg_one, sinH: MATH_VALS.zero, tanH: MATH_VALS.zero, cotH: MATH_VALS.undef, cosTxt: "-1", sinTxt: "0" },
+      { k12: 14, radStr: "7π/6", cosH: MATH_VALS.neg_sqrt3_2, sinH: MATH_VALS.neg_half, tanH: MATH_VALS.sqrt3_3, cotH: MATH_VALS.sqrt3, cosTxt: "-√3/2", sinTxt: "-1/2" },
+      { k12: 15, radStr: "5π/4", cosH: MATH_VALS.neg_sqrt2_2, sinH: MATH_VALS.neg_sqrt2_2, tanH: MATH_VALS.one, cotH: MATH_VALS.one, cosTxt: "-√2/2", sinTxt: "-√2/2" },
+      { k12: 16, radStr: "4π/3", cosH: MATH_VALS.neg_half, sinH: MATH_VALS.neg_sqrt3_2, tanH: MATH_VALS.sqrt3, cotH: MATH_VALS.sqrt3_3, cosTxt: "-1/2", sinTxt: "-√3/2" },
+      { k12: 18, radStr: "3π/2", cosH: MATH_VALS.zero, sinH: MATH_VALS.neg_one, tanH: MATH_VALS.undef, cotH: MATH_VALS.zero, cosTxt: "0", sinTxt: "-1" },
+      { k12: 20, radStr: "5π/3", cosH: MATH_VALS.half, sinH: MATH_VALS.neg_sqrt3_2, tanH: MATH_VALS.neg_sqrt3, cotH: MATH_VALS.neg_sqrt3_3, cosTxt: "1/2", sinTxt: "-√3/2" },
+      { k12: 21, radStr: "7π/4", cosH: MATH_VALS.sqrt2_2, sinH: MATH_VALS.neg_sqrt2_2, tanH: MATH_VALS.neg_one, cotH: MATH_VALS.neg_one, cosTxt: "√2/2", sinTxt: "-√2/2" },
+      { k12: 22, radStr: "11π/6", cosH: MATH_VALS.sqrt3_2, sinH: MATH_VALS.neg_half, tanH: MATH_VALS.neg_sqrt3_3, cotH: MATH_VALS.neg_sqrt3, cosTxt: "√3/2", sinTxt: "-1/2" }
+    ];
+
+    function findSpecialTrig(rad) {
+      const twoPi = 2 * Math.PI;
+      let norm = rad % twoPi;
+      if (norm < 0) norm += twoPi;
+
+      const ratio = (norm / Math.PI) * 12;
+      for (let item of SPECIAL_TRIG_TABLE) {
+        if (Math.abs(ratio - item.k12) < 0.18 || Math.abs(ratio - (item.k12 + 24)) < 0.18) {
+          return item;
+        }
+      }
+      return null;
+    }
+
     function formatPiFraction(rad) {
       if (Math.abs(rad) < 0.005) return "0 rad";
       const fraction = rad / Math.PI;
@@ -547,15 +681,14 @@
       return `${fraction >= 0 ? '+' : ''}${fraction.toFixed(2)}π rad`;
     }
 
-    /* ĐO KÍCH THƯỚC VÀ ĐỒNG BỘ ĐỘ NÉT CAO */
     function resizeCanvas() {
       const rect = canvas.parentElement.getBoundingClientRect();
       dpr = window.devicePixelRatio || 1;
       w = rect.width;
       h = rect.height;
 
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
       ctx.resetTransform();
       ctx.scale(dpr, dpr);
     }
@@ -592,9 +725,10 @@
 
       ctx.clearRect(0, 0, w, h);
 
+      // DỜI TRỤC VÀ ĐƯỜNG TRÒN XUỐNG DƯỚI 18px ĐỂ HIỂN THỊ ĐẦY ĐỦ TRỤC OY
       const cx = w / 2;
-      const cy = h / 2;
-      const R = Math.min(w, h) * 0.38;
+      const cy = h / 2 + 18;
+      const R = Math.min(w, h) * 0.35; // Bán kính cân đối hoàn hảo
 
       const cosVal = Math.cos(currentRad);
       const sinVal = Math.sin(currentRad);
@@ -602,27 +736,38 @@
       const mx = cx + cosVal * R;
       const my = cy - sinVal * R;
 
-      // 1. Trục tọa độ Oxy (vẽ đậm hơn)
-      drawArrow(cx - R - 40, cy, cx + R + 55, cy, '#64748b', 2.4);
-      drawArrow(cx, cy + R + 40, cx, cy - R - 55, '#64748b', 2.4);
+      // 1. Trục tọa độ Oxy (Trục Oy cách mép trên 18px không bị lấp)
+      drawArrow(cx - R - 45, cy, cx + R + 58, cy, '#64748b', 2.4);
+      drawArrow(cx, cy + R + 45, cx, 18, '#64748b', 2.4);
 
-      // Chữ tên trục to hơn (15px)
       ctx.fillStyle = '#0f172a';
       ctx.font = "bold 15px 'Segoe UI', sans-serif";
-      ctx.fillText('x (Cos)', cx + R + 16, cy + 20);
-      ctx.fillText('y (Sin)', cx + 12, cy - R - 36);
-      ctx.fillText('O', cx - 20, cy + 20);
+      ctx.fillText('x (Cos)', cx + R + 22, cy + 22);
+      ctx.fillText('y (Sin)', cx + 12, 34);
+      ctx.fillText('O', cx - 20, cy + 22);
 
-      // Chữ số mốc to hơn (13.5px)
+      // CÁC SỐ 1 VÀ -1 HIỂN THỊ TO RÕ, NẰM NGOÀI ĐƯỜNG TRÒN
+      ctx.fillStyle = '#1e293b';
+      ctx.font = "bold 15.5px 'Segoe UI', sans-serif";
+
+      // Số 1 trên Oy: nằm trên đỉnh đường tròn
+      ctx.fillText('1', cx - 20, cy - R - 8);
+
+      // Số -1 trên Oy: nằm dưới đáy đường tròn
+      ctx.fillText('-1', cx - 26, cy + R + 22);
+
+      // Số -1 trên Ox: nằm bên trái
+      ctx.fillText('-1', cx - R - 26, cy + 22);
+
+      // Số 1 trên Ox: nằm bên phải
+      ctx.fillText('1', cx + R + 8, cy + 24);
+
+      // Điểm gốc A(1; 0)
       ctx.fillStyle = '#334155';
       ctx.font = "bold 13.5px 'Segoe UI', sans-serif";
-      ctx.fillText('1', cx + R - 4, cy + 18);
-      ctx.fillText('-1', cx - R - 18, cy + 18);
-      ctx.fillText('1', cx - 20, cy - R + 4);
-      ctx.fillText('-1', cx - 25, cy + R + 4);
-      ctx.fillText('A(1;0)', cx + R + 6, cy - 8);
+      ctx.fillText('A(1;0)', cx + R + 8, cy - 8);
 
-      // Ký hiệu góc phần tư to rõ ràng (30px)
+      // Ký hiệu 4 góc phần tư
       ctx.fillStyle = '#cbd5e1';
       ctx.font = "bold 30px 'Segoe UI', sans-serif";
       ctx.fillText('I', cx + R * 0.55, cy - R * 0.55);
@@ -681,7 +826,7 @@
         ctx.restore();
       }
 
-      // 4. Đoạn đại số cos α (xanh) và sin α (đỏ)
+      // 4. Đoạn đại số cos α và sin α
       ctx.save();
       ctx.strokeStyle = '#2563eb';
       ctx.lineWidth = 5.5;
@@ -758,21 +903,41 @@
       ctx.stroke();
       ctx.restore();
 
-      // Nhãn điểm M to rõ (15px)
+      // NHÃN TỌA ĐỘ ĐIỂM M VÀ HÌNH CHIẾU
+      const special = findSpecialTrig(targetRad);
+      let labelM = "";
+      let labelCosVal = "";
+      let labelSinVal = "";
+
+      if (special) {
+        labelM = `M (${special.cosTxt} ; ${special.sinTxt})`;
+        labelCosVal = `${special.cosTxt}`;
+        labelSinVal = `${special.sinTxt}`;
+      } else {
+        labelM = `M (${cosVal.toFixed(2)} ; ${sinVal.toFixed(2)})`;
+        labelCosVal = `${cosVal.toFixed(2)}`;
+        labelSinVal = `${sinVal.toFixed(2)}`;
+      }
+
+      // 1. Nhãn điểm M
       ctx.fillStyle = '#0f172a';
-      ctx.font = "bold 15px 'Segoe UI', sans-serif";
-      const offsetX = cosVal >= 0 ? 14 : -128;
+      ctx.font = "bold 14px 'Segoe UI', sans-serif";
+      const totalWidthM = measureFormulaText(ctx, labelM, 14);
+      const offsetX = cosVal >= 0 ? 14 : -(totalWidthM + 14);
       const offsetY = sinVal >= 0 ? -14 : 26;
-      ctx.fillText(`M (cos α; sin α)`, mx + offsetX, my + offsetY);
+      renderFormulaText(ctx, labelM, mx + offsetX, my + offsetY, 14);
 
-      // Nhãn chữ trên 2 trục to hơn (14px)
+      // 2. Nhãn giá trị hình chiếu trên trục Ox
       ctx.fillStyle = '#2563eb';
-      ctx.font = "bold 14px 'Segoe UI', sans-serif";
-      ctx.fillText(`cos α`, mx - 18, cy + (sinVal >= 0 ? 22 : -10));
+      ctx.font = "bold 13.5px 'Segoe UI', sans-serif";
+      const cosW = measureFormulaText(ctx, labelCosVal, 13.5);
+      renderFormulaText(ctx, labelCosVal, mx - cosW / 2, cy + (sinVal >= 0 ? 22 : -10), 13.5);
 
+      // 3. Nhãn giá trị hình chiếu trên trục Oy
       ctx.fillStyle = '#dc2626';
-      ctx.font = "bold 14px 'Segoe UI', sans-serif";
-      ctx.fillText(`sin α`, cx + (cosVal >= 0 ? -48 : 10), my + 5);
+      ctx.font = "bold 13.5px 'Segoe UI', sans-serif";
+      const sinW = measureFormulaText(ctx, labelSinVal, 13.5);
+      renderFormulaText(ctx, labelSinVal, cx + (cosVal >= 0 ? -(sinW + 12) : 12), my + 5, 13.5);
     }
 
     function animate() {
@@ -781,41 +946,47 @@
     }
 
     function updateTrigValues() {
-      const cos = Math.cos(targetRad);
-      const sin = Math.sin(targetRad);
+      const special = findSpecialTrig(targetRad);
 
-      dispMCoord.innerText = `M (${cos.toFixed(2)} ; ${sin.toFixed(2)})`;
-
-      valCos.innerText = `${cos >= 0 ? '+' : ''}${cos.toFixed(4)}`;
-      valSin.innerText = `${sin >= 0 ? '+' : ''}${sin.toFixed(4)}`;
-
-      if (Math.abs(cos) < 1e-5) {
-        valTan.innerText = "Không xác định";
-        valTan.style.color = "#dc2626";
+      if (special) {
+        dispMCoord.innerHTML = `
+          <span class="math-expr">M</span>
+          <span class="math-expr">(</span>
+          ${special.cosH}
+          <span class="math-expr">;&nbsp;</span>
+          ${special.sinH}
+          <span class="math-expr">)</span>
+        `;
+        valCos.innerHTML = special.cosH;
+        valSin.innerHTML = special.sinH;
+        valTan.innerHTML = special.tanH;
+        valCot.innerHTML = special.cotH;
       } else {
-        const tan = sin / cos;
-        valTan.innerText = `${tan >= 0 ? '+' : ''}${tan.toFixed(4)}`;
-        valTan.style.color = "#d97706";
-      }
+        const cosVal = Math.cos(targetRad);
+        const sinVal = Math.sin(targetRad);
+        const tanVal = Math.tan(targetRad);
+        const cotVal = Math.abs(sinVal) > 1e-5 ? cosVal / sinVal : NaN;
 
-      if (Math.abs(sin) < 1e-5) {
-        valCot.innerText = "Không xác định";
-        valCot.style.color = "#dc2626";
-      } else {
-        const cot = cos / sin;
-        valCot.innerText = `${cot >= 0 ? '+' : ''}${cot.toFixed(4)}`;
-        valCot.style.color = "#7c3aed";
+        dispMCoord.innerHTML = `<span class="math-expr">M (${cosVal.toFixed(2)} ; ${sinVal.toFixed(2)})</span>`;
+        valCos.innerHTML = `<span class="math-expr">${cosVal >= 0 ? '+' : ''}${cosVal.toFixed(4)}</span>`;
+        valSin.innerHTML = `<span class="math-expr">${sinVal >= 0 ? '+' : ''}${sinVal.toFixed(4)}</span>`;
+        valTan.innerHTML = isNaN(tanVal) ? MATH_VALS.undef : `<span class="math-expr">${tanVal >= 0 ? '+' : ''}${tanVal.toFixed(4)}</span>`;
+        valCot.innerHTML = isNaN(cotVal) ? MATH_VALS.undef : `<span class="math-expr">${cotVal >= 0 ? '+' : ''}${cotVal.toFixed(4)}</span>`;
       }
 
       const twoPi = 2 * Math.PI;
       let norm = targetRad % twoPi;
       if (norm < 0) norm += twoPi;
-
       const k = Math.trunc(targetRad / twoPi);
-      const rem = targetRad - k * twoPi;
-      dispTurnInfo.innerText = `${k} vòng + ${(rem / Math.PI).toFixed(2)}π`;
 
-      setQuadrantAndSigns(norm, sin, cos);
+      const normSpecial = findSpecialTrig(norm);
+      if (normSpecial && normSpecial.radStr !== "0") {
+        dispTurnInfo.innerText = `${k} vòng + ${normSpecial.radStr}`;
+      } else {
+        dispTurnInfo.innerText = `${k} vòng + ${(norm / Math.PI).toFixed(2)}π`;
+      }
+
+      setQuadrantAndSigns(norm, Math.sin(targetRad), Math.cos(targetRad));
 
       const radText = formatPiFraction(targetRad);
       lblAngle.innerText = radText;
@@ -881,7 +1052,6 @@
       }
     }
 
-    // Sự kiện tương tác
     angleRange.addEventListener('input', (e) => {
       targetRad = parseFloat(e.target.value);
       updateTrigValues();
