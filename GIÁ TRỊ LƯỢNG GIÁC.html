@@ -35,7 +35,7 @@
       flex-direction: column;
     }
 
-    /* ĐỊNH DẠNG TRÊN MÁY TÍNH (MÀN HÌNH >= 860px) */
+    /* MÀN HÌNH RỘNG (MÁY TÍNH >= 860px) */
     @media (min-width: 860px) {
       html, body {
         height: 100vh;
@@ -72,7 +72,7 @@
       }
     }
 
-    /* ĐỊNH DẠNG TRÊN ĐIỆN THOẠI & TABLET (< 860px) */
+    /* MÀN HÌNH NHỎ (ĐIỆN THOẠI & TABLET < 860px) */
     @media (max-width: 859px) {
       html, body {
         min-height: 100vh;
@@ -109,8 +109,8 @@
         width: 100%;
       }
       .btn {
-        padding: 6px 10px !important;
-        font-size: 0.82rem !important;
+        padding: 5px 8px !important;
+        font-size: 0.8rem !important;
       }
     }
 
@@ -221,36 +221,57 @@
       display: block;
     }
 
-    /* ĐIỀU KHIỂN DƯỚI CANVAS */
+    /* ĐIỀU KHIỂN DƯỚI CANVAS ĐƯỢC BỐ CỤC LẠI CHỐNG TRÀN */
     .sim-controls {
       padding: 8px 12px;
       background: #f1f5f9;
       border-top: 1.5px solid var(--border-color);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       flex-shrink: 0;
     }
-    .slider-row {
+
+    /* HÀNG 1: NHÃN GÓC VÀ NÚT BƯỚC NHẢY */
+    .slider-header-row {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
       width: 100%;
     }
-    .slider-row label {
+    .slider-header-row label {
       font-weight: 800;
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       color: #0369a1;
-      white-space: nowrap;
-      min-width: 95px;
+    }
+    .step-btn-group {
+      display: inline-flex;
+      gap: 6px;
+    }
+    .step-btn {
+      padding: 3px 12px !important;
+      font-size: 0.88rem !important;
+      font-weight: 800 !important;
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* HÀNG 2: THANH TRƯỢT FULL 100% */
+    .slider-bar-row {
+      display: flex;
+      align-items: center;
+      width: 100%;
     }
     input[type="range"] {
-      flex: 1;
+      width: 100%;
       height: 8px;
       border-radius: 4px;
       accent-color: #0284c7;
       cursor: pointer;
     }
+
     .btn-row {
       display: flex;
       flex-wrap: wrap;
@@ -435,13 +456,18 @@
         <canvas id="simCanvas"></canvas>
       </div>
 
-      <!-- THANH ĐIỀU KHIỂN DƯỚI CANVAS -->
+      <!-- THANH ĐIỀU KHIỂN DƯỚI CANVAS: TÁCH BỐ CỤC 2 HÀNG RỘNG RÃI -->
       <div class="sim-controls">
-        <div class="slider-row">
+        <div class="slider-header-row">
           <label for="angleRange">Góc α: <span id="lblAngle">π/4</span></label>
-          <button class="btn" id="btnMinusStep" title="Giảm π/12">◀</button>
+          <div class="step-btn-group">
+            <button class="btn step-btn" id="btnMinusStep" title="Giảm π/12">◀</button>
+            <button class="btn step-btn" id="btnPlusStep" title="Tăng π/12">▶</button>
+          </div>
+        </div>
+
+        <div class="slider-bar-row">
           <input type="range" id="angleRange" min="-12.56637" max="12.56637" step="0.087266" value="0.785398">
-          <button class="btn" id="btnPlusStep" title="Tăng π/12">▶</button>
         </div>
 
         <div class="btn-row">
@@ -986,14 +1012,29 @@
         labelSinVal = `${sinVal.toFixed(2)}`;
       }
 
-      // 1. Nhãn điểm M
+      // 1. NHÃN ĐIỂM M VỚI THUẬT TOÁN AUTO-CLAMPING CHỐNG MẤT CHỮ TRÊN ĐIỆN THOẠI
       ctx.fillStyle = '#0f172a';
       const fontMSize = isMobile ? 12.5 : 14;
       ctx.font = `bold ${fontMSize}px 'Segoe UI', sans-serif`;
       const totalWidthM = measureFormulaText(ctx, labelM, fontMSize);
-      const offsetX = cosVal >= 0 ? 12 : -(totalWidthM + 12);
-      const offsetY = sinVal >= 0 ? -12 : 24;
-      renderFormulaText(ctx, labelM, mx + offsetX, my + offsetY, fontMSize);
+
+      let targetLabelX = mx + (cosVal >= 0 ? 12 : -(totalWidthM + 12));
+      let targetLabelY = my + (sinVal >= 0 ? -12 : 24);
+
+      // Nếu chữ chạm mép trái màn hình (< 8px), tự động lật sang phía bên phải điểm M
+      if (targetLabelX < 8) {
+        targetLabelX = mx + 12;
+      }
+      // Nếu chữ chạm mép phải màn hình, lật sang phía bên trái điểm M
+      else if (targetLabelX + totalWidthM > w - 8) {
+        targetLabelX = mx - totalWidthM - 12;
+      }
+
+      // Giới hạn trong khoảng an toàn tuyệt đối của Canvas
+      targetLabelX = Math.max(8, Math.min(targetLabelX, w - totalWidthM - 8));
+      targetLabelY = Math.max(18, Math.min(targetLabelY, h - 8));
+
+      renderFormulaText(ctx, labelM, targetLabelX, targetLabelY, fontMSize);
 
       // 2. Nhãn giá trị hình chiếu trên trục Ox
       ctx.fillStyle = '#2563eb';
@@ -1013,6 +1054,7 @@
       requestAnimationFrame(animate);
     }
 
+    /* CẬP NHẬT GIAO DIỆN VÀ TÍNH TOÁN TOÀN DIỆN */
     function updateTrigValues() {
       const special = findSpecialTrig(targetRad);
 
@@ -1045,12 +1087,10 @@
       // ĐỊNH DẠNG SỐ LẦN PI CHUẨN XÁC DẠNG PHÂN SỐ
       const exactPiText = formatExactPi(targetRad);
 
-      // 1. Cập nhật nhãn thanh trượt (hiển thị phân số số lần pi, vd: 7π/6)
       lblAngle.innerText = exactPiText;
       angleRange.value = targetRad;
       badgeAngleDisplay.innerText = `α = ${exactPiText}`;
 
-      // 2. Cập nhật cột bên phải: chỉ hiển thị số lần pi, bỏ chữ "0 vòng +"
       dispTurnInfo.innerText = exactPiText;
 
       setQuadrantAndSigns(targetRad % (2 * Math.PI), Math.sin(targetRad), Math.cos(targetRad));
