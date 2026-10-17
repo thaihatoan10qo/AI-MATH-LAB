@@ -1258,7 +1258,7 @@ with tab_kiemtra:
                 correct_ratio=f"{dung}/{tong_so}",
                 note=f"Đề chuẩn 20 câu GDPT 2018 (Đúng {dung}/{tong_so} câu)",
                 completion_time=thoi_gian_str
-            )
+            
             )
             if da_gui:
                 st.toast("🎉 Đã gửi kết quả bài thi về hệ thống!", icon="✅")
