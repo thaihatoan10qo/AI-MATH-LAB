@@ -6,8 +6,7 @@ import requests
 import time
 # Dán đường link URL bạn vừa sao chép vào giữa 2 dấu ngoặc kép dưới đây:
 GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwdEHCrjYoQfFeKPXXf8rp-Xvcgj3_q7hey4QZC5_W8LDi7b__MmzWSL0zC_-0892DdyQ/exec"
-
-def send_data_to_gsheet(action_type, student_name, student_class, score=None, correct_ratio="", note=""):
+def send_data_to_gsheet(action_type, student_name, student_class, score=None, correct_ratio="", note="", completion_time=""):
     """Gửi dữ liệu lên Google Sheet qua Apps Script Web App"""
     try:
         payload = {
@@ -16,7 +15,8 @@ def send_data_to_gsheet(action_type, student_name, student_class, score=None, co
             "student_class": student_class,
             "score": str(score) if score is not None else "",
             "correct_ratio": correct_ratio,
-            "note": note
+            "note": note,
+            "completion_time": completion_time  # <-- Thêm trường thời gian làm bài ở đây
         }
         res = requests.post(
             GOOGLE_SHEET_WEBAPP_URL, 
@@ -25,6 +25,7 @@ def send_data_to_gsheet(action_type, student_name, student_class, score=None, co
             timeout=10,
             allow_redirects=True
         )
+
         return res.status_code in [200, 302]
     except Exception as e:
         print(f"Lỗi gửi dữ liệu Google Sheet: {e}")
@@ -1240,14 +1241,24 @@ with tab_kiemtra:
 
             diem = round((dung / tong_so) * 10, 2)
 
+            # Tính thời gian làm bài thực tế
+            start_t = st.session_state.get("exam_start_time", time.time())
+            end_t = st.session_state.get("exam_end_time", time.time())
+            tong_giay = max(0, int(end_t - start_t))
+            phut = tong_giay // 60
+            giay = tong_giay % 60
+            thoi_gian_str = f"{phut}p {giay:02d}s"
+
             # Gửi kết quả sang Google Sheet (chỉ gửi 1 lần khi bấm nộp)
-            # Gửi dữ liệu sang Google Sheet
             da_gui = send_data_to_gsheet(
                 action_type="Kiểm tra (Tab 4)",
                 student_name=st.session_state.get("student_name", "Ẩn danh"),
                 student_class=st.session_state.get("student_class", "-"),
                 score=f"{diem} điểm",
-                note=f"Đề chuẩn 20 câu GDPT 2018 (Đúng {dung}/{tong_so} câu)"
+                correct_ratio=f"{dung}/{tong_so}",
+                note=f"Đề chuẩn 20 câu GDPT 2018 (Đúng {dung}/{tong_so} câu)",
+                completion_time=thoi_gian_str
+            )
             )
             if da_gui:
                 st.toast("🎉 Đã gửi kết quả bài thi về hệ thống!", icon="✅")
