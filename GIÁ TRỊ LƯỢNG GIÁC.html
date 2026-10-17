@@ -35,7 +35,7 @@
       flex-direction: column;
     }
 
-    /* MÀN HÌNH RỘNG (MÁY TÍNH >= 860px) */
+    /* ĐỊNH DẠNG TRÊN MÁY TÍNH (MÀN HÌNH >= 860px) */
     @media (min-width: 860px) {
       html, body {
         height: 100vh;
@@ -51,12 +51,17 @@
         min-height: 0;
         width: 100%;
       }
+      .sim-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 0;
+      }
       .canvas-wrapper {
         flex: 1;
         position: relative;
         min-height: 0;
         width: 100%;
-        height: 100%;
       }
       .sidebar {
         display: flex;
@@ -67,7 +72,7 @@
       }
     }
 
-    /* MÀN HÌNH NHỎ (ĐIỆN THOẠI & TABLET < 860px) */
+    /* ĐỊNH DẠNG TRÊN ĐIỆN THOẠI & TABLET (< 860px) */
     @media (max-width: 859px) {
       html, body {
         min-height: 100vh;
@@ -109,7 +114,7 @@
       }
     }
 
-    /* ĐỊNH DẠNG BIỂU THỨC TOÁN HỌC KHÔNG DÙNG FONT NGOÀI */
+    /* ĐỊNH DẠNG BIỂU THỨC TOÁN HỌC THUẦN */
     .math-expr {
       display: inline-flex;
       align-items: center;
@@ -216,7 +221,7 @@
       display: block;
     }
 
-    /* THANH ĐIỀU KHIỂN DƯỚI CANVAS */
+    /* ĐIỀU KHIỂN DƯỚI CANVAS */
     .sim-controls {
       padding: 8px 12px;
       background: #f1f5f9;
@@ -237,6 +242,7 @@
       font-size: 0.88rem;
       color: #0369a1;
       white-space: nowrap;
+      min-width: 95px;
     }
     input[type="range"] {
       flex: 1;
@@ -473,7 +479,6 @@
       <div class="panel-card">
         <div class="panel-title">
           <span>Giá trị lượng giác của α</span>
-          <!-- CHỈ HIỂN THỊ SỐ LẦN PI TRỰC TIẾP, BỎ HẲN SỐ VÒNG + -->
           <span style="font-size:0.82rem; color:var(--primary); font-weight:800;" id="dispTurnInfo">π/4</span>
         </div>
 
@@ -566,7 +571,7 @@
     const btnMinusStep = document.getElementById('btnMinusStep');
     const btnPlusStep = document.getElementById('btnPlusStep');
 
-    /* TÌM ƯỚC SỐ CHUNG LỚN NHẤT ĐỂ TỐI GIẢN PHÂN SỐ */
+    /* TÌM ƯỚC SỐ CHUNG LỚN NHẤT */
     function gcd(a, b) {
       a = Math.abs(a);
       b = Math.abs(b);
@@ -578,16 +583,15 @@
       return a;
     }
 
-    /* CHUYỂN BẤT KỲ GÓC RADIAN SANG PHÂN SỐ ĐẸP CỦA PI (7π/6, -3π/4, 2π, ...) */
+    /* ĐỊNH DẠNG SỐ ĐO GÓC SANG PHÂN SỐ ĐẸP CỦA PI */
     function formatExactPi(rad) {
       if (Math.abs(rad) < 1e-4) return "0";
       const val = rad / Math.PI;
 
       let bestP = null;
       let bestQ = null;
-      let minDiff = 0.025; // Ngưỡng dung sai cực kỳ chuẩn xác
+      let minDiff = 0.025;
 
-      // Xét các mẫu số hay gặp trong lượng giác
       const denominators = [1, 2, 3, 4, 6, 8, 12, 24];
       for (let q of denominators) {
         const p = Math.round(val * q);
@@ -617,7 +621,6 @@
         }
       }
 
-      // Trường hợp góc bất thường không phải phân số chuẩn
       const sign = val >= 0 ? "+" : "";
       return `${sign}${val.toFixed(2)}π`;
     }
@@ -720,7 +723,7 @@
       undef: `<span style="font-size:0.85rem; font-weight:bold; color:#dc2626;">Không xác định</span>`
     };
 
-    /* 16 ĐIỂM GÓC ĐẶC BIỆT */
+    /* BẢNG 16 GÓC ĐẶC BIỆT */
     const SPECIAL_TRIG_TABLE = [
       { k12: 0, cosH: MATH_VALS.one, sinH: MATH_VALS.zero, tanH: MATH_VALS.zero, cotH: MATH_VALS.undef, cosTxt: "1", sinTxt: "0" },
       { k12: 2, cosH: MATH_VALS.sqrt3_2, sinH: MATH_VALS.half, tanH: MATH_VALS.sqrt3_3, cotH: MATH_VALS.sqrt3, cosTxt: "√3/2", sinTxt: "1/2" },
@@ -1010,7 +1013,6 @@
       requestAnimationFrame(animate);
     }
 
-    /* CẬP NHẬT GIAO DIỆN VÀ TÍNH TOÁN TOÀN DIỆN */
     function updateTrigValues() {
       const special = findSpecialTrig(targetRad);
 
@@ -1043,12 +1045,12 @@
       // ĐỊNH DẠNG SỐ LẦN PI CHUẨN XÁC DẠNG PHÂN SỐ
       const exactPiText = formatExactPi(targetRad);
 
-      // 1. Cập nhật nhãn thanh trượt
+      // 1. Cập nhật nhãn thanh trượt (hiển thị phân số số lần pi, vd: 7π/6)
       lblAngle.innerText = exactPiText;
       angleRange.value = targetRad;
       badgeAngleDisplay.innerText = `α = ${exactPiText}`;
 
-      // 2. Cập nhật cột bên phải: hiển thị trực tiếp số lần pi, bỏ hẳn số vòng
+      // 2. Cập nhật cột bên phải: chỉ hiển thị số lần pi, bỏ chữ "0 vòng +"
       dispTurnInfo.innerText = exactPiText;
 
       setQuadrantAndSigns(targetRad % (2 * Math.PI), Math.sin(targetRad), Math.cos(targetRad));
