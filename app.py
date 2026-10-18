@@ -43,7 +43,7 @@ from google.genai import types
 
 # 1. Cấu hình trang (bắt buộc phải có đủ dấu đóng ngoặc tròn ')')
 st.set_page_config(
-    page_title="Ôn Tập & Luyện Thi Toán 11 - Chương 1",
+    page_title="ÔN TẬP & LUYỆN THI TOÁN 11",
     page_icon="📐",
     layout="wide"
 )
@@ -135,10 +135,10 @@ if not st.session_state.get("logged_in", False):
                 ✨ HỌC TOÁN CÙNG CÔ HÀ
             </div>
             <h1 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 800; color: #0f2b48; line-height: 1.3;">
-                📐 HỆ THỐNG HỌC TẬP TƯƠNG TÁC & KHẢO THÍ TÍCH HỢP TRÍ TUỆ NHÂN TẠO
+                📐 HỆ THỐNG HỌC TẬP TƯƠNG TÁC & LUYỆN THI TÍCH HỢP TRÍ TUỆ NHÂN TẠO
             </h1>
             <p style="margin: 0; font-size: 15px; color: #334155; font-weight: 600;">
-                TOÁN 11 - Chương 1: Hàm số lượng giác và Phương trình lượng giác
+                TOÁN 11 - CHƯƠNG 1: HÀM SỐ LƯỢNG GIÁC VÀ PHƯƠNG TRÌNH LƯỢNG GIÁC
             </p>
         </div>
         """,
