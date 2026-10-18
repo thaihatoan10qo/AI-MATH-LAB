@@ -615,16 +615,19 @@ with tab_luyentap:
         st.markdown(f"**Câu hỏi:** {q['question']}")
 # Hàm hiển thị phương án trắc nghiệm chuẩn LaTeX không bị lỗi dấu gạch chéo
         def hien_thi_lua_chon(k):
-            val = str(q['options'][k]).strip()
-            # Bỏ sạch toàn bộ các dấu $ ở đầu và cuối chuỗi (kể cả $, $$, $$$)
-            val = val.strip("$").strip()
-            # Khử ký tự escape gạch chéo ngược thừa
-            val = val.replace("\\\\", "\\")
-            # Nếu có chữ tiếng Việt như 'giây' bị lẫn vào, đưa ra ngoài công thức toán
-            if "giây" in val:
-                val = val.replace("giây", "").strip()
-                return f"**{k}.** ${val}$ giây"
-            return f"**{k}.** ${val}$"
+        val = str(q['options'][k]).strip()
+        # Bỏ sạch toàn bộ các dấu $ ở đầu và cuối chuỗi (kể cả $, $$, $$$)
+        val = val.strip("$").strip()
+        # Khử ký tự escape gạch chéo ngược thừa
+        val = val.replace("\\\\", "\\")
+        
+        # Nếu có chữ tiếng Việt như 'giây' bị lẫn vào, đưa ra ngoài công thức toán
+        if "giây" in val:
+            val = val.replace("giây", "").strip()
+            return f"**{k}.** ${val}$ giây"
+            
+        return f"**{k}.** ${val}$"
+
         choice = st.radio(
             "Chọn đáp án đúng:",
             options=["A", "B", "C", "D"],
