@@ -627,10 +627,13 @@ with tab_luyentap:
         choice = st.radio(
             "Chọn đáp án đúng:",
             options=["A", "B", "C", "D"],
+            index=None,  # <-- THÊM DÒNG NÀY ĐỂ MẶC ĐỊNH KHÔNG CHỌN SẴN ĐÁP ÁN NÀO
             format_func=hien_thi_lua_chon
         )
         if st.button("Nộp bài & Kiểm tra đáp án"):
-            if not st.session_state.get("submitted", False):
+            if choice is None:
+                st.warning("⚠️ Vui lòng chọn một đáp án trước khi nộp bài!")
+            elif not st.session_state.get("submitted", False):
                 st.session_state["submitted"] = True
                 st.session_state["user_choice"] = choice
 
