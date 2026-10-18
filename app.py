@@ -614,7 +614,7 @@ with tab_luyentap:
         st.markdown("---")
         st.markdown(f"**Câu hỏi:** {q['question']}")
 # Hàm hiển thị phương án trắc nghiệm chuẩn LaTeX không bị lỗi dấu gạch chéo
-def hien_thi_lua_chon(k):
+    def hien_thi_lua_chon(k):
     val = str(q['options'][k]).strip()
     val = val.strip("$").strip()
     val = val.replace("\\\\", "\\")
