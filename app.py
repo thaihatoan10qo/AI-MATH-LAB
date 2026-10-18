@@ -615,26 +615,26 @@ with tab_luyentap:
         st.markdown(f"**Câu hỏi:** {q['question']}")
 # Hàm hiển thị phương án trắc nghiệm chuẩn LaTeX không bị lỗi dấu gạch chéo
     def hien_thi_lua_chon(k):
-    val = str(q['options'][k]).strip()
-    val = val.strip("$").strip()
-    val = val.replace("\\\\", "\\")
-    if "giây" in val:
-        val = val.replace("giây", "").strip()
-        return f"**{k}.** ${val}$ giây"
-    return f"**{k}.** ${val}$"
+        val = str(q['options'][k]).strip()
+        val = val.strip("$").strip()
+        val = val.replace("\\\\", "\\")
+        if "giây" in val:
+            val = val.replace("giây", "").strip()
+            return f"**{k}.** ${val}$ giây"
+        return f"**{k}.** ${val}$"
 
-choice = st.radio(
-    "Chọn đáp án đúng:",
-    options=["A", "B", "C", "D"],
-    index=None,
-    format_func=hien_thi_lua_chon
-)
-        if st.button("Nộp bài & Kiểm tra đáp án"):
-            if choice is None:
-                st.warning("⚠️ Vui lòng chọn một đáp án trước khi nộp bài!")
-            elif not st.session_state.get("submitted", False):
-                st.session_state["submitted"] = True
-                st.session_state["user_choice"] = choice
+    choice = st.radio(
+        "Chọn đáp án đúng:",
+        options=["A", "B", "C", "D"],
+        index=None,
+        format_func=hien_thi_lua_chon
+    )
+    if st.button("Nộp bài & Kiểm tra đáp án"):
+        if choice is None:
+            st.warning("⚠️ Vui lòng chọn một đáp án trước khi nộp bài!")
+        elif not st.session_state.get("submitted", False):
+            st.session_state["submitted"] = True
+            st.session_state["user_choice"] = choice
 
                 # 1. Tăng số câu đã làm
                 st.session_state["practice_total"] = st.session_state.get("practice_total", 0) + 1
