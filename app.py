@@ -614,28 +614,21 @@ with tab_luyentap:
         st.markdown("---")
         st.markdown(f"**Câu hỏi:** {q['question']}")
 # Hàm hiển thị phương án trắc nghiệm chuẩn LaTeX không bị lỗi dấu gạch chéo
-    def hien_thi_lua_chon(k):
-        val = str(q['options'][k]).strip()
-        val = val.strip("$").strip()
-        val = val.replace("\\\\", "\\")
-        if "giây" in val:
-            val = val.replace("giây", "").strip()
-            return f"**{k}.** ${val}$ giây"
-        return f"**{k}.** ${val}$"
+def hien_thi_lua_chon(k):
+    val = str(q['options'][k]).strip()
+    val = val.strip("$").strip()
+    val = val.replace("\\\\", "\\")
+    if "giây" in val:
+        val = val.replace("giây", "").strip()
+        return f"**{k}.** ${val}$ giây"
+    return f"**{k}.** ${val}$"
 
-    choice = st.radio(
-        "Chọn đáp án đúng:",
-        options=["A", "B", "C", "D"],
-        index=None,
-        format_func=hien_thi_lua_chon
-    )
-
-        choice = st.radio(
-            "Chọn đáp án đúng:",
-            options=["A", "B", "C", "D"],
-            index=None,  # <-- THÊM DÒNG NÀY ĐỂ MẶC ĐỊNH KHÔNG CHỌN SẴN ĐÁP ÁN NÀO
-            format_func=hien_thi_lua_chon
-        )
+choice = st.radio(
+    "Chọn đáp án đúng:",
+    options=["A", "B", "C", "D"],
+    index=None,
+    format_func=hien_thi_lua_chon
+)
         if st.button("Nộp bài & Kiểm tra đáp án"):
             if choice is None:
                 st.warning("⚠️ Vui lòng chọn một đáp án trước khi nộp bài!")
