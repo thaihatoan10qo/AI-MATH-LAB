@@ -166,7 +166,7 @@ if not st.session_state.get("logged_in", False):
                     <div style="background: rgba(255, 255, 255, 0.95); padding: 12px 14px; border-radius: 10px; border-left: 4px solid #10b981; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
                         <div style="font-weight: 700; color: #059669; font-size: 14px;">📚 SƠ ĐỒ HÓA LÝ THUYẾT</div>
                         <div style="font-size: 13px; color: #334155; margin-top: 3px; line-height: 1.4;">
-                            Hệ thống đầy đủ lý thuyết, công thức cốt lõi theo từng bài học chuẩn GDPT 2018.
+                            Hệ thống đầy đủ lý thuyết, công thức cốt lõi theo từng bài học chuẩn chương trình GDPT 2018.
                         </div>
                     </div>
                     <div style="background: rgba(255, 255, 255, 0.95); padding: 12px 14px; border-radius: 10px; border-left: 4px solid #f59e0b; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
