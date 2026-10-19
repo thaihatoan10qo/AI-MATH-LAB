@@ -524,46 +524,51 @@ with tab_luyentap:
                 st.session_state["chat_history"] = []
 
                 gem_instructions = """
-                Bạn là Trợ lý Chuyên gia Khảo thí Toán 11 THPT (GDPT 2018).
-                Nhiệm vụ:
-                1. Dựa vào câu hỏi mẫu/câu hỏi gốc để tạo câu hỏi trắc nghiệm tương đương.
-                2. Xây dựng các phương án gây nhiễu đánh trúng lỗi sai kinh điển: quên điều kiện tan/cot, nhầm dấu công thức cộng, nhầm chu kỳ kpi/k2pi.
-                3. Bắt buộc viết công thức toán bằng ký hiệu LaTeX chuẩn trong cặp $...$ hoặc $$...$$.
-                4. Explanation (lời giải) trình bày chi tiết và chỉ rõ các bẫy sai lầm.
-                5. Luôn trả về đúng định dạng JSON thuần.
-                """
+Bạn là Trợ lý Chuyên gia Khảo thí Toán 11 THPT (Chương trình GDPT 2018).
+Quy trình tư duy bắt buộc (Chain-of-Thought) khi thiết kế câu hỏi:
+1. Thiết kế đề bài rõ ràng, tự chứa đầy đủ dữ kiện toán học (tuyệt đối KHÔNG ra đề yêu cầu quan sát hình vẽ bên/đồ thị đính kèm).
+2. TỰ GIẢI CHI TIẾT TỪNG BƯỚC vào trường 'step_by_step_solve' để tìm ra kết quả đúng tuyệt đối trước khi gán phương án.
+3. Chọn NGẪU NHIÊN 1 trong 4 nhãn (A, B, C hoặc D) làm đáp án đúng ('correct_answer') và gán kết quả vừa giải vào nhãn đó (tuyệt đối không mặc định luôn là A).
+4. Xây dựng 3 phương án gây nhiễu còn lại dựa trên lỗi sai kinh điển: quên điều kiện xác định tan/cot, nhầm dấu công thức cộng/nhân đôi, nhầm chu kỳ kpi/k2pi.
+5. Bắt buộc viết toàn bộ công thức toán bằng ký hiệu LaTeX chuẩn đặt trong cặp $...$ hoặc $$...$$.
+6. Explanation (lời giải): Trình bày ngắn gọn, chỉ rõ logic chọn đáp án đúng và cảnh báo bẫy sai lầm để hỗ trợ gia sư AI phản hồi học sinh.
+7. Luôn trả về đúng định dạng JSON thuần, không bao bọc trong ký hiệu markdown ```json.
+"""
 
                 if btn_clone:
                     prompt = f"""
-                    Câu hỏi gốc học sinh vừa làm:
-                    "{st.session_state['last_q']}"
+Câu hỏi gốc học sinh vừa làm:
+"{st.session_state['last_q']}"
 
-                    Hãy tạo 1 câu hỏi MỚI CÙNG DẠNG (thay đổi số liệu/hàm số, giữ nguyên mô hình tư duy).
-                    Trả về đúng định dạng JSON:
-                    {{
-                      "question": "Nội dung câu hỏi (chứa LaTeX)...",
-                      "options": {{"A": "...", "B": "...", "C": "...", "D": "..."}},
-                      "correct_answer": "A",
-                      "explanation": "Lời giải chi tiết từng bước và lưu ý bẫy sai lầm..."
-                    }}
-                    """
+Nhiệm vụ: Tạo 1 câu hỏi MỚI CÙNG DẠNG (thay đổi số liệu/hàm số, giữ nguyên mô hình tư duy).
+YÊU CẦU ĐẶC BIỆT: Vị trí đáp án đúng PHẢI được chọn ngẫu nhiên giữa A, B, C hoặc D (không được mặc định luôn là A).
+
+Trả về đúng định dạng JSON:
+{{
+    "question": "Nội dung câu hỏi (chứa LaTeX)...",
+    "step_by_step_solve": "Giải nháp chi tiết từng bước để tìm ra đáp án đúng chính xác tuyệt đối",
+    "options": {{"A": "...", "B": "...", "C": "...", "D": "..."}},
+    "correct_answer": "Chữ cái đáp án đúng (chọn ngẫu nhiên A, B, C hoặc D)",
+    "explanation": "Lời giải chi tiết từng bước và lưu ý bẫy sai lầm..."
+}}
+"""
                 else:
                     prompt = f"""
-                    Dưới đây là một số câu trích mẫu từ đề kiểm tra:
-                    ---
-                    {mau_cau_hoi}
-                    ---
-                    Yêu cầu:
-                    Tạo 1 câu hỏi trắc nghiệm thuộc chủ đề: "{topic}", mức độ: "{level}".
-                    Bám sát văn phong câu mẫu.
-                    Trả về đúng định dạng JSON:
-                    {{
-                      "question": "Nội dung câu hỏi (chứa LaTeX)...",
-                      "options": {{"A": "...", "B": "...", "C": "...", "D": "..."}},
-                      "correct_answer": "A",
-                      "explanation": "Lời giải chi tiết từng bước và lưu ý bẫy sai lầm..."
-                    }}
-                    """
+Tham khảo câu hỏi mẫu từ kho đề:
+{mau_cau_hoi}
+
+Nhiệm vụ: Tạo 1 câu hỏi trắc nghiệm Toán 11 mới có cấu trúc và độ khó tương đương các câu mẫu trên.
+YÊU CẦU ĐẶC BIỆT: Vị trí đáp án đúng PHẢI được chọn ngẫu nhiên giữa A, B, C hoặc D (không được mặc định luôn là A).
+
+Trả về đúng định dạng JSON:
+{{
+    "question": "Nội dung câu hỏi (chứa LaTeX)...",
+    "step_by_step_solve": "Giải nháp chi tiết từng bước để tìm ra đáp án đúng chính xác tuyệt đối",
+    "options": {{"A": "...", "B": "...", "C": "...", "D": "..."}},
+    "correct_answer": "Chữ cái đáp án đúng (chọn ngẫu nhiên A, B, C hoặc D)",
+    "explanation": "Lời giải chi tiết từng bước và lưu ý bẫy sai lầm..."
+}}
+"""
 
                 success = False
                 cac_model = ['gemini-3.1-flash-lite', 'gemini-3.8-flash']
