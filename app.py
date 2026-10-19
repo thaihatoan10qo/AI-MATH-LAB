@@ -391,7 +391,7 @@ st.markdown("""
 </style>
 
 <div class="school-banner">
-    <h1>HỆ THỐNG ÔN TẬP & KHẢO THÍ CÁ NHÂN HÓA CÙNG AI</h1>
+    <h1>AI MATH LAB 11 - NỀN TẢNG HỌC TẬP TƯƠNG TÁC & LUYỆN THI TÍCH HỢP TRÍ TUỆ NHÂN TẠO</h1>
     <p>TOÁN 11 | CHƯƠNG TRÌNH GDPT 2018</p>
 </div>
 """, unsafe_allow_html=True)
