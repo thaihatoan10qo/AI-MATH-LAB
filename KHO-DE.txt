@@ -6,237 +6,274 @@ A. $135^\circ$
 B. $175^\circ$
 C. $-145^\circ$
 D. $30^\circ$
+Đáp án:D
 Câu 2: Hai góc lượng giác nào sau đây được biểu diễn bởi cùng một điểm trên đường tròn lượng giác?
 A. $\frac{\pi}{6}$ và $\frac{5\pi}{6}$
 B. $\frac{\pi}{3}$ và $-\frac{\pi}{3}$
 C. $\frac{\pi}{2}$ và $\frac{5\pi}{2}$
 D. $0$ và $3\pi$
+Đáp án:C
 Câu 3: Khẳng định nào sau đây là đúng?
 A. $\sin^2 \alpha = \frac{1 - \cos 2\alpha}{2}$
 B. $\sin^2 \alpha = -\frac{1 + \cos 2\alpha}{2}$
 C. $\sin^2 \alpha = \frac{\cos 2\alpha - 1}{2}$
 D. $\sin^2 \alpha = \frac{1 + \cos 2\alpha}{2}$
+Đáp án:A
 Câu 4: Rút gọn biểu thức $M = \cos 2x \cos x + \sin 2x \sin x$ ta được kết quả là:
 A. $M = \cos x$
 B. $M = \cos 3x$
 C. $M = \sin x$
 D. $M = \sin 3x$
+Đáp án:A
 Câu 5: Cho góc $x$, $0^\circ < x < 90^\circ$ thoả mãn $\cot x = 2$. Tìm $\cos x$.
 A. $\cos x = \frac{2\sqrt{5}}{5}$
 B. $\cos x = -\frac{2\sqrt{5}}{5}$
 C. $\cos x = \frac{1}{5}$
 D. $\cos x = \frac{\sqrt{5}}{5}$
+Đáp án:A
 Câu 6: Rút gọn biểu thức $P = \sin(60^\circ + x) - \sin(60^\circ - x)$ được:
 A. $\cos x$
 B. $\sin x$
 C. $\cos^2 x$
 D. $\sin^2 x$
+Đáp án:B
 Câu 7: Trong hình vẽ sau, tia $Om$ quay theo chiều dương đúng một vòng. Hỏi tia đó quét nên một góc bao nhiêu độ?
 A. $180^\circ$
 B. $360^\circ$
 C. $-180^\circ$
 D. $0^\circ$
+Đáp án:B
 Câu 8: Trong mặt phẳng tọa độ $Oxy$, cho đường tròn lượng giác. Điểm $M$ thuộc đường tròn sao cho $\widehat{AOM} = \frac{\pi}{6}$. Số đo của góc lượng giác $(OA, OM)$ có thể là giá trị nào sau đây?
 A. $\frac{\pi}{6}$
 B. $\frac{5\pi}{6}$
 C. $-\frac{13\pi}{6}$
 D. $-\frac{11\pi}{6}$
+Đáp án:C
 Câu 9: Theo công thức lượng giác của hai góc đối nhau thì:
 A. $\cot(-\alpha) = \tan \alpha$
 B. $\cot(-\alpha) = -\tan \alpha$
 C. $\cot(-\alpha) = -\cot \alpha$
 D. $\cot(-\alpha) = \cot \alpha$
+Đáp án:C
 Câu 10: Biểu thức $A = 2\cos(-\alpha) + \sin(\pi - \alpha) - \sin(\pi + \alpha) - 2\cos(\frac{\pi}{2} - \alpha)$ có kết quả thu gọn là:
 A. $2\cos \alpha$
 B. $2\sin \alpha$
 C. $0$
 D. $-\sin \alpha$
+Đáp án:A
 Câu 11: Rút gọn biểu thức $\sin(x + 360^\circ)$, ta được kết quả nào sau đây?
 A. $\sin x$
 B. $-\cos x$
 C. $\cos x$
 D. $-\sin x$
+Đáp án:A
 Câu 12: Góc lượng giác $\alpha$ nào dưới đây mà hai giá trị $\sin \alpha$ và $\cos \alpha$ của nó trái dấu?
 A. $-300^\circ$
 B. $80^\circ$
 C. $-95^\circ$
 D. $100^\circ$
+Đáp án:D
 Câu 13: Đẳng thức nào sau đây là đúng?
 A. $\cos(a + \frac{\pi}{3}) = \frac{\sqrt{3}}{2}\sin a - \frac{1}{2}\cos a$
 B. $\cos(a + \frac{\pi}{3}) = \frac{1}{2}\sin a - \frac{\sqrt{3}}{2}\cos a$
 C. $\cos(a + \frac{\pi}{3}) = \frac{1}{2}\cos a - \frac{\sqrt{3}}{2}\sin a$
 D. $\cos(a + \frac{\pi}{3}) = \cos a + \frac{1}{2}$
+Đáp án:C
 Câu 14: Cho $\cos 2x = -\frac{1}{3}$ với $\frac{\pi}{4} < x < \frac{\pi}{2}$. Khẳng định nào sau đây là đúng?
 A. $\sin x = \frac{\sqrt{6}}{3}$
 B. $\sin x = \frac{\sqrt{3}}{3}$
 C. $\sin x = \frac{2\sqrt{6}}{3}$
 D. $\sin x = -\frac{2\sqrt{3}}{3}$
+Đáp án:A
 Câu 15: Rút gọn biểu thức $P = \frac{1}{\tan a + 1} + \frac{1}{\cot a + 1}$ thành biểu thức nào sau đây?
 A. $P = 1$
 B. $P = \frac{2}{\tan a + 1}$
 C. $P = \frac{2}{\cot a + 1}$
 D. $P = -1$
+Đáp án:A
 Câu 16: Cho $x$ là góc lượng giác. Tìm khẳng định đúng trong các khẳng định sau:
 A. $\sin(\pi + x) = \cos x$
 B. $\cos(\pi + x) = -\cos x$
 C. $\cos(\pi + x) = \cos x$
 D. $\cot(\pi + x) = \tan x$
+Đáp án:B
 Câu 17: Biết $\sin x + \cos x = \frac{1}{3}$. Giá trị của $\sin 2x$ bằng:
 A. $\frac{8}{9}$
 B. $-\frac{8}{9}$
 C. $-\frac{4}{9}$
 D. $\frac{4}{9}$
+Đáp án:B
 Câu 18: Rút gọn biểu thức $P = \sin^3 \alpha \cos \alpha - \sin \alpha \cos^3 \alpha$ ta được:
 A. $-\sin \alpha$
 B. $-\frac{1}{4}\sin 4\alpha$
 C. $\frac{1}{2}\sin 2\alpha$
 D. $-\frac{1}{2}\sin 4\alpha$
+Đáp án:B
 Câu 19: Góc có số đo $120^\circ$ đổi ra đơn vị rađian là:
 A. $\frac{3\pi}{4}$
 B. $\frac{\pi}{3}$
 C. $\frac{2\pi}{3}$
 D. $-\frac{\pi}{6}$
-Câu 20: Cho đường tròn lượng giác gốc $A$ như hình vẽ. Điểm biểu diễn của góc lượng giác có số đo $-\frac{\pi}{6}$ là điểm nào trong các điểm sau?
-A. Điểm $E$
-B. Điểm $F$
-C. Điểm $B$
-D. Điểm $B'$
+Đáp án:C
+Câu 20: Cho đường tròn lượng giác gốc $A$. Điểm biểu diễn của góc lượng giác có số đo $-\frac{\pi}{6}$ nằm ở góc phần tư thứ mấy?
+A. I
+B. II
+C. III
+D. IV
+Đáp án:D
 Câu 21: Cho $\sin a = \frac{4}{9}$, $\cos a = \frac{\sqrt{65}}{9}$. Tính giá trị $\sin 2a$.
 A. $\frac{8}{9}$
 B. $\frac{4\sqrt{65}}{81}$
 C. $\frac{8\sqrt{65}}{81}$
 D. $\frac{2\sqrt{65}}{9}$
+Đáp án:C
 Câu 22: Chọn mệnh đề đúng trong các mệnh đề sau:
 A. $\cos a - \cos b = 2\sin\frac{a+b}{2}\sin\frac{a-b}{2}$
 B. $\cos a - \cos b = 2\cos\frac{a+b}{2}\cos\frac{a-b}{2}$
 C. $\cos a - \cos b = -2\sin\frac{a+b}{2}\sin\frac{a-b}{2}$
 D. $\cos a - \cos b = -2\cos\frac{a+b}{2}\cos\frac{a-b}{2}$
+Đáp án:C
 Câu 23: Trên đường tròn lượng giác với $A(1;0)$, cho $\alpha = (OA, OM)$ và điểm $M$ thuộc góc phần tư thứ III. Chọn mệnh đề đúng trong các mệnh đề sau:
 A. $\sin \alpha > 0$
 B. $\cos \alpha > 0$
 C. $\tan \alpha < 0$
 D. $\cot \alpha > 0$
+Đáp án:D
 Câu 24: Với ba tia $Ox, Oy, Oz$ bất kì, đẳng thức nào sau đây đúng?
 A. $\text{sđ}(Ox, Oy) - \text{sđ}(Oy, Oz) = \text{sđ}(Ox, Oz) + k\cdot 360^\circ, k \in \mathbb{Z}$
 B. $\text{sđ}(Ox, Oy) + \text{sđ}(Oy, Oz) = \text{sđ}(Ox, Oz) + k\cdot 360^\circ, k \in \mathbb{Z}$
 C. $\text{sđ}(Ox, Oy) - \text{sđ}(Ox, Oz) = \text{sđ}(Oy, Oz) + k\cdot 360^\circ, k \in \mathbb{Z}$
 D. $\text{sđ}(Ox, Oy) + \text{sđ}(Ox, Oz) = \text{sđ}(Oy, Oz) + k\cdot 360^\circ, k \in \mathbb{Z}$
+Đáp án:B
 Câu 25: Với mọi $\alpha$ thoả mãn điều kiện xác định, đẳng thức nào sau đây sai?
 A. $\sin^2 \alpha + \cos^2 \alpha = 1$
 B. $\tan \alpha = \frac{\sin \alpha}{\cos \alpha}$
 C. $\tan \alpha - \cot \alpha = 1$
 D. $\cot \alpha = \frac{\cos \alpha}{\sin \alpha}$
+Đáp án:C
 Câu 26: Tìm đẳng thức sai:
 A. $\sin^2 \alpha + \cos^2 \alpha = 1$
 B. $\tan \alpha + \cot \alpha = 1 \; (\alpha \ne k\frac{\pi}{2})$
 C. $\tan^2 \alpha = \frac{1}{\cos^2 \alpha} - 1 \; (\alpha \ne \frac{\pi}{2} + k\pi)$
 D. $\cot^2 \alpha = \frac{1}{\sin^2 \alpha} - 1 \; (\alpha \ne k\pi)$
+Đáp án:B
 Câu 27: Cho biểu thức $P = \frac{3\sin x - \cos x}{\sin x + 2\cos x}$ với $\tan x = 2$. Giá trị của $P$ bằng:
 A. $\frac{8}{9}$
 B. $-\frac{2\sqrt{2}}{3}$
 C. $\frac{\sqrt{8}}{9}$
 D. $\frac{5}{4}$
-Câu 28: Trong mặt phẳng tọa độ $Oxy$, cho đường tròn lượng giác như hình vẽ bên dưới. Hỏi góc lượng giác nào sau đây có số đo là $90^\circ$?
+Đáp án:D
+Câu 28: Trong mặt phẳng tọa độ $Oxy$, cho đường tròn lượng giác và các điểm $A(1;0), A'(-1;0), B(0;1), B'(0;-1)$. Hỏi góc lượng giác nào sau đây có số đo là $90^\circ$?
 A. $\text{sđ}(OA, OB')$
 B. $\text{sđ}(OA, OA)$
 C. $\text{sđ}(OA, OB)$
 D. $\text{sđ}(OA, OA')$
+Đáp án:C
 Câu 29: Cho tam giác $ABC$ vuông tại $A$. Đẳng thức nào sau đây là sai?
 A. $\sin B = \cos C$
 B. $\cos B = \sin C$
 C. $\tan B = \cot C$
 D. $\cot B = \cot C$
+Đáp án:D
 Câu 30: Hai góc nhọn $\alpha$ và $\beta$ phụ nhau, hệ thức nào sai?
 A. $\sin \alpha = \cos \beta$
 B. $\tan \alpha = \cot \beta$
 C. $\cot \beta = \frac{1}{\cot \alpha}$
 D. $\cos \alpha = -\sin \beta$
+Đáp án:D
 Câu 31: Biết $\cos 2\alpha = -\frac{7}{9}$ và $0 < \alpha < \frac{\pi}{2}$. Giá trị $\sin \alpha$ bằng:
 A. $\frac{1}{3}$
 B. $-\frac{1}{3}$
 C. $-\frac{4}{5}$
 D. $\frac{4}{5}$
+Đáp án:A
 Câu 32: Trong các khẳng định sau, khẳng định nào sai?
 A. $\sin x + \cos x = \sqrt{2}\sin(x + \frac{\pi}{4})$
 B. $\sin x - \cos x = -\sqrt{2}\cos(x + \frac{\pi}{4})$
 C. $\sin 2x + \cos 2x = \sqrt{2}\sin(2x - \frac{\pi}{4})$
 D. $\sin 2x + \cos 2x = \sqrt{2}\cos(2x - \frac{\pi}{4})$
+Đáp án:C
 Câu 33: Rút gọn biểu thức $M = \frac{\sin x + \sin 3x}{2\cos x}$ (với giả thiết biểu thức có nghĩa):
 A. $M = \sin 4x$
 B. $M = \sin x$
 C. $M = \sin 2x$
 D. $M = \cos 2x$
+Đáp án:C
 PHẦN II. HÀM SỐ LƯỢNG GIÁC
 Câu 34: Giá trị nhỏ nhất và giá trị lớn nhất của hàm số $y = 7 - 2\cos(x + \frac{\pi}{4})$ lần lượt là:
 A. $-2$ và $2$
 B. $-2$ và $7$
 C. $4$ và $7$
 D. $5$ và $9$
+Đáp án:D
 Câu 35: Tìm tham số $m$ để hàm số $y = \sqrt{m - 2\sin x}$ xác định trên $\mathbb{R}$:
 A. $m \ge 2$
 B. $m \le -2$
 C. $m \ge 0$
 D. $m \in \mathbb{R}$
+Đáp án:A
 Câu 36: Hàm số lượng giác nào sau đây có đồ thị đối xứng qua trục $Oy$?
 A. $y = \sin x$
 B. $y = \cos x$
 C. $y = \tan x$
 D. $y = \cot x$
+Đáp án:B
 Câu 37: Trong các hàm số sau, hàm số nào là hàm số chẵn?
 A. $y = \sin 2x$
 B. $y = x\cos x$
 C. $y = \cos x \cot x$
 D. $y = \frac{\tan x}{\sin x}$
-Câu 38: Cho đồ thị như hình vẽ. Đồ thị đã cho là đồ thị của hàm số nào trong các hàm số sau?
-A. $y = \cos x$
-B. $y = \sin x$
-C. $y = \tan x$
-D. $y = \cot x$
+Đáp án:D
+
 Câu 39: Tập xác định của hàm số $y = \tan x$ là:
 A. $D = \mathbb{R} \setminus \{\frac{\pi}{4} + k\frac{\pi}{2} \mid k \in \mathbb{Z}\}$
 B. $D = \mathbb{R} \setminus \{\frac{\pi}{4} + k\pi \mid k \in \mathbb{Z}\}$
 C. $D = \mathbb{R} \setminus \{\frac{\pi}{2} + k2\pi \mid k \in \mathbb{Z}\}$
 D. $D = \mathbb{R} \setminus \{\frac{\pi}{2} + k\pi \mid k \in \mathbb{Z}\}$
+Đáp án:D
 Câu 40: Tìm giá trị lớn nhất của hàm số $y = 3\sin x - 1$ trên tập xác định $\mathbb{R}$:
 A. $1$
 B. $2$
 C. $3$
 D. $-3$
+Đáp án:B
 Câu 41: Xác định chu kỳ tuần hoàn của hàm số $y = \sin(x + 2)$:
 A. $k2\pi \; (k \in \mathbb{Z})$
 B. $\pi$
 C. $2\pi$
 D. $\frac{2\pi}{3}$
+Đáp án:C
 Câu 42: Hàm số $y = -8\tan(7x + \frac{5\pi}{14})$ có chu kỳ tuần hoàn là:
 A. $\frac{\pi}{7}$
 B. $14\pi$
 C. $\frac{2\pi}{7}$
 D. $7\pi$
+Đáp án:A
 Câu 43: Tìm chu kì $T$ của hàm số $y = \cos(\frac{x}{2} + 2025)$:
 A. $T = \pi$
 B. $T = -2\pi$
 C. $T = 4\pi$
 D. $T = 2\pi$
+Đáp án:C
 Câu 44: Tập xác định của hàm số $y = \frac{2\sin x + 1}{1 - \cos 2x}$ là:
 A. $D = \mathbb{R} \setminus \{k\pi, k \in \mathbb{Z}\}$
 B. $D = \mathbb{R} \setminus \{k2\pi, k \in \mathbb{Z}\}$
 C. $D = \mathbb{R} \setminus \{\frac{\pi}{4} + k\pi, k \in \mathbb{Z}\}$
 D. $D = \mathbb{R} \setminus \{\frac{\pi}{2} + k\pi, k \in \mathbb{Z}\}$
-Câu 45: Đồ thị trong hình vẽ dưới đây là của hàm số nào?
-A. $y = \cos x$
-B. $y = \cot x$
-C. $y = \tan x$
-D. $y = \sin x$
+Đáp án:A
+
 Câu 46: Hàm số nào sau đây là hàm số chẵn trên $\mathbb{R}$?
 A. $y = \sqrt{\cos x - 2}$
 B. $y = \frac{\sin^3 x}{x}$
 C. $y = \sin 2x$
 D. $y = |x| - x^4 + 2017$
+Đáp án:D
 Câu 47: Cho hàm số $y = \tan x + 2\sin x$, khẳng định nào sau đây là đúng?
 A. Hàm số không chẵn trên tập xác định
 B. Hàm số chẵn trên tập xác định
 C. Hàm số không lẻ trên tập xác định
 D. Hàm số lẻ trên tập xác định
+Đáp án:D
 PHẦN III. PHƯƠNG TRÌNH LƯỢNG GIÁC
 Câu 48: Phương trình $\sin^2 x = \cos^2 x$ có nghiệm là:
 A. $x = \frac{\pi}{4} + k\pi, k \in \mathbb{Z}$
@@ -245,106 +282,105 @@ C. $x = \frac{\pi}{4} + k2\pi, k \in \mathbb{Z}$
 D. $x = \frac{\pi}{4} + k\frac{\pi}{2}, k \in \mathbb{Z}$
 Đáp án: D
 Lời giải: Ta có $\sin^2 x = \cos^2 x \Leftrightarrow \cos^2 x - \sin^2 x = 0 \Leftrightarrow \cos 2x = 0 \Leftrightarrow 2x = \frac{\pi}{2} + k\pi \Leftrightarrow x = \frac{\pi}{4} + k\frac{\pi}{2}, k \in \mathbb{Z}$.
-Câu 49: Phương trình nào dưới đây có tập nghiệm biểu diễn trên đường tròn lượng giác là 2 điểm $M, N$ như hình vẽ?
+Câu 49: Phương trình nào dưới đây có tập nghiệm biểu diễn trên đường tròn lượng giác là 2 điểm lần lượt thuộc góc phần tư thứ I và thứ II?
 A. $2\sin 2x = 1$
 B. $2\cos 2x = 1$
 C. $2\sin x = 1$
 D. $2\cos x = 1$
-Câu 50: Nghiệm của phương trình $\tan x = -\frac{\sqrt{3}}{3}$ được biểu diễn trên đường tròn lượng giác ở hình sau là những điểm nào?
-A. Điểm $F$, điểm $D$
-B. Điểm $C$, điểm $F$
-C. Điểm $C$, điểm $D$, điểm $E$, điểm $F$
-D. Điểm $E$, điểm $F$
+Đáp án:C
+
 Câu 51: Nghiệm của phương trình $\sin x = 0$ là:
 A. $x = k2\pi$
 B. $x = \pi + k2\pi$
 C. $x = \frac{\pi}{2} + k2\pi$
 D. $x = k\pi$
-Câu 52: Giá trị của biểu thức $\tan(\pi - x)$ bằng giá trị trong đáp án nào sau đây?
-A. $\tan x$
-B. $\cot x$
-C. $-\cot x$
-D. $-\tan x$
+Đáp án:D
+
 Câu 53: Trong các công thức sau, công thức nào sai?
 A. $\sin x = \sin a \Leftrightarrow x = a + k2\pi$ hoặc $x = \pi - a + k2\pi, k \in \mathbb{Z}$
 B. $\cos x = \cos a \Leftrightarrow x = \pm a + k2\pi, k \in \mathbb{Z}$
 C. $\tan x = \tan a \Leftrightarrow x = a + k\pi, k \in \mathbb{Z}$
 D. $\cot x = \cot a \Leftrightarrow x = a + k2\pi, k \in \mathbb{Z}$
+Đáp án:D
 Câu 54: Các nghiệm của phương trình $\tan 2x = \frac{\sqrt{3}}{3}$ là:
 A. $x = 60^\circ + k180^\circ$
 B. $x = 15^\circ + k90^\circ$
 C. $x = 15^\circ + k180^\circ$
 D. $x = 30^\circ + k90^\circ$
+Đáp án:B
 Câu 55: Phương trình nào sau đây có nghiệm?
 A. $\cos x = 3$
 B. $\cos 2x = -1,5$
 C. $\cos 5x = 1,4$
 D. $\tan 2x = 10$
+Đáp án:D
 Câu 56: Giải phương trình sau: $2\cos 3x + \sqrt{2} = 0$.
 A. $x = -\frac{\pi}{4} + \frac{k2\pi}{3}, k \in \mathbb{Z}$
 B. $x = \frac{\pi}{4} + \frac{k2\pi}{3}, k \in \mathbb{Z}$
 C. $x = \pm\frac{\pi}{4} + \frac{k2\pi}{3}, k \in \mathbb{Z}$
 D. $x = \pm\frac{\pi}{4} + k2\pi, k \in \mathbb{Z}$
+Đáp án:C
 Câu 57: Phương trình $\sin x = 1$ có nghiệm là:
 A. $\frac{\pi}{2} + k\pi$
 B. $\frac{\pi}{2} + k2\pi$
 C. $\pi + k\pi$
 D. $-\frac{\pi}{2} + k2\pi$
+Đáp án:B
 Câu 58: Giải phương trình $\tan x = \tan\frac{\pi}{6}$:
 A. $x = \frac{\pi}{6} + k\pi, k \in \mathbb{Z}$
 B. $x = \frac{\pi}{6} + k2\pi, k \in \mathbb{Z}$
 C. $x = -\frac{\pi}{6} + k\pi, k \in \mathbb{Z}$
 D. $x = \frac{5\pi}{6} + k2\pi, k \in \mathbb{Z}$
+Đáp án:A
 Câu 59: Số nghiệm của phương trình $3\sin x - 1 = 0$ trên đoạn $[0; 4\pi]$ là:
 A. $4$
 B. $3$
 C. $2$
 D. $5$
+Đáp án:A
 Câu 60: Nghiệm của phương trình $\cos^2 x - \cos x = 0$ thoả mãn điều kiện $0 < x < \pi$ là:
 A. $x = \frac{\pi}{6}, k \in \mathbb{Z}$
 B. $x = \frac{\pi}{2}, k \in \mathbb{Z}$
 C. $x = \frac{\pi}{4}, k \in \mathbb{Z}$
 D. $x = -\frac{\pi}{2}, k \in \mathbb{Z}$
+Đáp án:B
 Câu 61: Giải phương trình $\cot 2x = \cot 20^\circ$:
 A. $x = 10^\circ + k90^\circ, k \in \mathbb{Z}$
 B. $x = 10^\circ + k180^\circ, k \in \mathbb{Z}$
 C. $x = 20^\circ + k90^\circ, k \in \mathbb{Z}$
 D. $x = 20^\circ + k180^\circ, k \in \mathbb{Z}$
+Đáp án:A
 Câu 62: Phương trình $\sin(\frac{\pi}{4} + x) - 1 = 0$ có tập nghiệm là:
 A. $x = -\frac{\pi}{4} + k2\pi, k \in \mathbb{Z}$
 B. $x = \frac{\pi}{4} + k\pi, k \in \mathbb{Z}$
 C. $x = \frac{3\pi}{4} + k2\pi, k \in \mathbb{Z}$
 D. $x = \frac{\pi}{4} + k2\pi, k \in \mathbb{Z}$
+Đáp án:D
 Câu 63: Số điểm biểu diễn nghiệm của phương trình $\sin 4x(2\cos x - \sqrt{2}) = 0$ trên đường tròn lượng giác là:
 A. $4$
 B. $6$
 C. $8$
 D. $10$
+Đáp án:C
 Câu 64: Tìm tất cả các giá trị $m$ để phương trình $\sin 2x \cos 2x + m - 1 = 0$ có nghiệm?
 A. $\frac{1}{2} \le m \le \frac{3}{2}$
 B. $1 \le m \le \frac{3}{2}$
 C. $2 \le m \le 6$
 D. $0 \le m \le 2$
+Đáp án:A
 Câu 65: Hằng ngày, mực nước của một con kênh lên xuống theo thuỷ triều. Độ sâu $h$ của mực nước tính theo thời gian $t$ trong một ngày cho bởi công thức $h = 3\cos(\frac{\pi t}{6} + 1) + 12$. Độ sâu của mực nước là $15\text{ m}$ vào lúc mấy giờ?
 A. $20$ giờ
 B. $15$ giờ
 C. $10$ giờ
 D. $18$ giờ
+Đáp án:C
 Câu 66: Tìm tập nghiệm $S$ của phương trình $\cos 2x = 0$:
 A. $S = \{\frac{\pi}{2} + k\pi \mid k \in \mathbb{Z}\}$
 B. $S = \{\frac{\pi}{4} + \frac{k\pi}{2} \mid k \in \mathbb{Z}\}$
 C. $S = \{\frac{\pi}{2} + k2\pi \mid k \in \mathbb{Z}\}$
 D. $S = \{\frac{\pi}{4} + k\pi \mid k \in \mathbb{Z}\}$
-Câu 67: Tập xác định của hàm số $y = \sqrt{1 - \cos 2x}$ là:
-A. $D = \mathbb{R}$
-B. $D = [0; 1]$
-C. $D = [-1; 1]$
-D. $D = \mathbb{R} \setminus \{k\pi, k \in \mathbb{Z}\}$
-Câu 68: Tìm tất cả các nghiệm của phương trình $2\sin x - 1 = 0$:
-A. $x = \frac{\pi}{6} + k\pi, k \in \mathbb{Z}$
-B. $\sin x = \frac{1}{3}$
-C. $\begin{cases} x = \frac{\pi}{6} + k2\pi \\ x = \frac{5\pi}{6} + k2\pi \end{cases} (k \in \mathbb{Z})$
-D. $x = \frac{\pi}{6} + k\frac{\pi}{2}, k \in \mathbb{Z}$
+Đáp án:B
+
 PHẦN IV. CÂU HỎI TRẢ LỜI NGẮN (TOÁN THỰC TẾ & TÍNH TOÁN)
 Câu 69: Cho $\sin x = \frac{1}{5}$ với $\frac{\pi}{2} < x < \pi$. Khi đó $\cot 2x = -\frac{23\sqrt{m}}{24}$. Tìm $m$?
 Đáp án: 6
@@ -440,22 +476,8 @@ Lời giải: Tương tự Câu 79, ta có $m = 13, a = 3$ và phương trình:
 $\cos\left(\frac{\pi}{12}t\right) = -\frac{1}{2} \Leftrightarrow t = \pm 8 + 24k \; (k \in \mathbb{Z})$.
 Trong khoảng thời gian của ngày ($0 \le t \le 24$), các thời điểm mực nước đạt $11,5\text{ m}$ là $t = 8$ và $t = 16$.
 Thời điểm muộn nhất trong ngày là $t = 16$ giờ (lúc 16 giờ chiều hay 4 giờ chiều).
-Câu 81: Mô hình cánh quạt của tua-bin gió như hình dưới đây. Biết chiều cao tâm quay $O$ so với mặt đất là $60\text{ m}$, chiều dài mỗi cánh quạt là $31\text{ m}$, ba cánh quạt tạo với nhau các góc bằng nhau $\frac{2\pi}{3}$. Khi cánh quạt $OM$ hạ xuống vị trí mà điểm $M$ cách mặt đất $30\text{ m}$, tìm chiều cao của điểm $P$ so với mặt đất (kết quả làm tròn đến hàng phần chục).
-Đáp án: 81,8
-Lời giải: Gọi $\alpha$ là góc giữa tia $OM$ và tia đối của trục $Oy$ (hoặc hạ đường cao vuông góc):
-Từ $M$ kẻ $MH \perp Ox$ và $MK \perp Oy$ tại $H, K$.
-Vì tâm quay $O$ ở độ cao $60\text{ m}$ và điểm $M$ ở độ cao $30\text{ m}$ nên khoảng cách theo phương thẳng đứng từ $O$ đến $M$ là:
-$OK = MH = 60 - 30 = 30\text{ m}$.
-Chiều dài cánh quạt $OM = 31\text{ m}$.
-Ta có: $\sin \alpha = \frac{30}{31}$ và $\cos \alpha = \sqrt{1 - \left(\frac{30}{31}\right)^2} = \frac{\sqrt{61}}{31}$.
-Góc tạo bởi tia $OP$ và trục nằm ngang $Ox$ thoả mãn:
-$\sin \widehat{AOP} = \sin\left(\frac{2\pi}{3} - \alpha\right) = \sin\frac{2\pi}{3}\cos \alpha - \cos\frac{2\pi}{3}\sin \alpha$
-$= \frac{\sqrt{3}}{2} \cdot \frac{\sqrt{61}}{31} + \frac{1}{2} \cdot \frac{30}{31} = \frac{\sqrt{183} + 30}{62} \approx \frac{13,5277 + 30}{62} \approx 0,702$.
-Khoảng cách từ điểm $P$ đến trục hoành $Ox$ là:
-$y_P = OP \cdot \sin \widehat{AOP} = 31 \cdot \sin \widehat{AOP} \approx 31 \cdot 0,702 \approx 21,76\text{ m}$.
-Chiều cao của điểm $P$ so với mặt đất là:
-$h_P = 60 + y_P = 60 + 31\sin \widehat{AOP} \approx 60 + 21,76 \approx 81,76\text{ m} \approx 81,8\text{ m}$.
-Câu 82: Một cây cầu có dạng cung $OA$ của đồ thị hàm số $y = 4,8\sin\frac{x}{9}$ và được mô tả trong hệ trục tọa độ với đơn vị trục là mét như ở hình dưới đây. Đoạn thẳng $OA$ nằm trên trục $Ox$ biểu diễn chiều rộng mặt sông. Tính chiều rộng mặt sông theo đơn vị mét và làm tròn đến hàng phần chục.
+
+Câu 82: Một cây cầu có dạng cung $OA$ của đồ thị hàm số $y = 4,8\sin\frac{x}{9}$ với $O$ là gốc tọa độ, $A$ nằm trên nửa dương của trục hoành,hệ trục tọa độ với đơn vị trục là mét. Đoạn thẳng $OA$ nằm trên trục $Ox$ biểu diễn chiều rộng mặt sông. Tính chiều rộng mặt sông theo đơn vị mét và làm tròn đến hàng phần chục.
 Đáp án: 28,3
 Lời giải: Mặt sông nằm trên trục $Ox$ (ứng với $y = 0$). Chiều rộng mặt sông bằng độ dài đoạn thẳng $OA$, trong đó $O$ là gốc toạ độ ($x_O = 0$) và $A$ là giao điểm kế tiếp của đồ thị với trục hoành về phía dương.
 Phương trình hoành độ giao điểm với trục hoành:
