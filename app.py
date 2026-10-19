@@ -132,10 +132,10 @@ if not st.session_state.get("logged_in", False):
         """
         <div class="glass-card" style="padding: 24px 20px; text-align: center; margin-bottom: 24px; border-top: 4px solid #0284c7;">
             <div style="display: inline-block; background: #e0f2fe; color: #0369a1; font-size: 13px; font-weight: 700; padding: 4px 16px; border-radius: 20px; margin-bottom: 10px; border: 1px solid #bae6fd;">
-                ✨ HỌC TOÁN CÙNG CÔ HÀ
+                ✨ AI MATH LAB 11
             </div>
             <h1 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 800; color: #0f2b48; line-height: 1.3;">
-                📐 HỆ THỐNG HỌC TẬP TƯƠNG TÁC & LUYỆN THI TÍCH HỢP TRÍ TUỆ NHÂN TẠO
+                📐 NỀN TẢNG HỌC TẬP TƯƠNG TÁC & LUYỆN THI TÍCH HỢP TRÍ TUỆ NHÂN TẠO
             </h1>
             <p style="margin: 0; font-size: 15px; color: #334155; font-weight: 600;">
                 TOÁN 11 - CHƯƠNG 1: HÀM SỐ LƯỢNG GIÁC VÀ PHƯƠNG TRÌNH LƯỢNG GIÁC
