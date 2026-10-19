@@ -438,7 +438,7 @@ with tab_mophong:
     if os.path.exists(file_html_can_chieu):
         with open(file_html_can_chieu, "r", encoding="utf-8") as f:
             html_content = f.read()
-        components.html(html_content, height=680, scrolling=True)
+        components.html(html_content, height=700, scrolling=True)
     else:
         st.warning(f"Chưa tìm thấy file '{file_html_can_chieu}' trên hệ thống.")
 
