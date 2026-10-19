@@ -29,27 +29,67 @@
 
     html, body {
       width: 100%;
+      height: 100%;
       background-color: var(--bg-body);
       color: var(--text-main);
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
     }
 
-    /* MÀN HÌNH RỘNG (MÁY TÍNH >= 860px) */
+    /* HEADER GỌN GÀNG */
+    header {
+      background: #ffffff;
+      padding: 6px 14px;
+      border-bottom: 1.5px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .header-title h1 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #0284c7;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .header-title p {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+    .header-badge {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #7dd3fc;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* BỐ CỤC CHÍNH */
+    main {
+      flex: 1;
+      display: grid;
+      gap: 10px;
+      padding: 8px 12px;
+      min-height: 0;
+      width: 100%;
+    }
+
+    /* MÁY TÍNH (>= 860px) */
     @media (min-width: 860px) {
-      html, body {
-        height: 100vh;
-        max-height: 100vh;
-        overflow: hidden;
+      body {
+        overflow-y: hidden;
       }
       main {
-        flex: 1;
-        display: grid;
-        grid-template-columns: 1fr 390px;
-        gap: 10px;
-        padding: 8px 14px;
-        min-height: 0;
-        width: 100%;
+        grid-template-columns: 1fr 340px;
+        height: calc(100vh - 46px);
       }
       .sim-container {
         display: flex;
@@ -66,30 +106,30 @@
       .sidebar {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
+        height: 100%;
         min-height: 0;
         overflow-y: auto;
       }
     }
 
-    /* MÀN HÌNH NHỎ (ĐIỆN THOẠI & TABLET < 860px) */
+    /* ĐIỆN THOẠI & TABLET (< 860px) */
     @media (max-width: 859px) {
-      html, body {
-        min-height: 100vh;
-        overflow-x: hidden;
+      body {
         overflow-y: auto;
       }
       header {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 6px;
+        flex-direction: row;
+        padding: 6px 10px;
+      }
+      .header-title p {
+        display: none;
       }
       main {
         display: flex;
         flex-direction: column;
-        gap: 12px;
-        padding: 8px 10px 24px 10px;
-        width: 100%;
+        gap: 10px;
+        padding: 8px 8px 24px 8px;
       }
       .sim-container {
         width: 100%;
@@ -98,29 +138,25 @@
       }
       .canvas-wrapper {
         width: 100%;
-        height: min(85vw, 380px);
-        min-height: 300px;
+        height: min(85vw, 360px);
+        min-height: 280px;
         position: relative;
       }
       .sidebar {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
         width: 100%;
-      }
-      .btn {
-        padding: 5px 8px !important;
-        font-size: 0.8rem !important;
       }
     }
 
-    /* ĐỊNH DẠNG BIỂU THỨC TOÁN HỌC THUẦN */
+    /* BIỂU THỨC TOÁN */
     .math-expr {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cambria Math', 'Times New Roman', serif;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 700;
       vertical-align: middle;
     }
@@ -130,20 +166,17 @@
       align-items: center;
       justify-content: center;
       vertical-align: middle;
-      padding: 0 3px;
+      padding: 0 2px;
       line-height: 1;
     }
     .math-num {
       border-bottom: 1.5px solid currentColor;
-      padding-bottom: 2px;
+      padding-bottom: 1px;
       width: 100%;
       text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
     .math-den {
-      padding-top: 2px;
+      padding-top: 1px;
       width: 100%;
       text-align: center;
     }
@@ -154,58 +187,21 @@
       position: relative;
     }
     .math-sqrt-symbol {
-      width: 11px;
+      width: 10px;
       flex-shrink: 0;
       display: flex;
     }
     .math-sqrt-body {
-      border-top: 1.8px solid currentColor;
-      padding-left: 2px;
-      padding-right: 3px;
+      border-top: 1.6px solid currentColor;
+      padding-left: 1px;
+      padding-right: 2px;
       padding-top: 1px;
       display: inline-block;
       line-height: 1;
     }
 
-    /* HEADER */
-    header {
-      background: #ffffff;
-      padding: 8px 14px;
-      border-bottom: 1.5px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-shrink: 0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-    .header-title h1 {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #0284c7;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .header-title p {
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      margin-top: 1px;
-      line-height: 1.3;
-    }
-    .header-badge {
-      background: #e0f2fe;
-      color: #0369a1;
-      border: 1px solid #7dd3fc;
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    /* KHUNG CANVAS MÔ PHỎNG */
+    /* KHUNG CANVAS */
     .sim-container {
-      position: relative;
       background: #ffffff;
       border-radius: 8px;
       border: 1.5px solid var(--border-color);
@@ -221,18 +217,16 @@
       display: block;
     }
 
-    /* ĐIỀU KHIỂN DƯỚI CANVAS ĐƯỢC BỐ CỤC LẠI CHỐNG TRÀN */
+    /* THANH ĐIỀU KHIỂN DƯỚI CANVAS */
     .sim-controls {
-      padding: 8px 12px;
+      padding: 6px 10px;
       background: #f1f5f9;
       border-top: 1.5px solid var(--border-color);
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 5px;
       flex-shrink: 0;
     }
-
-    /* HÀNG 1: NHÃN GÓC VÀ NÚT BƯỚC NHẢY */
     .slider-header-row {
       display: flex;
       justify-content: space-between;
@@ -241,24 +235,22 @@
     }
     .slider-header-row label {
       font-weight: 800;
-      font-size: 0.92rem;
+      font-size: 0.85rem;
       color: #0369a1;
     }
     .step-btn-group {
       display: inline-flex;
-      gap: 6px;
+      gap: 4px;
     }
     .step-btn {
-      padding: 3px 12px !important;
-      font-size: 0.88rem !important;
+      padding: 2px 10px !important;
+      font-size: 0.8rem !important;
       font-weight: 800 !important;
       background: #ffffff;
       border: 1.5px solid var(--border-color);
-      border-radius: 5px;
+      border-radius: 4px;
       cursor: pointer;
     }
-
-    /* HÀNG 2: THANH TRƯỢT FULL 100% */
     .slider-bar-row {
       display: flex;
       align-items: center;
@@ -266,36 +258,33 @@
     }
     input[type="range"] {
       width: 100%;
-      height: 8px;
-      border-radius: 4px;
+      height: 6px;
+      border-radius: 3px;
       accent-color: #0284c7;
       cursor: pointer;
     }
-
     .btn-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
+      gap: 3px;
       align-items: center;
       width: 100%;
     }
     .btn-row-label {
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       font-weight: 800;
       color: var(--text-muted);
       margin-right: 2px;
     }
-
     .btn {
       border: 1.5px solid var(--border-color);
       background: #ffffff;
       color: var(--text-main);
-      padding: 4px 8px;
-      border-radius: 5px;
+      padding: 3px 6px;
+      border-radius: 4px;
       font-weight: 700;
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       cursor: pointer;
-      transition: all 0.15s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -315,63 +304,59 @@
       border-color: #0284c7;
     }
 
-    /* CỘT PHẢI */
+    /* BẢNG BÊN PHẢI (SIDEBAR) */
     .panel-card {
       background: #ffffff;
-      border-radius: 8px;
+      border-radius: 6px;
       border: 1.5px solid var(--border-color);
-      padding: 8px 12px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      padding: 6px 10px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
     }
     .panel-title {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 800;
       color: #0369a1;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1.5px solid #e2e8f0;
-      padding-bottom: 4px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 3px;
     }
-
     .m-coord-box {
       background: #f0fdf4;
       border: 1.5px solid #86efac;
-      border-radius: 6px;
-      padding: 6px 10px;
+      border-radius: 5px;
+      padding: 4px 8px;
       text-align: center;
       color: #15803d;
-      min-height: 44px;
+      min-height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 800;
     }
-
     .val-grid {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
     }
     .val-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 6px 8px;
+      padding: 3px 6px;
       background: #f8fafc;
-      border-radius: 5px;
-      border-left: 4px solid var(--border-color);
-      font-size: 0.86rem;
-      min-height: 38px;
+      border-radius: 4px;
+      border-left: 3.5px solid var(--border-color);
+      font-size: 0.8rem;
+      min-height: 28px;
     }
     .val-item.cos { border-left-color: var(--cos-color); }
     .val-item.sin { border-left-color: var(--sin-color); }
     .val-item.tan { border-left-color: var(--tan-color); }
     .val-item.cot { border-left-color: var(--cot-color); }
-
     .val-item .name {
       font-weight: 700;
       display: flex;
@@ -384,16 +369,15 @@
       justify-content: flex-end;
       font-weight: 800;
     }
-
     .sign-table {
       width: 100%;
       border-collapse: collapse;
       text-align: center;
-      font-size: 0.82rem;
+      font-size: 0.75rem;
     }
     .sign-table th, .sign-table td {
       border: 1px solid var(--border-color);
-      padding: 4px 6px;
+      padding: 2px 4px;
       font-weight: 700;
     }
     .sign-table th {
@@ -402,40 +386,28 @@
     }
     .sign-badge {
       display: inline-block;
-      width: 22px;
-      height: 22px;
-      line-height: 20px;
+      width: 18px;
+      height: 18px;
+      line-height: 16px;
       border-radius: 999px;
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
     }
-    .sign-badge.pos {
-      background: #dcfce7;
-      color: #16a34a;
-      border: 1px solid #86efac;
-    }
-    .sign-badge.neg {
-      background: #fee2e2;
-      color: #dc2626;
-      border: 1px solid #fca5a5;
-    }
-    .sign-badge.zero {
-      background: #f1f5f9;
-      color: var(--text-muted);
-      border: 1px solid var(--border-color);
-    }
+    .sign-badge.pos { background: #dcfce7; color: #16a34a; border: 1px solid #86efac; }
+    .sign-badge.neg { background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; }
+    .sign-badge.zero { background: #f1f5f9; color: var(--text-muted); border: 1px solid var(--border-color); }
 
     .pedagogy-tip {
-      font-size: 0.84rem;
+      font-size: 0.74rem;
       color: #334155;
-      line-height: 1.6;
+      line-height: 1.45;
       background: #ffffff;
-      border-left: 3.5px solid #0284c7;
-      padding: 6px 10px;
+      border-left: 3px solid #0284c7;
+      padding: 4px 8px;
       border-radius: 0 4px 4px 0;
     }
 
-    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
   </style>
 </head>
@@ -456,7 +428,6 @@
         <canvas id="simCanvas"></canvas>
       </div>
 
-      <!-- THANH ĐIỀU KHIỂN DƯỚI CANVAS: TÁCH BỐ CỤC 2 HÀNG RỘNG RÃI -->
       <div class="sim-controls">
         <div class="slider-header-row">
           <label for="angleRange">Góc α: <span id="lblAngle">π/4</span></label>
@@ -471,7 +442,7 @@
         </div>
 
         <div class="btn-row">
-          <span class="btn-row-label">Góc đặc biệt:</span>
+          <span class="btn-row-label">Góc nhanh:</span>
           <button class="btn btn-quick" data-rad="0">0</button>
           <button class="btn btn-quick" data-rad="0.523599">π/6</button>
           <button class="btn btn-quick active-angle" data-rad="0.785398">π/4</button>
@@ -486,7 +457,6 @@
           <button class="btn btn-quick" data-rad="6.283185">2π</button>
           <button class="btn btn-quick" data-rad="-0.785398">-π/4</button>
           <button class="btn btn-quick" data-rad="-1.570796">-π/2</button>
-
           <button class="btn btn-reset" id="btnReset">↻ Đặt lại (0)</button>
         </div>
       </div>
@@ -496,16 +466,16 @@
     <div class="sidebar">
       <div class="panel-card">
         <div class="panel-title">
-          <span>Tọa độ điểm biểu diễn M(x; y)</span>
-          <span style="font-size:0.75rem; color:var(--text-muted);">Bán kính R = 1</span>
+          <span>Tọa độ M(x; y)</span>
+          <span style="font-size:0.7rem; color:var(--text-muted);">Bán kính R = 1</span>
         </div>
         <div class="m-coord-box" id="dispMCoord"></div>
       </div>
 
       <div class="panel-card">
         <div class="panel-title">
-          <span>Giá trị lượng giác của α</span>
-          <span style="font-size:0.82rem; color:var(--primary); font-weight:800;" id="dispTurnInfo">π/4</span>
+          <span>Giá trị lượng giác</span>
+          <span style="font-size:0.75rem; color:#0284c7; font-weight:800;" id="dispTurnInfo">π/4</span>
         </div>
 
         <div class="val-grid">
@@ -560,8 +530,8 @@
       <div class="panel-card">
         <div class="panel-title">Điều kiện xác định</div>
         <div class="pedagogy-tip">
-          • <strong style="color:var(--tan-color);">tan α:</strong> Xác định khi x ≠ 0 (α ≠ π/2 + kπ, k ∈ ℤ).<br>
-          • <strong style="color:var(--cot-color);">cot α:</strong> Xác định khi y ≠ 0 (α ≠ kπ, k ∈ ℤ).
+          • <strong style="color:var(--tan-color);">tan α:</strong> x ≠ 0 (α ≠ π/2 + kπ).<br>
+          • <strong style="color:var(--cot-color);">cot α:</strong> y ≠ 0 (α ≠ kπ).
         </div>
       </div>
     </div>
@@ -597,7 +567,6 @@
     const btnMinusStep = document.getElementById('btnMinusStep');
     const btnPlusStep = document.getElementById('btnPlusStep');
 
-    /* TÌM ƯỚC SỐ CHUNG LỚN NHẤT */
     function gcd(a, b) {
       a = Math.abs(a);
       b = Math.abs(b);
@@ -609,7 +578,6 @@
       return a;
     }
 
-    /* ĐỊNH DẠNG SỐ ĐO GÓC SANG PHÂN SỐ ĐẸP CỦA PI */
     function formatExactPi(rad) {
       if (Math.abs(rad) < 1e-4) return "0";
       const val = rad / Math.PI;
@@ -651,15 +619,14 @@
       return `${sign}${val.toFixed(2)}π`;
     }
 
-    /* BỘ HÀM VẼ CĂN THỨC VECTƠ TRỰC TIẾP TRÊN CANVAS */
-    function measureFormulaText(ctx, str, fontSize = 14) {
+    function measureFormulaText(ctx, str, fontSize = 13) {
       let totalW = 0;
       const parts = str.split(/(√\d+)/g);
       for (let p of parts) {
         if (!p) continue;
         if (p.startsWith('√')) {
           const num = p.slice(1);
-          totalW += 8.5 + ctx.measureText(num).width + 2;
+          totalW += 8 + ctx.measureText(num).width + 2;
         } else {
           totalW += ctx.measureText(p).width;
         }
@@ -667,7 +634,7 @@
       return totalW;
     }
 
-    function renderFormulaText(ctx, str, x, y, fontSize = 14) {
+    function renderFormulaText(ctx, str, x, y, fontSize = 13) {
       const parts = str.split(/(√\d+)/g);
       let curX = x;
       ctx.save();
@@ -683,20 +650,20 @@
 
           ctx.save();
           ctx.strokeStyle = strokeCol;
-          ctx.lineWidth = 1.6;
+          ctx.lineWidth = 1.5;
           ctx.lineCap = 'round';
           ctx.lineJoin = 'miter';
           ctx.beginPath();
           ctx.moveTo(curX, y - rootH * 0.35);
-          ctx.lineTo(curX + 2.2, y - rootH * 0.1);
-          ctx.lineTo(curX + 4.8, y + 1.2);
-          ctx.lineTo(curX + 8.2, topY);
-          ctx.lineTo(curX + 8.2 + numW + 2.2, topY);
+          ctx.lineTo(curX + 2, y - rootH * 0.1);
+          ctx.lineTo(curX + 4.5, y + 1);
+          ctx.lineTo(curX + 7.5, topY);
+          ctx.lineTo(curX + 7.5 + numW + 2, topY);
           ctx.stroke();
           ctx.restore();
 
-          ctx.fillText(num, curX + 9.0, y);
-          curX += 8.2 + numW + 3;
+          ctx.fillText(num, curX + 8.2, y);
+          curX += 7.5 + numW + 3;
         } else {
           ctx.fillText(p, curX, y);
           curX += ctx.measureText(p).width;
@@ -705,7 +672,6 @@
       ctx.restore();
     }
 
-    /* TẠO DẤU CĂN SVG CHO BẢNG BÊN PHẢI */
     function makeSqrtHTML(val) {
       return `
         <span class="math-sqrt-wrap">
@@ -746,10 +712,9 @@
       neg_sqrt3: `<span class="math-expr">−${SQRT3}</span>`,
       sqrt3_3: makeFracHTML(SQRT3, "3"),
       neg_sqrt3_3: makeFracHTML(SQRT3, "3", "−"),
-      undef: `<span style="font-size:0.85rem; font-weight:bold; color:#dc2626;">Không xác định</span>`
+      undef: `<span style="font-size:0.75rem; font-weight:bold; color:#dc2626;">Không xác định</span>`
     };
 
-    /* BẢNG 16 GÓC ĐẶC BIỆT */
     const SPECIAL_TRIG_TABLE = [
       { k12: 0, cosH: MATH_VALS.one, sinH: MATH_VALS.zero, tanH: MATH_VALS.zero, cotH: MATH_VALS.undef, cosTxt: "1", sinTxt: "0" },
       { k12: 2, cosH: MATH_VALS.sqrt3_2, sinH: MATH_VALS.half, tanH: MATH_VALS.sqrt3_3, cotH: MATH_VALS.sqrt3, cosTxt: "√3/2", sinTxt: "1/2" },
@@ -799,7 +764,7 @@
     resizeCanvas();
 
     function drawArrow(fromX, fromY, toX, toY, color, width) {
-      const headLen = 9;
+      const headLen = 8;
       const angle = Math.atan2(toY - fromY, toX - fromX);
       ctx.strokeStyle = color;
       ctx.fillStyle = color;
@@ -829,8 +794,9 @@
 
       const isMobile = w < 500;
       const cx = w / 2;
-      const cy = h / 2 + (isMobile ? 12 : 18);
-      const R = Math.min(w, h) * (isMobile ? 0.33 : 0.35);
+      const cy = h / 2;
+      // Bán kính tự co giãn an toàn để không bị chạm viền trên máy tính nhỏ
+      const R = Math.min(w, h) * 0.36;
 
       const cosVal = Math.cos(currentRad);
       const sinVal = Math.sin(currentRad);
@@ -839,53 +805,50 @@
       const my = cy - sinVal * R;
 
       // 1. Trục tọa độ Oxy
-      drawArrow(cx - R - (isMobile ? 32 : 45), cy, cx + R + (isMobile ? 42 : 58), cy, '#64748b', 2.2);
-      drawArrow(cx, cy + R + (isMobile ? 32 : 45), cx, isMobile ? 12 : 18, '#64748b', 2.2);
+      drawArrow(cx - R - 35, cy, cx + R + 45, cy, '#64748b', 2);
+      drawArrow(cx, cy + R + 35, cx, Math.max(12, cy - R - 35), '#64748b', 2);
 
       ctx.fillStyle = '#0f172a';
-      ctx.font = `bold ${isMobile ? 13 : 15}px 'Segoe UI', sans-serif`;
-      ctx.fillText('x (Cos)', cx + R + (isMobile ? 14 : 22), cy + (isMobile ? 18 : 22));
-      ctx.fillText('y (Sin)', cx + 10, isMobile ? 26 : 34);
-      ctx.fillText('O', cx - 18, cy + 18);
+      ctx.font = `bold ${isMobile ? 12 : 13}px 'Segoe UI', sans-serif`;
+      ctx.fillText('x (Cos)', cx + R + 14, cy + 18);
+      ctx.fillText('y (Sin)', cx + 8, Math.max(18, cy - R - 22));
+      ctx.fillText('O', cx - 14, cy + 15);
 
-      // CÁC SỐ 1 VÀ -1 NGOÀI ĐƯỜNG TRÒN
-      ctx.fillStyle = '#1e293b';
-      ctx.font = `bold ${isMobile ? 13.5 : 15.5}px 'Segoe UI', sans-serif`;
-
-      ctx.fillText('1', cx - (isMobile ? 16 : 20), cy - R - 6);
-      ctx.fillText('-1', cx - (isMobile ? 22 : 26), cy + R + (isMobile ? 18 : 22));
-      ctx.fillText('-1', cx - R - (isMobile ? 22 : 26), cy + 18);
-      ctx.fillText('1', cx + R + 6, cy + 20);
-
+      // Số 1 và -1 trên trục
       ctx.fillStyle = '#334155';
-      ctx.font = `bold ${isMobile ? 11.5 : 13.5}px 'Segoe UI', sans-serif`;
-      ctx.fillText('A(1;0)', cx + R + 6, cy - 8);
+      ctx.font = `bold ${isMobile ? 11 : 12.5}px 'Segoe UI', sans-serif`;
+      ctx.fillText('1', cx - 14, cy - R - 5);
+      ctx.fillText('-1', cx - 18, cy + R + 15);
+      ctx.fillText('-1', cx - R - 18, cy + 15);
+      ctx.fillText('1', cx + R + 5, cy + 15);
+      ctx.fillText('A(1;0)', cx + R + 5, cy - 6);
 
+      // Ký hiệu góc phần tư
       ctx.fillStyle = '#e2e8f0';
-      ctx.font = `bold ${isMobile ? 24 : 30}px 'Segoe UI', sans-serif`;
-      ctx.fillText('I', cx + R * 0.55, cy - R * 0.55);
-      ctx.fillText('II', cx - R * 0.65, cy - R * 0.55);
-      ctx.fillText('III', cx - R * 0.65, cy + R * 0.65);
-      ctx.fillText('IV', cx + R * 0.55, cy + R * 0.65);
+      ctx.font = `bold ${isMobile ? 20 : 26}px 'Segoe UI', sans-serif`;
+      ctx.fillText('I', cx + R * 0.5, cy - R * 0.5);
+      ctx.fillText('II', cx - R * 0.6, cy - R * 0.5);
+      ctx.fillText('III', cx - R * 0.6, cy + R * 0.6);
+      ctx.fillText('IV', cx + R * 0.5, cy + R * 0.6);
 
       // 2. Đường tròn lượng giác
       ctx.save();
       ctx.strokeStyle = '#94a3b8';
-      ctx.lineWidth = 2.2;
+      ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
       ctx.stroke();
       ctx.restore();
 
-      // 3. Cung xoắn ốc biểu diễn góc α
+      // 3. Cung biểu diễn góc α
       if (Math.abs(currentRad) >= 0.01) {
         ctx.save();
         const isPositive = currentRad > 0;
         ctx.strokeStyle = isPositive ? '#f97316' : '#8b5cf6';
-        ctx.lineWidth = 2.4;
+        ctx.lineWidth = 2.2;
 
-        const baseRadius = R * 0.22;
-        const maxExtra = R * 0.35;
+        const baseRadius = R * 0.2;
+        const maxExtra = R * 0.32;
         const inc = 0.05 * Math.sign(currentRad);
 
         ctx.beginPath();
@@ -909,7 +872,7 @@
 
         const arrowRad = -currentRad;
         const tangentAngle = arrowRad + (isPositive ? -Math.PI / 2 : Math.PI / 2);
-        const headLen = 8;
+        const headLen = 7;
         ctx.fillStyle = ctx.strokeStyle;
         ctx.beginPath();
         ctx.moveTo(lastX, lastY);
@@ -919,40 +882,29 @@
         ctx.restore();
       }
 
-      // 4. Đoạn đại số cos α và sin α
+      // 4. Đoạn cos α và sin α
       ctx.save();
       ctx.strokeStyle = '#2563eb';
-      ctx.lineWidth = isMobile ? 4.5 : 5.5;
+      ctx.lineWidth = isMobile ? 3.8 : 4.5;
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(mx, cy);
       ctx.stroke();
-
-      ctx.fillStyle = '#2563eb';
-      ctx.beginPath();
-      ctx.arc(mx, cy, isMobile ? 4 : 5, 0, Math.PI * 2);
-      ctx.fill();
       ctx.restore();
 
       ctx.save();
       ctx.strokeStyle = '#dc2626';
-      ctx.lineWidth = isMobile ? 4.5 : 5.5;
+      ctx.lineWidth = isMobile ? 3.8 : 4.5;
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(cx, my);
       ctx.stroke();
-
-      ctx.fillStyle = '#dc2626';
-      ctx.beginPath();
-      ctx.arc(cx, my, isMobile ? 4 : 5, 0, Math.PI * 2);
-      ctx.fill();
       ctx.restore();
 
-      // Nét đứt dóng từ M xuống Ox và Oy
+      // Nét đứt dóng tọa độ
       ctx.save();
       ctx.setLineDash([4, 4]);
-      ctx.lineWidth = 1.6;
-
+      ctx.lineWidth = 1.4;
       ctx.strokeStyle = '#2563eb';
       ctx.beginPath();
       ctx.moveTo(mx, my);
@@ -966,10 +918,10 @@
       ctx.stroke();
       ctx.restore();
 
-      // 5. Tia đầu OA và tia cuối OM
+      // Tia OA và OM
       ctx.save();
       ctx.strokeStyle = '#0284c7';
-      ctx.lineWidth = 2.4;
+      ctx.lineWidth = 2.2;
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(cx + R, cy);
@@ -978,7 +930,7 @@
 
       ctx.save();
       ctx.strokeStyle = '#0f172a';
-      ctx.lineWidth = 2.8;
+      ctx.lineWidth = 2.5;
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(mx, my);
@@ -989,64 +941,44 @@
       ctx.save();
       ctx.fillStyle = '#f97316';
       ctx.beginPath();
-      ctx.arc(mx, my, isMobile ? 6.5 : 8, 0, Math.PI * 2);
+      ctx.arc(mx, my, isMobile ? 5.5 : 7, 0, Math.PI * 2);
       ctx.fill();
       ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 2.2;
+      ctx.lineWidth = 2;
       ctx.stroke();
       ctx.restore();
 
-      // NHÃN TỌA ĐỘ ĐIỂM M VÀ HÌNH CHIẾU
+      // Nhãn điểm M và giá trị hình chiếu
       const special = findSpecialTrig(targetRad);
-      let labelM = "";
-      let labelCosVal = "";
-      let labelSinVal = "";
+      let labelM = special ? `M (${special.cosTxt} ; ${special.sinTxt})` : `M (${cosVal.toFixed(2)} ; ${sinVal.toFixed(2)})`;
+      let labelCosVal = special ? special.cosTxt : cosVal.toFixed(2);
+      let labelSinVal = special ? special.sinTxt : sinVal.toFixed(2);
 
-      if (special) {
-        labelM = `M (${special.cosTxt} ; ${special.sinTxt})`;
-        labelCosVal = `${special.cosTxt}`;
-        labelSinVal = `${special.sinTxt}`;
-      } else {
-        labelM = `M (${cosVal.toFixed(2)} ; ${sinVal.toFixed(2)})`;
-        labelCosVal = `${cosVal.toFixed(2)}`;
-        labelSinVal = `${sinVal.toFixed(2)}`;
-      }
-
-      // 1. NHÃN ĐIỂM M VỚI THUẬT TOÁN AUTO-CLAMPING CHỐNG MẤT CHỮ TRÊN ĐIỆN THOẠI
       ctx.fillStyle = '#0f172a';
-      const fontMSize = isMobile ? 12.5 : 14;
+      const fontMSize = isMobile ? 11.5 : 13;
       ctx.font = `bold ${fontMSize}px 'Segoe UI', sans-serif`;
       const totalWidthM = measureFormulaText(ctx, labelM, fontMSize);
 
-      let targetLabelX = mx + (cosVal >= 0 ? 12 : -(totalWidthM + 12));
-      let targetLabelY = my + (sinVal >= 0 ? -12 : 24);
+      let targetLabelX = mx + (cosVal >= 0 ? 10 : -(totalWidthM + 10));
+      let targetLabelY = my + (sinVal >= 0 ? -10 : 20);
 
-      // Nếu chữ chạm mép trái màn hình (< 8px), tự động lật sang phía bên phải điểm M
-      if (targetLabelX < 8) {
-        targetLabelX = mx + 12;
-      }
-      // Nếu chữ chạm mép phải màn hình, lật sang phía bên trái điểm M
-      else if (targetLabelX + totalWidthM > w - 8) {
-        targetLabelX = mx - totalWidthM - 12;
-      }
+      if (targetLabelX < 6) targetLabelX = mx + 10;
+      else if (targetLabelX + totalWidthM > w - 6) targetLabelX = mx - totalWidthM - 10;
 
-      // Giới hạn trong khoảng an toàn tuyệt đối của Canvas
-      targetLabelX = Math.max(8, Math.min(targetLabelX, w - totalWidthM - 8));
-      targetLabelY = Math.max(18, Math.min(targetLabelY, h - 8));
+      targetLabelX = Math.max(6, Math.min(targetLabelX, w - totalWidthM - 6));
+      targetLabelY = Math.max(16, Math.min(targetLabelY, h - 6));
 
       renderFormulaText(ctx, labelM, targetLabelX, targetLabelY, fontMSize);
 
-      // 2. Nhãn giá trị hình chiếu trên trục Ox
       ctx.fillStyle = '#2563eb';
-      const fontAxisSize = isMobile ? 12 : 13.5;
+      const fontAxisSize = isMobile ? 11 : 12;
       ctx.font = `bold ${fontAxisSize}px 'Segoe UI', sans-serif`;
       const cosW = measureFormulaText(ctx, labelCosVal, fontAxisSize);
-      renderFormulaText(ctx, labelCosVal, mx - cosW / 2, cy + (sinVal >= 0 ? 20 : -10), fontAxisSize);
+      renderFormulaText(ctx, labelCosVal, mx - cosW / 2, cy + (sinVal >= 0 ? 18 : -8), fontAxisSize);
 
-      // 3. Nhãn giá trị hình chiếu trên trục Oy
       ctx.fillStyle = '#dc2626';
       const sinW = measureFormulaText(ctx, labelSinVal, fontAxisSize);
-      renderFormulaText(ctx, labelSinVal, cx + (cosVal >= 0 ? -(sinW + 10) : 10), my + 4, fontAxisSize);
+      renderFormulaText(ctx, labelSinVal, cx + (cosVal >= 0 ? -(sinW + 8) : 8), my + 4, fontAxisSize);
     }
 
     function animate() {
@@ -1054,7 +986,6 @@
       requestAnimationFrame(animate);
     }
 
-    /* CẬP NHẬT GIAO DIỆN VÀ TÍNH TOÁN TOÀN DIỆN */
     function updateTrigValues() {
       const special = findSpecialTrig(targetRad);
 
@@ -1084,13 +1015,10 @@
         valCot.innerHTML = isNaN(cotVal) ? MATH_VALS.undef : `<span class="math-expr">${cotVal >= 0 ? '+' : ''}${cotVal.toFixed(4)}</span>`;
       }
 
-      // ĐỊNH DẠNG SỐ LẦN PI CHUẨN XÁC DẠNG PHÂN SỐ
       const exactPiText = formatExactPi(targetRad);
-
       lblAngle.innerText = exactPiText;
       angleRange.value = targetRad;
       badgeAngleDisplay.innerText = `α = ${exactPiText}`;
-
       dispTurnInfo.innerText = exactPiText;
 
       setQuadrantAndSigns(targetRad % (2 * Math.PI), Math.sin(targetRad), Math.cos(targetRad));
@@ -1182,7 +1110,6 @@
       updateTrigValues();
     });
 
-    // KHỞI CHẠY TỨC THÌ
     updateTrigValues();
     animate();
   </script>
