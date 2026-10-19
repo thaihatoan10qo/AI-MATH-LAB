@@ -176,7 +176,7 @@ if not st.session_state.get("logged_in", False):
                         </div>
                     </div>
                     <div style="background: rgba(255, 255, 255, 0.95); padding: 12px 14px; border-radius: 10px; border-left: 4px solid #6366f1; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-                        <div style="font-weight: 700; color: #4f46e5; font-size: 14px;">📊 KHẢO THÍ TỰ ĐỘNG & GỬI KẾT QUẢ ĐẾN GIÁO VIÊN</div>
+                        <div style="font-weight: 700; color: #4f46e5; font-size: 14px;">📊 ĐÁNH GIÁ NĂNG LỰC & GỬI KẾT QUẢ ĐẾN GIÁO VIÊN</div>
                         <div style="font-size: 13px; color: #334155; margin-top: 3px; line-height: 1.4;">
                             Tạo đề kiểm tra ma trận chuẩn, tự động chấm điểm và đồng bộ tức thì tiến trình học tập về bảng quản lý của giáo viên.
                         </div>
@@ -414,7 +414,7 @@ tab_mophong, tab_lythuyet, tab_luyentap, tab_kiemtra = st.tabs([
     "🌀 1. MÔ PHỎNG TRỰC QUAN",
     "📖 2. TÓM TẮT LÝ THUYẾT",
     "✍️ 3. LUYỆN TẬP CÙNG GIA SƯ AI",
-    "📝 4. KIỂM TRA THEO MA TRẬN"
+    "📝 4. ĐÁNH GIÁ NĂNG LỰC"
 ])
 
 
