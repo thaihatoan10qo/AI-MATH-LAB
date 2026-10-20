@@ -1042,7 +1042,8 @@ with tab_kiemtra:
               + Đáp án đúng bắt buộc là MỘT CON SỐ CỤ THỂ CÓ TỐI ĐA 4 KÍ TỰ (nguyên hoặc thập phân ngắn gọn, ví dụ: "20", "4", "2.5").
             - Công thức toán viết bằng LaTeX đặt trong $...$.
             - Lời giải (explanation) ngắn gọn, rõ ràng.
-
+            YÊU CẦU QUAN TRỌNG:
+            - Vị trí đáp án đúng của các câu trắc nghiệm (mcq) PHẢI được đảo ngẫu nhiên và phân bố đều giữa A, B, C, D (tuyệt đối không để toàn bộ hoặc phần lớn câu hỏi có đáp án đúng là A).
             Trả về đúng định dạng JSON thuần là danh sách gồm đúng 20 đối tượng:
             [
               {{
@@ -1051,7 +1052,7 @@ with tab_kiemtra:
                 "level": "Nhận biết",
                 "question": "Nội dung câu trắc nghiệm...",
                 "options": {{"A": "...", "B": "...", "C": "...", "D": "..."}},
-                "correct_answer": "A",
+                "correct_answer": "Chữ cái đáp án đúng (chọn ngẫu nhiên A, B, C hoặc D)",
                 "explanation": "Giải thích ngắn gọn..."
               }},
               {{
