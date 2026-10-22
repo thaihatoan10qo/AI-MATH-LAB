@@ -158,7 +158,7 @@ if not st.session_state.get("logged_in", False):
                 </p>
                 <div style="display: flex; flex-direction: column; gap: 12px;">
                     <div style="background: rgba(255, 255, 255, 0.95); padding: 12px 14px; border-radius: 10px; border-left: 4px solid #0284c7; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-                        <div style="font-weight: 700; color: #0284c7; font-size: 14px;">🌀 MÔ PHỎNG TRỰC QUAN</div>
+                        <div style="font-weight: 700; color: #0284c7; font-size: 14px;">🌀 MÔ PHỎNG TƯƠNG TÁC</div>
                         <div style="font-size: 13px; color: #334155; margin-top: 3px; line-height: 1.4;">
                             Trực quan hóa khái niệm giá trị lượng giác, đồ thị hàm số lượng giác, nghiệm của phương trình lượng giác cơ bản.
                         </div>
