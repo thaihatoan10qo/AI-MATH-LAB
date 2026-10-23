@@ -718,7 +718,7 @@ Trả về đúng định dạng JSON:
                 2. Dùng lời văn động viên, gần gũi như thầy/cô hướng dẫn học sinh.
                 3. Các công thức toán bắt buộc viết dạng LaTeX đặt trong $...$ hoặc $$...$$.
                 4. Nhắc lại mẹo nhớ hoặc lưu ý quan trọng để học sinh không lặp lại lỗi sai.
-                5. Tuyệt đối không giải bài cho học sinh trước khi học sinh chọn đáp án của câu hỏi.
+                5. Nếu học sinh hỏi cách giải bài tập thì tuyệt đối không cung cấp ngay lời giải chi tiết mà chỉ gợi ý để học sinh từng bước tìm ra lời giải.
                 """
 
                 with st.chat_message("assistant"):
