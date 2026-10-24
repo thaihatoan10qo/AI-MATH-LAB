@@ -43,7 +43,7 @@ from google.genai import types
 
 # 1. Cấu hình trang (bắt buộc phải có đủ dấu đóng ngoặc tròn ')')
 st.set_page_config(
-    page_title="ÔN TẬP & LUYỆN THI TOÁN 11",
+    page_title="TỰ HỌC LƯỢNG GIÁC CÙNG GIA SƯ AI",
     page_icon="📐",
     layout="wide"
 )
@@ -132,7 +132,7 @@ if not st.session_state.get("logged_in", False):
         """
         <div class="glass-card" style="padding: 24px 20px; text-align: center; margin-bottom: 24px; border-top: 4px solid #0284c7;">
             <div style="display: inline-block; background: #e0f2fe; color: #0369a1; font-size: 13px; font-weight: 700; padding: 4px 16px; border-radius: 20px; margin-bottom: 10px; border: 1px solid #bae6fd;">
-                ✨ AI MATH LAB 11
+                ✨ AI MATH LAB 
             </div>
             <h1 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 800; color: #0f2b48; line-height: 1.3;">
                 📐 NỀN TẢNG HỌC TẬP TƯƠNG TÁC & LUYỆN THI TÍCH HỢP TRÍ TUỆ NHÂN TẠO
