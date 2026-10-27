@@ -682,7 +682,7 @@ Trả về đúng định dạng JSON:
 
             # ================= PHẦN GIA SƯ AI TRÒ CHUYỆN VỀ CÂU HỎI VỪA LÀM =================
             st.markdown("---")
-            st.subheader("💬 Gia sư AI: Thắc mắc về câu hỏi này?")
+            st.subheader("💬 Gia sư AI: Em có thắc mắc gì về câu hỏi này không?")
             st.caption("Em chưa hiểu bước biến đổi nào, tại sao công thức lại như vậy hay muốn gợi ý cách nhớ? Hãy nhập câu hỏi bên dưới nhé!")
 
             if "chat_history" not in st.session_state:
