@@ -392,11 +392,11 @@ st.markdown("""
 
 <div class="school-banner">
     <h1>NỀN TẢNG HỌC TẬP TƯƠNG TÁC & LUYỆN THI TÍCH HỢP TRÍ TUỆ NHÂN TẠO</h1>
-    <p>TOÁN 11 | CHƯƠNG TRÌNH GDPT 2018</p>
+    <p>AI-MATH-LAB</p>
 </div>
 """, unsafe_allow_html=True)
 
-st.caption("CHƯƠNG 1: HÀM SỐ LƯỢNG GIÁC VÀ PHƯƠNG TRÌNH LƯỢNG GIÁC")
+st.caption("TOÁN 11-CHƯƠNG 1: HÀM SỐ LƯỢNG GIÁC VÀ PHƯƠNG TRÌNH LƯỢNG GIÁC")
 
 # 2. Quản lý API Key an toàn
 api_key = None
